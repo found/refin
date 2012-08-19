@@ -1,17 +1,36 @@
-<% @supplementary_news = "#{ image_tag "recent_posts.png" }" %>
+<%= render :partial => "/shared/content_page" %>
 
-	<% NewsItem.find(:all, :conditions => ["publish_date < ? AND news_type = ?", Time.now, "News Release"], :order => "publish_date DESC", :limit => 5).each do |news| %>
-		<% @supplementary_news += "
-			<div id='news-item-#{news.id}' class='news-snippets'> 
-				<p style='margin-top:-12px;'>
-					<div style='float:left; padding-right:6px;'>#{link_to (image_fu news.image, "150x150>"), (news_item_url(news))}</div>
-					#{link_to news.title, (news_item_url(news))} --
-					<small>#{shorten(strip_tags(news.body), 180) + '<b>' + news.long_time + "</b>"}</small>
-				</p>
-				<div style='clear:left;'></div>
-			</div>
-			<hr />
-			"%>
+
+<div class="column_third green">
+  <h3>Upcoming Events</h3>
+  <ul>
+	<% NewsItem.find(:all, :conditions => ["publish_date < ? AND news_type = ?", Time.now, "News Release"], :order => "publish_date DESC", :limit => 3).each do |news| %>
+		<li> <%= link_to (image_fu news.image, "125x125>"), (news_item_url(news)) unless news.image.nil? %>
+			<h4><%= link_to news.title, (news_item_url(news)) %></h4>
+			<p><strong><%= news.long_time %></strong></p>
+			<p><%= shorten(strip_tags(news.body), 180) %></p>
+		</li>
 			
 	<% end %>
-<%= render :partial => "/shared/content_page" %>
+  </ul>
+</div>
+<div class="column_third red">
+  <h3>Recent News</h3>
+  <ul>
+	<% NewsItem.find(:all, :conditions => ["publish_date < ? AND news_type = ?", Time.now, "News Release"], :order => "publish_date DESC", :limit => 3).each do |news| %>
+		<li> <%= link_to (image_fu news.image, "125x125>"), (news_item_url(news)) unless news.image.nil? %>
+			<h4><%= link_to news.title, (news_item_url(news)) %></h4>
+			<p><strong><%= news.long_time %></strong></p>
+			<p><%= shorten(strip_tags(news.body), 180) %> <%= button_to "read more", (news_item_url(news)) %></p>
+		</li>
+
+	<% end %>
+  </ul>
+</div>
+<div class="column_third blue right">
+  <h3>Quick Links</h3>
+	<%= ContentHolder.find(3).body.html_safe %>
+</div>
+<div class="clear_left"></div>
+
+

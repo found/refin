@@ -1,8 +1,42 @@
-	<div id="header">
-		<a href="/" class="replace" id="logo"></a>
-	</div>
-	<div id="topmost-links">
-		<a href="/donate" class="donation-basket">My Donation Basket<%#= " (#{current_cart.in_cart_count})" if current_cart %></a>
+<div id="container_header">
+  <div id="header_content" class="container_1000px"> <a href="#" id="container_logo"> </a>
+    <ul id="sub_nav">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">Links</a></li>
+      <li><a class="right" href="#">Downloads</a></li>
+      <li id="search_bar">
+		<% form_tag search_url do -%>
+		  <%= text_field_tag :query, {}, {:type => "search",
+		                     :placeholder => "Search entire site for...", 
+												 :onfocus => "this.value=''",
+		                     :value => (params[:query] if params[:query])} %>
+		  <%= submit_tag 'Go!', {:class => "search_button"} %>
+		<% end %>
+      </li>
+    </ul>
+    <ul id="nav">
+      <li><a class="shadowed" href="#">History</a></li>
+      <li><a class="shadowed" href="#">Town Departments</a>
+        <ul>
+          <li><a href="#">Administrative</a></li>
+          <li><a href="#">Parks</a></li>
+          <li><a href="#">Town Police Dept.</a></li>
+          <li><a href="#">Public Works</a></li>
+          <li><a href="#">Treasurer</a></li>
+          <li><a href="#">Zoning Admin.</a></li>
+          <li><a href="#">Newsletter</a></li>
+        </ul>
+      </li>
+      <li><a class="shadowed" href="#">Town Government</a></li>
+      <li><a class="shadowed" href="#">Community</a></li>
+    </ul>
+  </div>
+</div>
+
+
+
+		<!-- 
 		<% if current_member %>
 			<a href="/donors/me" class="donation-basket">My Account</a>
 			<%= link_to "Logout", destroy_member_session_path, :class => "donation-basket" %>
@@ -10,16 +44,7 @@
 			<%= link_to "Register", '/members/register', :class => "donation-basket" %>
 			<%= link_to "Login", new_member_session_path, :class => "donation-basket" %>
 		<% end %>
-	</div>
-	<%= ContentHolder.find(1).body.html_safe %>
-	<!-- <div style="float:right;">
-		<%# form_tag search_url do -%>
-		  <%#= text_field_tag :query, {}, {:type => "search",
-		                     :placeholder => "Search entire site for...", 
-												 :style => "width:250px; margin-right:0px;",
-		                     :value => (params[:query] if params[:query])} %>
-		  <%#= submit_tag 'Go!', {:style => "margin-right:20px; margin-bottom:10px;"} %>
-		<%# end %>
-	</div> -->
-<div style="clear:right;"></div>
+		 -->
 
+
+	<%#= ContentHolder.find(1).body.html_safe %>
