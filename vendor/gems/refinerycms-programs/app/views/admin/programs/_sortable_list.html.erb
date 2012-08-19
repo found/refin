@@ -1,0 +1,13 @@
+<h2>Active Programs:</h2>
+<ul id='sortable_list'>
+  <%= render :partial => 'program', :collection => @programs.reject{|p| p.disabled == true} %>
+</ul>
+<hr /><br />
+<h2>Disabled Programs:</h2>
+<ul>
+	<%= render :partial => 'program', :collection => @programs.select{|p| p.disabled == true} %>
+</ul>
+<%= render :partial => "/shared/admin/sortable_list",
+            :locals => {
+              :continue_reordering => (local_assigns.keys.include?(:continue_reordering)) ? continue_reordering : true
+            } %>

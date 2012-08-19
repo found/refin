@@ -1,0 +1,60 @@
+<div id="maincontent" style="width:900px;">
+	<% if flash[:error] -%>
+	  <p class='error'><font color="red"><%=h flash[:error] %></font></p>
+	<% end -%>
+	<% if flash[:notice] -%>
+	  <p class='notice' style="border: 1px solid 'red';"><font color="red"><%=h flash[:notice] %></font></p>
+	<% end -%>
+		<%= form_for "contribution", :url => "/subscriptions/update_payment/#{@subscription.id}" do |f| %>
+			<h1 class="donate-teaser">Update Your Payment Information</h1>
+			<p style="padding: 8px 12px; background: #eee; color: #444; display: block; margin: 0px 0px 10px; width: 600px; font-size: 13px; line-height: 15px; border-left: 3px solid #ddd;">
+				At this time, we are unable to switch between payment types. <br /> Fill out the form below to change your payment method.<br />
+				If you wish to change payment methods, please contact CAM.<br />
+				This information will not be saved.<br /> 
+			</p>
+		
+			<% if @subscription.payment_method == "Credit Card" %>
+				<div id="cc_info">
+					<table>
+						<tr>
+							<td>Credit Card Number:</td>
+							<td><%= f.text_field :number %></td>
+						</tr>
+						<tr>
+							<td>Expiration Date:</td>
+							<td><%= f.date_select :expiry_month, :order => [:month], :include_blank => true %> <%= f.date_select :expiry_year, :order => [:year], :include_blank => true %></td>
+
+						</tr>
+						<tr>
+							<td>Verification Number (CVV on the back of your card):</td>
+							<td><%= f.text_field :ccv %></td>
+						</tr>
+					</table>
+				</div>
+			<% else %>
+				<div id="bank_info">
+					<table>
+						<tr>
+							<td>Bank Name:</td>
+							<td><%= f.text_field :bank_name %></td>
+						</tr>
+						<tr>
+							<td>Account Type:</td>
+							<td><%= f.select :account_type, ["Checking", "Savings"] %></td>
+						</tr>
+						<tr>
+							<td>ABA Routing Number:</td>
+							<td><%= f.text_field :routing_number %></td>
+						</tr>
+						<tr>
+							<td>Account Number:</td>
+							<td><%= f.text_field :account_number %></td>
+						</tr>
+					</table>
+				</div>
+			<% end %>
+			<%= f.submit "Update Payment Information" %>
+		<% end %>
+		<br />
+		<%= link_to "Cancel", subscription_path(@subscription) %>
+</div>

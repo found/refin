@@ -1,0 +1,50 @@
+<div class="suggested_amount" id="sa-<%= program.id %>-monthly" style="display:none;">
+	<input type="hidden" id="sa-monthly-enabled-<%= program.id %>" value="<%= program.monthly_enabled %>" />
+	<strong style="margin: 20px 20px;">Amount per month:</strong>
+	<%- if program.monthly_enabled == false -%>
+		<p>This program is currently unavailable for monthly subscriptions.</p>
+	<%- else -%>
+	<br />
+	<table class="choose-monthly-or"  style="margin: 0px 20px;">
+		<tr><td width="100">Select a suggested amount</td>
+			<td class="or">or</td>
+			<td width="100">enter the amount you wish to give</td>
+		</tr>
+		<tr><td>$
+	<%= f.select 'amountish', program.monthly_suggested_amounts.split(",").push("other"), {:include_blank => true}, {:class => "program-suggested-select program-suggested-select-#{program.id}"} %>
+		</td>
+		<td></td>
+		<td>$
+			<input type="hidden" name="real_amount" id="real_amount-<%= program.id %>" value="0">
+			<%= f.text_field :amount, :id => "contribution_amount_#{program.id}", :class => "program-other-input poi-#{program.id}", :value => "0" %>
+		</td>
+		</tr>
+	</table>
+
+	<script type="text/javascript" charset="utf-8">
+			$(".program-suggested-select-<%= program.id %>").change(function (){
+				var val = $(this).val();
+				if (val == "other") {
+					$(".poi-<%= program.id %>").val("0");
+				} else {
+					valInCents = Math.round((Number(val) * 100).toString());
+					$("#donation_form form").attr("action", "/orders/add_program_to_cart/<%= program.id %>/" + valInCents)
+					$(".poi-<%= program.id %>").val(val);
+					$(".poi-<%= program.id %>").attr("value", val);
+				}
+			});
+			
+			$("#contribution_amount_<%= program.id %>").keydown(
+				function(event) {
+					if (event.keyCode == '13') {
+						event.preventDefault();
+					}
+				}
+			).blur(
+				function() {
+					$("#donation_form form").attr("action", "/orders/add_program_to_cart/<%= program.id %>/" + Math.round((Number($(this).val())) * 100).toString());
+				}
+			);
+	</script>
+	<%- end -%>
+</div>

@@ -1,0 +1,14 @@
+<h2>The daily receipts have been delivered successfully.</h2>
+
+<% if @invoices.empty? %>
+	<p>There were no receipts that needed to be sent today.  Treat this email as a process complete notification.</p>
+<% else %>
+	<p>
+		The following receipts have been mailed out to their individual donors:
+		<ul>
+			<% @invoices.each do |i| %>
+				<li><%= i.invoice_number %> was sent to <%= i.member.email %></li>
+			<% end %>
+		</ul>
+	</p>
+<% end %>

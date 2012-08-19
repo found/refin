@@ -1,0 +1,61 @@
+<% content_for :body_content_left do %>
+	<div id="maincontent">
+		<h1>Saved Payment Methods</h1>
+		<hr />
+		<p><%= link_to "Add a new Payment Method", new_payment_profile_path %> | <%= link_to "Back to Dashboard", "/donors/me" %></p>
+			<h3>Credit Cards</h3>	
+			<% if @payment_profiles.count > 0 %>
+				<% @payment_profiles.each do |pro| %>
+					<% if pro['payment'].has_key?("credit_card") %>
+						<% act = pro['payment']['credit_card'] %>
+						<table>
+							<tr>
+								<td>Expiration Date:</td>
+								<td><%= act['expiration_date'] %></td>
+							</tr>
+							<tr>
+								<td>Card Number:</td>
+								<td><%= act['card_number'] %></td>
+							</tr>
+						</table>
+						<p><%= link_to "Remove this account", "/payment_profile/destroy/#{pro["db_object_id"]}" %></p>
+					<% end %>
+				<% end %>
+			<% else %>
+				<p>It appears you haven't added your credit card/debit card to a payment profile!</p>
+			<% end %>
+
+			<h3>Checking/Savings</h3>	
+			<% if @payment_profiles.count > 0 %>
+				<% @payment_profiles.each do |pro| %>
+					<% if pro['payment'].has_key?("bank_account") %>
+						<% act = pro['payment']['bank_account'] %>
+						<table>
+							<tr>
+								<td>Name on Account:</td>
+								<td><%= act['name_on_account'] %></td>
+							</tr>
+							<tr>
+								<td>Account Type:</td>
+								<td><%= act['account_type'].capitalize %></td>
+							</tr>
+							<tr>
+								<td>Routing Number:</td>
+								<td><%= act['routing_number'] %></td>
+							</tr>
+							<tr>
+								<td>Account Number:</td>
+								<td><%= act['account_number'] %></td>
+							</tr>
+						</table>
+						<p><%= link_to "Remove this account", "/payment_profile/destroy/#{pro["db_object_id"]}" %></p>
+						<br />
+					<% end %>
+				<% end %>
+			<% else %>
+				<p>It appears you haven't added your checking or savings account to a payment profile!</p>
+			<% end %>
+		<br />
+	</div>
+<% end %>
+<%= render :partial => "/shared/content_page" %>

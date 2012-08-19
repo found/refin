@@ -1,0 +1,113 @@
+<script type="text/javascript">
+	jQuery(document).ready(function() {
+		jQuery(".chzn-select").chosen();
+	});
+</script>
+<h2>Overview:</h2>
+<p><em>Programs are the basis of the Christian Aid donation system.  They are populated with content that is displayed on the front-end
+	in a logical order.  Programs have two donation types associated with them; monthly subscriptions, and one-time donations.  The options
+	for which are controlled below.</em></p>
+
+<%= form_for [:admin, @program] do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+          :object => @program,
+          :include_object_name => true
+        } %>
+  
+  <div class='field'>
+    <%= f.label :program_name, "Program Name:" -%>
+    <%= f.text_field :program_name, :class => 'larger widest' -%>
+  </div>
+	<div class="field">
+		<%= f.label :disabled, "Is this program disabled?" %>
+		<%= f.check_box :disabled %> (Check to disable)
+	</div>
+	<div class='field'>
+    <%= f.label :abbreviation, "Internal Abbreviation Code:" -%>
+    <%= f.text_field :abbreviation -%>
+  </div>
+	<div class='field'>
+		<%= f.label :subtitle, "Program Subtitle:" -%>
+		<%= f.text_field :subtitle, :class => 'larger widest' -%>
+	</div>
+	<div class="field">
+		<%= f.label "Categories:" %>
+		<%= select_tag("category_ids[]", options_for_select(Category.find(:all).collect{ |cat| [cat.category_name, cat.id] }, @program.categories.collect{|cat| cat.id}), {:multiple => true, :class => "chzn-select", :style => 'width:450px;'}) %>
+	</div>
+	
+	<div class="field">
+		<%= f.label :one_time_enabled, "Available for one-time donations?" %>
+		<%= f.check_box :one_time_enabled %>Check for 'yes'
+	</div>
+	<div class='field'>
+		<%= f.label :one_time_suggested_amounts, "One-time suggested amounts:" -%>(separate these with commas, i.e. 20,40,60,100,150)
+		<%= f.text_field :one_time_suggested_amounts, :class => 'larger widest' -%>
+	</div>
+	<div class="field">
+		<%= f.label :monthly_enabled, "Available for monthly subscriptions?" %>
+		<%= f.check_box :monthly_enabled %>Check for 'yes'
+	</div>
+	<div class='field'>
+		<%= f.label :monthly_suggested_amounts, "Monthly suggested amounts:" -%>(separate these with commas, i.e. 20,40,60,100,150)
+		<%= f.text_field :monthly_suggested_amounts, :class => 'larger widest' -%>
+	</div>
+	<div class="field">
+		<%= f.label "Default donation type:" %>
+		<%= f.select :default_donation_type, ["monthly", "one-time"] %>
+	</div>
+  
+  <div class='field'>
+    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
+      <ul id='page_parts'>
+        <% [:program_short_description, :program_description].each_with_index do |part, part_index| %>
+          <li class='ui-state-default<%= ' ui-state-active' if part_index == 0 %>'>
+            <%= link_to part.to_s.titleize, "##{part}" %>
+          </li>
+        <% end %>
+      </ul>
+
+      <div id='page_part_editors'>
+        <% [:program_short_description, :program_description].each do |part| %>
+          <div class='page_part' id='<%= part %>'>
+            <%= f.text_area part, :rows => 20, :class => 'wymeditor widest' -%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  
+  
+  <div class='field'>
+    <%= f.label :program_image -%>
+    <%= render :partial => "/shared/admin/image_picker", :locals => {
+          :f => f,
+          :field => :program_image_id,
+          :image => @program.program_image,
+          :toggle_image_display => false
+        } %>
+  </div>
+
+	<div class='field'>
+		<%= f.label :image_caption %>
+		<%= f.text_field :image_caption %>
+	</div>
+  
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'admin.programs.program'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete', :title => @program.program_name)
+              } %>
+<% end -%>
+<% content_for :javascripts do %>
+
+<%= javascript_include_tag 'chosen.jquery.js'%>
+
+
+  <script>
+    $(document).ready(function(){
+      page_options.init(false, '', '');
+			jQuery(".chzn-select").chosen();
+    });
+  </script>
+<% end %>

@@ -1,0 +1,24 @@
+<%= form_for [:admin, @subscription] do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+          :object => @subscription,
+          :include_object_name => true
+        } %>
+  
+  <div class='field'>
+    <%= f.label :member_id -%>
+    <%= f.text_field :member_id, :class => 'larger widest' -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :subscription_type_id -%>
+    <%= f.text_field :subscription_type_id -%>
+  </div>
+  
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'admin.subscriptions.subscription'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete')
+              } %>
+<% end -%>

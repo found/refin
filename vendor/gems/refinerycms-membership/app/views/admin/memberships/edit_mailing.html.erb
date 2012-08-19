@@ -1,0 +1,45 @@
+<div id="maincontent" style="width:80%;">
+	<h1>Editing Donor Profile</h1>
+	<p>Here, you can update profile information.  Required fields are marked with *</p>
+	<%= form_for @ma, :url => "/refinery/memberships/update_mailing/#{@ma.id}" do |f| %>
+			<div style="float:left;">
+				<h3>Mailing Address</h3>
+				<table>
+					<tbody>
+						<%= fields_for @ma do |f| %>
+							<tr>
+								<td>Address 1:</td>
+								<td><%= f.text_field :address_1 %></td>
+							</tr>
+							<tr>
+								<td>Address 2:</td>
+								<td><%= f.text_field :address_2 %></td>
+							</tr>
+							<tr>
+								<td>City:</td>
+								<td><%= f.text_field :city %></td>
+							</tr>
+							<tr>
+								<td>State:</td>
+								<td><%= f.text_field :state %></td>
+							</tr>
+							<tr>
+								<td>Country:</td>
+								<td><%= f.select :country_id, Country.all.collect{|c| [c.country_name, c.id] }%></td>
+							</tr>
+							<tr>
+								<td>Postal Code (Zip Code):</td>
+								<td><%= f.text_field :postal_code %>
+								</td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+			<div style="clear:left;"></div>
+			<div>
+				<%= f.submit "Update" %>
+			</div>
+			
+	<% end %>
+</div>

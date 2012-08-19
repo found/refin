@@ -1,0 +1,21 @@
+nl:
+  plugins:
+    content_holders:
+      title: Content Holders
+  admin:
+    content_holders:
+      actions:
+        create_new: Maak een nieuwe Content Holder
+        reorder: Wijzig de volgorde van de Content Holders
+        reorder_done: Klaar met het wijzingen van de volgorde van de Content Holders
+      records:
+        title: Content Holders
+        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+        no_items_yet: Er zijn nog geen Content Holders. Druk op 'Maak een nieuwe Content Holder' om de eerste aan te maken.
+      content_holder:
+        view_live_html: Bekijk deze content holder op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze content holder
+        delete: Verwijder deze content holder voor eeuwig
+  content_holders:
+    show:
+      other: Andere Content Holders

@@ -1,0 +1,13 @@
+<div id="maincontent">
+<h1>New payment profile</h1>
+
+<% if !current_member.billing_address %>
+	<p>We need your billing address in our records in order to save your information.<br />  
+		Please click <a href="<%= new_address_path %>">here</a> in order to add your billing details.</p>
+<% else %>
+	<%= render 'form' %>
+<% end %>
+
+<br /><br />
+<%= link_to 'Back', payment_profiles_path %> | <%= link_to "Account Dashboard", "/donors/me" %>
+</div>

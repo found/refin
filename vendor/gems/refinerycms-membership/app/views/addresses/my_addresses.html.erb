@@ -1,0 +1,31 @@
+<div id="maincontent">
+<h1>Addresses:</h1><hr />
+<% if current_member.billing_address && current_member.payment_profiles.empty? %>
+	<p>It appears as you haven't saved your payment information on file.  Please click <%= link_to "here", new_payment_profile_path %>
+		if you would like to do so. 
+	</p>
+<% end %>
+<div>
+	<h3>Mailing Address:</h3>
+	<% if !@mailing_address.nil? %>
+		<%= link_to "Edit your mailing address", edit_address_path(@mailing_address.id) %>
+		<%= render :partial => 'show_form', :locals =>  { :a => @mailing_address } %>
+	<% else %>
+		<%= link_to "Add your mailing address!", new_address_path %>
+		<p>Please add your mailing address to your profile</p>
+	<% end %>
+</div>
+
+<div>
+	<h3>Billing Address:</h3>
+	<% if !@billing_address.nil? %>
+		<%= link_to "Edit your billing address", edit_address_path(@billing_address.id) %>
+		<%= render :partial => 'show_form', :locals => { :a => @billing_address } %>
+	<% else %>
+		<%= link_to "Add your billing address!", new_address_path %>
+		<p>Please add your billing address to your profile</p>
+	<% end %>
+</div>
+<div style="clear:both;"></div>
+	<hr />
+</div>

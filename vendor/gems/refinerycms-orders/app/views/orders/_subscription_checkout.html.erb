@@ -1,0 +1,10 @@
+<% form_for 'contribution', :url => "/orders/process_subscriptions" do |f| %>
+	Total amount of donations: <b><%= money_from_decimal(current_cart.total) %> monthly</b><br />
+	<input type="hidden" name='donor_id' value="<%= current_member.id %>" />
+	<input type="hidden" name="amount" value="<%= @amount %>" />
+	<strong><%= @amount %></strong><br />
+		What day of the month would you like to be billed on?<br />
+		<%= f.select 'day', SubscriptionType.all.collect{|s| [s.title, s.day]} %><br />
+		<%= render :partial => "payment_form", :locals => {:f => f}%>
+		<%= f.submit "Donate NOW!" %>
+<% end %>

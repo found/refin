@@ -1,0 +1,21 @@
+nb:
+  plugins:
+    subscription_types:
+      title: Subscription Types
+  admin:
+    subscription_types:
+      actions:
+        create_new: Lag en ny Subscription Type
+        reorder: Endre rekkefølgen på Subscription Types
+        reorder_done: Ferdig å endre rekkefølgen Subscription Types
+      records:
+        title: Subscription Types
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Subscription Types enda. Klikk på "Lag en ny Subscription Type" for å legge til din første subscription type.
+      subscription_type:
+        view_live_html: Vis hvordan denne subscription type ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne subscription type
+        delete: Fjern denne subscription type permanent
+  subscription_types:
+    show:
+      other: Andre Subscription Types

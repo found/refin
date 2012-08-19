@@ -1,0 +1,83 @@
+<h2>
+This is a proof of what will be sent to the actual donor.  This is being sent because someone requested it via the administration console.
+Sending this email out will not affect the auto-delivery to the donor.</h2>
+
+Dear <%= @invoice.member.first_name rescue "Member" %>,
+<br /><br />
+Thank you for your donation to Christian Aid Ministries.
+<br /><br />
+The details of your donation are as follows:
+<br />
+<% if @invoice.order %>
+	<% if @invoice.has_subscriptions? %>
+		You have setup a monthly donation for: 
+		<% @invoice.line_items.each do |li| %>
+			<% str = "$"
+			dec = li.quantity * li.price.to_f
+	    if dec.to_s.split(".")[1].length == 1
+	      str += dec.to_s + "0"
+	    elsif dec.to_s.split(".").count == 1
+	      str += dec.to_s + ".00"
+	    else 
+	      str += dec.to_s
+	    end %>
+			<%= "#{str} per month donation to #{li.program.program_name rescue ""}" %>
+		<% end %>
+		<br />
+		Your monthly donation will begin on <%= DateTime.parse(@invoice.subscription.start_date).strftime("%B %d, %Y") %> and will be charged to your <%= @invoice.payment_method %> ending in <%= @invoice.payment_number %> on the <%= @invoice.subscription.subscription_type.title.gsub("the", "every") %>.
+		<br /><br />
+		If you wish to discontinue these monthly donations, you may visit the website at: <br />
+		http://christianaidministries.org/donors/my_subscriptions at anytime, or give us a call at 330.893.2428.
+		<br />
+		You can view your monthly donations or download your tax-deductible receipt at http://christianaidministries.org/invoices/my_invoices
+		<br />
+	<% else %>
+		You have made <%= @invoice.line_items.count %> <%= @invoice.line_items.count > 1 ? "donations" : "donation" %> for:
+		<br />
+		<% @invoice.line_items.each do |li| %>
+			<% str = "$"
+			dec = li.quantity * li.price.to_f
+	    if dec.to_s.split(".")[1].length == 1
+	      str += dec.to_s + "0"
+	    elsif dec.to_s.split(".").count == 1
+	      str += dec.to_s + ".00"
+	    else 
+	      str += dec.to_s
+	    end %>
+			<%= str %> donation to <%= li.program.program_name rescue "" %><br />
+		<% end %>
+		<br />
+		<% str = "$"
+		dec = @invoice.amount.to_f
+    if dec.to_s.split(".")[1].length == 1
+      str += dec.to_s + "0"
+    elsif dec.to_s.split(".").count == 1
+      str += dec.to_s + ".00"
+    else 
+      str += dec.to_s
+    end %>
+<br />
+		The total amount of your contribution is <%= str %> and has been billed to your <%= @invoice.payment_method rescue "on-file" %> ending in <%= @invoice.payment_number rescue "XXXX" %>.<br />
+		<br />
+		You can view the details of your donation or download your tax-deductible receipt at http://christianaidministries.org/invoices/my_invoices
+		<br />
+	<% end %>
+<% end %>
+<br />	
+Again, thank you for your concern and care for those in need!
+<br />
+Sincerely,<br />
+Christian Aid Ministries | PO Box 360, Berlin, OH 44610
+<br />
+T: 330.893.2428<br />
+F: 330.893.2305<br />
+E: camweb@camoh.org<br />
+<br /><br />
+
+<strong>Disclaimers</strong>
+<br />
+Donee has not provided any goods or services in consideration for this contribution.
+<br />
+<strong>Colorado residents</strong> may obtain copies of registration and financial documents from the office of the Secretary of State, 303-894-2860,www.sos.state.co.us/ re: Reg. No. 20113021578. <strong>Florida residents:</strong> A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE, 1-800-435-7352 WITHIN THE STATE. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE. REGISTRATION NUMBER CH35002. <strong>Georgia residents:</strong> A full and fair description of Christian Aid Ministries and its financial statements are available upon request from Christian Aid Ministries, P.O. Box 360, Berlin, OH 44610. <strong>Illinois residents:</strong> Contracts and reports regarding Christian Aid Ministries are on file with the Illinois Attorney General. <strong>Maryland residents:</strong> For the cost of postage and copying, documents and information filed under the Maryland charitable organizations laws can be obtained from the Secretary of State, Charitable Division, State House, Annapolis, MD 21401, 800-825-4510. <strong>Michigan residents:</strong> The registration number of Christian Aid Ministries in the state of Michigan is CS 46826. <strong>New Jersey residents:</strong> Information filed with the Attorney General concerning this charitable solicitation may be obtained from the Attorney General of the State of New Jersey by calling 1-973-504-6215. Registration with the Attorney General does not imply endorsement. <strong>New York residents:</strong> A copy of the most recent annual report is available from the State of New York Department of Law, Charities Bureau, 120 Broadway, New York, New York, 10271. <strong>North Carolina residents:</strong> Financial information about this organization and a copy of its license are available from the State Solicitation Licensing Branch at 1-919-733-4510. The license is not an endorsement by the State. <strong>Pennsylvania residents:</strong> The official registration and financial information of Christian Aid Ministries may be obtained from the Pennsylvania Department of State by calling toll-free, within Pennsylvania, 1-800-732-0999. Registration does not imply endorsement. <strong>Virginia residents:</strong> A copy of the financial statement is available from the Division of Consumer Affairs, Department of Agricultural and Consumer Services, 1100 Bank Street, Richmond, VA 23219 or call 1-804-786-1343. <strong>Washington residents:</strong> Thank you for supporting Christian Aid Ministries. For additional information regarding the organization's activities or financial information, Christian Aid Ministries is registered with the Washington State Charities Program as required by law and information may be obtained by calling 800-332-4483 or 360-725-0378. <strong>West Virginia residents:</strong> West Virginia residents may obtain a summary of the registration and financial documents from the Secretary of State, State Capital, Charleston, WV 25305. Registration does not imply endorsement.
+
+Federal I.D. #34-1344364

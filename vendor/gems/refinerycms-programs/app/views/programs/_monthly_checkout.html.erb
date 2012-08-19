@@ -1,0 +1,60 @@
+<% form_for 'contribution', :url => "/orders/process_subscriptions", :remote => true, :id => "monthlycheckout" do |f| %>
+	<% if current_member %>
+		<input type="hidden" name='donor_id' value="<%= current_member.id %>" />
+		<input type="hidden" name="amount" value="<%= @amount %>" />
+		<input type="hidden" name="payment_method" id="payment_method" value="yes" />
+		
+		<% if @order.has_one_times? %>
+		<div class="donation-summary">
+		<h4>Today's Donation</h4>
+		<p>Total amount of one-time donations being billed <i>today</i>: <br />
+			<b><%= money_from_decimal(@order.one_time_total) %></b>
+			<small>&nbsp;&nbsp;(One-time donations will be processed upon submittal)</small>
+		</p>
+		</div>
+		<% end %>
+		<div class="donation-summary">
+		<h4>Monthly Donation</h4>
+
+		<p>Total amount of <i>monthly recurring</i> donations: <br />
+			<b><%= money_from_decimal(@order.subscription_total) %></b>
+			<br />
+			What day of the month would you like your monthly donations billed on?<br />
+			<%= f.select 'day', SubscriptionType.all.collect{|s| [s.title, s.day]} %>
+		</p>
+		</div>
+		<div id="billing_details_holder">
+			<%= render :partial => "/orders/billing_details" %>
+		</div>
+		<p>Notes:<br />
+			<%= f.text_area :notes, :id => "contribution_notes", :rows => 10, :cols => 40 %>
+		</p>
+		
+		
+		<div id="payment_form_holder">
+			<% if flash[:error] -%>
+			  <p class='error'><font color="red"><%=h flash[:error] %></font></p>
+			<% end -%>
+			<% if flash[:notice] -%>
+			  <p class='notice' style="border: 1px solid 'red';"><font color="red"><%=h flash[:notice] %></font></p>
+			<% end -%>
+			<%= render :partial => "payment_form", :locals => {:f => f} %>
+			<p style="padding: 8px 12px; background: #ffb; color: #651; display: block; margin: 10px 0px; width: 600px; font-size: 13px; line-height: 15px; border-left: 3px solid #dda;">
+				<%= ContentHolder.find(93).body_no_wrapper.html_safe rescue "" %><br /><br />
+				<a target="_blank" href="/terms-and-conditions">Terms &amp; Conditions</a><br /><br />
+				<%#= f.check_box :toc, :id => "agree_to_toc", :checked => false %>
+				<input id="agree_to_toc" name="contribution[toc]" type="checkbox" ></input>&nbsp;
+				<b><i>Yes, I agree to be billed monthly until I cancel</i></b><br />
+				<input id="newsletter_receive" name="contribution[newsletter_receive]" type="checkbox"></input>&nbsp;&nbsp;<b>I do not wish to be on the mailing list to receive a monthly newsletter.<i> Note: You may receive an occasional special mailing even if you check this box.</i></b>
+			</p>
+		</div>
+		<br />
+		<div style="float:left;">
+			<a href="/"><img src="/images/btn-action-cancel-donation.png" /></a>
+		</div>
+		<div style="float:right;">
+			<%= image_submit_tag "btn-action-donate.png", :id => "contribution_submit", :class => 'grey-out'  %> 
+		</div>
+		<br class="clear" />
+	<% end %>
+<% end %>

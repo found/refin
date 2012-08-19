@@ -1,0 +1,62 @@
+<% content_for :side_body do %>
+<br />
+	<div class="boxnav">
+		<h3>All Our Programs</h3>
+		<ul class="programlist">
+			<% @programs.each do |p| %>
+				<li><%= link_to p.program_name, program_url(p) %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<% content_for :body_content_left do %>
+<br />
+	<a name="top"></a>
+	<h1>Program Categories:</h1>
+	<p>use these links to quick-jump to the categories below</p>
+	
+	<p class="category-anchor-holder">
+	<% @categories.each do |c| %>
+		<span class="category-anchor"><a href="#category-<%= c.id %>"><%= c.category_name %></a></span>
+	<% end %>
+	</p>
+	<br class="clear" />
+	<br class="clear" />
+	<hr />
+	<% @categories.each do |c| %>
+	<a name="category-<%= c.id %>"></a>
+		<br />
+		<div class="category_name">
+			<h2><%= c.category_name %><h2>
+		</div>
+		<div class"program_container">
+			<%- if c.programs.reject{|p| p.disabled == true}.empty? %>
+				<p>We are currently adding programs to this category.  Please be sure to check back soon!</p>
+			<%- else %>
+				<table class="program-index">
+					<% c.programs.reject{|p| p.disabled == true}.each do |program| %>
+						<tr>
+							<td style="padding-right:10px;"><% if program.program_image %> <%= link_to((image_fu program.program_image, "200x"), program_path(program)) %><% end %></td>
+							<td>
+								<h3><%= link_to program.program_name, program_url(program) %></h3>
+								<%= shorten(program.program_short_description, 300).html_safe + " " + link_to("...Read more", program_path(program), :class => "readmore") %>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+						</tr>
+					<%- end %>
+					<tr>
+						<td>&nbsp;</td>
+						<td><p><%= link_to "Top of Page", "#top" %></p></td>
+					</tr>
+				</table>
+			<%- end %>
+		</div>
+		<hr />
+	<%- end %>
+<%- end %>
+
+<%= render :partial => "/shared/content_page" %>

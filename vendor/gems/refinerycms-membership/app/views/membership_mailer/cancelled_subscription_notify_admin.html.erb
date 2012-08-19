@@ -1,0 +1,11 @@
+Dear Admin,<br />
+<br />
+<%= @member.email %> has cancelled their subscription for <%= @subscription.program.program_name %><br />
+<br />
+<strong>Donor #:</strong><%= @member.donor_number %><br />
+<strong>First &amp; Last Name:</strong><%= @member.full_name %><br />
+<strong>Amount:</strong><%= money_from_decimal(@subscription.amount) %><br />
+<br />
+Thanks!<br />
+~ Your friendly CAM notifier.
+

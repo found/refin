@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  member: 
+  subscription_type: 
+  invoice_on: 2011-05-24 16:35:05
+  payment_on: 2011-05-24 16:35:05
+
+two:
+  member: 
+  subscription_type: 
+  invoice_on: 2011-05-24 16:35:05
+  payment_on: 2011-05-24 16:35:05

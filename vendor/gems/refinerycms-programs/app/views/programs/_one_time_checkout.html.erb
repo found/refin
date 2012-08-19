@@ -1,0 +1,50 @@
+<% form_for 'contribution', :url => "/orders/process_one_times", :remote => true do |f| %>
+	<% if current_member %>
+		<input type="hidden" name='donor_id' value="<%= current_member.id %>" />
+		<input type="hidden" name="amount" value="<%= @amount %>" />
+		<input type="hidden" name="payment_method" id="payment_method" value="yes" />
+		<div class="donation-summary">
+		<h4>Today's Donation</h4>
+		<p>Total amount of donations: <b><%= money_from_decimal(@order.one_time_total) %></b> <small>(one-time)</small></p>
+		</div>
+		
+		<div id="billing_details_holder">
+			<%= render :partial => "/orders/billing_details" %>
+		</div>
+		<p>Notes:<br />
+			<!-- <input id="contribution_notes" name="contribution[notes]" type="text" rows="4" /> -->
+			<%= f.text_area :notes, :id => "contribution_notes", :rows => 10, :cols => 40 %>
+		</p>
+		<% if current_member.payment_profiles.count > 0 %>
+			<p>
+				Would you like to use a saved payment profile?
+				<select id="use_payment_profile" name="use_payment_profile">
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
+			</p>
+			<div id="payment_profile_holder">
+				Choose: <%= f.select :payment_profile, options_for_select(@payment_profiles) %>
+			</div>
+			<div id="payment_form_holder" style="display:none;">
+		<% else %>
+			<div id="payment_form_holder">
+		<% end %>
+			<%= render :partial => "/programs/payment_form", :locals => {:f => f} %>
+		</div>
+		<p style="padding: 8px 12px; background: #ffb; color: #651; display: block; margin: 10px 0px; width: 600px; font-size: 13px; line-height: 15px; border-left: 3px solid #dda;">
+			<%= ContentHolder.find(92).body_no_wrapper.html_safe rescue "" %><br /><br />
+			<input id="agree_to_toc" name="contribution[toc]" type="checkbox" ></input>&nbsp;
+			<b><i>I agree to the <a target="_blank" href="/terms-and-conditions">Terms &amp; Conditions</a></i></b> <br />
+			<input id="newsletter_receive" name="contribution[newsletter_receive]" type="checkbox"></input>&nbsp;&nbsp;<b>I do not wish to be on the mailing list to receive a monthly newsletter.<i> Note: You may receive an occasional special mailing even if you check this box.</i></b>
+		</p>
+		<br />
+		<div style="float:left;">
+			<a href="/"><img src="/images/btn-action-cancel-donation.png" /></a>
+		</div>
+		<div style="float:right;">
+			<%= image_submit_tag "btn-action-donate.png", :id => "contribution_submit", :class => 'grey-out'  %> 
+		</div>
+		<br class="clear" />
+	<% end %>
+<% end %>

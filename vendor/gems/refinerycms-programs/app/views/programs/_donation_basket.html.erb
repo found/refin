@@ -1,0 +1,54 @@
+	<table class="donation-basket" style="margin: 10px 20px">
+		<thead>
+			<tr>
+				<th>Amount</th>
+				<th>Description</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%- if @order && !@order.line_items.empty? -%>
+				<%- @order.line_items.each do |li| -%>
+					<tr>
+						<td>
+							<b><%= money_from_decimal(li.price) %></b><br />
+							<small>
+							<%= " monthly" if li.recurring? %>
+							<%= " one-time" if !li.recurring? %>
+							</small>
+						</td>
+						<td><%= li.item_name %></td>
+						<td><%= link_to "Remove", "/orders/remove_from_cart/#{li.id}" %></td>
+					</tr>
+				<%- end -%>
+			<%- else -%>
+				<tr>
+					<td></td>
+					<td>You have nothing in your donation basket.</td>
+				</tr>
+			<%- end -%>
+		</tbody>
+	</table>
+	
+		<% if current_member %>
+			<% if !@order.line_items.empty? %>
+			<div style="float:right; padding-right:16px;">
+				<% if @program %>
+					<a class="checkout_begin_button" href="/donate#checkout"><img id="checkout_begin_button" src="/images/btn-action-checkout.png" /></a>
+				<% else %>
+					<a class="checkout_begin_button" href="#checkout"><img id="checkout_begin_button" src="/images/btn-action-checkout.png" /></a>
+				<% end %>
+			</div>
+			<% end %>
+		<% else %>
+			<div class="donation_register_flag">
+				<p>
+					To make a donation, log in to your account or register for a new account.<br />
+					<a href="/members/register"><img id="go-to-register" alt="You must login before checkout!" src="/images/btn-action-register-login.png" /></a>
+					<br class="clear" />
+				</p>
+			</div>
+		<% end %>
+	
+	
+	<!-- <div class="clear"></div> -->

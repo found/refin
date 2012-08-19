@@ -1,0 +1,24 @@
+<% if @member.contact %>
+	<h2>This contact has submitted the contact form <%= @member.contact.contact_instances.count %> times</h2>
+	<hr />
+	<table>
+		<tbody>
+			<% @member.contact.contact_instances.each do |ci| %>
+				<tr>
+					<td style="width:200px;">Submitted on:</td>
+					<td><%= ci.created_at.strftime("%A, %B %d, %Y at %I:%M %p UTC") rescue "some time." %></td>
+				</tr>
+				<tr>
+					<td>Message:</td>
+					<td><%= ci.message %></td>
+				</tr>
+				<tr>
+					<td><hr /></td>
+					<td><hr /></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<p><%= @member.email %> has not submitted any contact forms yet.</p>
+<% end %>

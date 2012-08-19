@@ -1,0 +1,88 @@
+<div id="maincontent" style="width:100%;">
+	<%= render :partial => "javascripts" %>
+ 		<a name="top"></a>
+  		<br />
+		<h1>Make a Donation</h1>
+		<div id="entire_thing_wrapper">
+			<p id="notice" style="color:#FF0000;"><%= notice %></p>
+			<p>Select a Program or a Gift from the menu selection below.  You will see the description of the program and then you will be allowed
+				to choose between a monthly program or a one-time gift, and the amount of your program.</p>
+			<div id="boxfront1">
+				<h2>Select a Program or Gift</h2>
+				<div id="accordion" style="display:block;">
+					<%- for cat in @categories -%>
+						<% if cat.programs.reject{|p| p.disabled == true}.count > 0 %>
+							<h3><a href="#"><%= cat.category_name -%></a></h3>
+							<div>
+								<ul>
+									<%- cat.programs.reject{|p| p.disabled == true}.sort_by{ |p| p.position }.each do |program| %>
+										<li><a href="#<%= program.id %>" title="<%= program.program_name %>" class="linker"><%= program.program_name %></a></li>
+									<%- end %>
+								</ul>
+							</div>
+						<% end %>
+					<%- end %>
+				</div>
+				<%- form_for "program" do |f| -%>
+					<div style="display:none;">
+						<%= f.select "category", @categories.collect{|c| [c.category_name, c.id] }, :include_blank => true %>
+						<%= f.select "program", @programs.collect{|d| [shorten(d.program_name, 40), d.id] }, :include_blank => true %>
+					</div>
+				<%- end %>
+				<div class="clear"></div>
+			</div>
+			<div id="boxfront2">
+				<h2>Program Summary</h2>
+				<h5 id="program_name"><del>&laquo; Please choose a program to the left</del></h5>
+				<p id="program_desc"></p>
+				<div id="donation_form" style="display:none;">
+					<%- form_for 'contribution', :id => "program_form", :url => "/orders/add_program_to_cart/" do |f| -%>
+						<%= render :partial => "donation_type" %>
+				
+						<%- @programs.each do |program| -%>
+							<% if program.default_donation_type %>
+								<input type="hidden" id="pro-<%= program.id %>-default-type" value="<%= program.default_donation_type %>" />
+							<% end %>
+							<%= render :partial => "monthly_program", :locals => { :program => program, :f => f } %>
+							<%= render :partial => "one_time_program", :locals => { :program => program, :f => f } %>
+						<%- end -%>
+				
+						<div style="float:right; margin: 20px;">
+							<button><img src="/images/btn-action-add-to-basket.png" /></button>
+						</div>
+					<%- end -%>
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div id="boxfront3">
+				<h2>My Donation Basket</h2>
+				<%= render :partial => "donation_basket" %>
+				<div class="clear"></div>
+			</div>
+			
+			<div style="margin-top:20px; width:300px;" id='right-side'>
+				<%= ContentHolder.find(15).build_image_forms.html_safe %>
+			</div>
+			<script type="text/javascript">
+				$(function() {
+					var quickId = $("#quick-form").attr("action").replace("/orders/add_program_to_cart/", "");
+					$("#quick_donate_quick_amount").keyup(function() {
+						$("#quick-form").attr("action", "/orders/add_program_to_cart/" + quickId + "/" + (Number($("#quick_donate_quick_amount").val()) * 100).toString()); 
+					})
+				})
+			</script>
+			<div style="display:none;">
+				<%- @programs.each do |d| -%>
+					<p id="<%= d.id.to_s + "title" %>"><%=raw shorten(d.program_short_description.gsub(/<\/?[^>]*>/, ""), 300) %></p>
+					<p id="<%= d.id.to_s + '-link' %>"><a href="/programs/<%= d.id %>">Read more</a></p>
+				<%- end -%>
+			</div>
+		</div>
+	<div class="clear"></div>
+	<br />
+	<div class="divider-line"></div>
+	<div id="checkout_wrapper">
+		<%= render :partial => "checkout" %>
+	</div>
+</div>

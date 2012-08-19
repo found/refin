@@ -1,0 +1,5 @@
+<% content_for :body_content_left do %>
+	<%= ContentHolder.find(13).body.html_safe rescue "" %>
+<% end %>
+
+<%= render :partial => "shared/content_page" %>

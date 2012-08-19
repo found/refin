@@ -1,0 +1,42 @@
+<% content_for :stylesheets do %>
+	<%= stylesheet_link_tag 'refinery/jqueryui.css' %>
+	<%= stylesheet_link_tag 'ui-redmond/ui-redmond.css' %>
+<% end %>
+<%= link_to "Create a new Country", "/refinery/memberships/new_country_item", :class => "orange-link" %>
+<div id="country-wrapper" >
+	<table id="country-table">
+		<thead>
+			<tr>
+				<th>Internal ID:</th>
+				<th>Country Code:</th>
+				<th>Country Name:</th>
+				<th>Position:</th>
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @countries.each do |c| %>
+				<tr>
+					<td><%= c.id %></td>
+					<td><%= c.country_code %></td>
+					<td><%= c.country_name %></td>
+					<td><%= c.position %></td>
+					<td><%= link_to "Edit", "/refinery/memberships/edit_country_item/#{c.id}" %> | <%= link_to "Destroy", "/refinery/memberships/destroy_country_item/#{c.id}", :confirm => "Are you sure?" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<br />
+<%= link_to "Back", "/refinery/memberships", :class => "orange-link" %>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#country-table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[3,'desc']],
+			"aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+			"iDisplayLength": 100,
+			"sPaginationType": "full_numbers"
+		});
+	});
+</script>

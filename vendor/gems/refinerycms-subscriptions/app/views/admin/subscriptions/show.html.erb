@@ -1,0 +1,92 @@
+<div id="maincontent" style="width:900px;">
+	<h3>Subscription #<%= @subscription.arb_subscription_id %> (<%= @subscription.active? ? "Active" : "Inactive" %>)</h3>
+	<table>
+		<tr>
+			<td>Program Name: </td>
+			<td><%= @subscription.program.program_name %></td>
+		</tr>
+		<tr>
+			<td>Subscription Amount:</td>
+			<td><%= "$#{@subscription.amount}.00 monthly" %></td>
+		</tr>
+		<tr>
+			<td>Billed on:</td>
+			<td><%= @subscription.subscription_type.title %></td>
+		</tr>
+		<tr>
+			<td>Payment Method: </td>
+			<td><%= "#{@subscription.payment_method} ending in #{@subscription.payment_number}" %></td>
+		</tr>
+		<tr>
+			<td>Starting Date: </td>
+			<td><%= @subscription.start_date %></td>
+		</tr>
+		<% if !@subscription.active? %>
+		<tr>
+			<td>Ended/Cancelled On: </td>
+			<td><%= @subscription.end_date.strftime("%Y-%m-%d") rescue " -- end date not specified " %></td>
+		</tr>
+		<% end %>
+		<tr>
+			<td>Subscription Transaction History: </td>
+			<td>
+				<ul>
+					<% @subscription.subscription_transactions.each do |s| %>
+						<li><%= s.success? ? "Successful" : "Failed" %> transaction for <%= money_from_decimal s.amount %> on <%= s.created_at.strftime("%m/%d/%Y") %></li>
+					<% end %>
+				</ul>
+				
+			</td>
+		</tr>
+	</table>
+	<h3>Donor Information:</h3>
+	<table>
+		<tr>
+			<td>
+				Donor Number:
+			</td>
+			<td>
+				<%= @member.donor_number || "Not entered" %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Donor Name:
+			</td>
+			<td>
+				<%= @member.full_name %>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				Donor Email:
+			</td>
+			<td>
+				<%= link_to "#{@member.email}", admin_membership_url(@member.id), :class => "orange-link" %>
+			</td>
+		</tr>
+	</table>
+	<p>
+		<% if @subscription.active? %>
+			<input type="button" id="cancel_sub" value="Cancel this subscription?" />
+			
+			<script type="text/javascript">
+			$(document).ready(function() {
+				$("#cancel_sub").click(function() {
+					var where_to = confirm("Are you sure you really want to cancel this subscription?");
+					if (where_to == true) {
+						u = window.location.href.split("/");
+						window.location = "http://" + u[2] + "/refinery/subscriptions/cancel_subscription/" + u[u.length - 1];
+					}
+				});
+			});
+			</script>
+		<% else %>
+			This subscription has been <font color="red">cancelled</font>.  If the donor would like to re-subscribe to this program , they will need to re-create the monthly subscription.
+		<% end %>
+		<hr />
+		<%= link_to 'Back to Subscriptions', admin_subscriptions_path, :class => "orange-link" %>
+	</p>
+</div>
+
+

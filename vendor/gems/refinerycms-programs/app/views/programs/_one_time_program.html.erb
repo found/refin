@@ -1,0 +1,49 @@
+<div class="suggested_amount" id="sa-<%= program.id %>-one-time" style="display:none;">
+	<input type="hidden" id="sa-onetime-enabled-<%= program.id %>" value="<%= program.one_time_enabled %>" />
+	<strong style="margin: 20px 20px;">Make a one-time donation</strong>
+	<%- if program.one_time_enabled == false -%>
+		<p>This program is currently unavailable for one-time donations.</p>
+	<%- else %>
+
+	<table class="choose-monthly-or" style="margin: 0px 20px;">
+		<tr><td width="100">Select a suggested amount</td>
+			<td class="or">or</td>
+			<td width="100">enter the amount you wish to give</td>
+		</tr>
+		<tr><td>$
+	<%= f.select 'amountish', program.one_time_suggested_amounts.split(",").push("other"), {:include_blank => true}, {:class => "program-suggested-once program-suggested-once-#{program.id}"} %>
+		</td>
+		<td></td>
+		<td>$
+	<%= f.text_field 'amount', :id => "ot_contribution_amount_#{program.id}", :class => "program-other-input poo-#{program.id}", :value => "0" %>
+		</td>
+		</tr>
+	</table>
+	<script type="text/javascript" charset="utf-8">
+		$(document).ready(function() {
+			$(".program-suggested-once-<%= program.id %>").change(function (){
+				var val = $(this).val();
+				if (val == "other") {
+					$(".poo-<%= program.id %>").val("0");
+				} else {
+					valInCents = Math.round((Number(val) * 100));
+					$(".poo-<%= program.id %>").val(val);
+					$("#donation_form form").attr("action", "/orders/add_program_to_cart/<%= program.id %>/" + valInCents)
+					$(".poo-<%= program.id %>").attr("value", val);
+				}
+			});
+			$("#ot_contribution_amount_<%= program.id %>").keydown(
+				function(event) {
+					if (event.keyCode == '13') {
+						event.preventDefault();
+					}
+				}
+			).blur(
+				function() {
+					$("#donation_form form").attr("action", "/orders/add_program_to_cart/<%= program.id %>/" + Math.round((Number($(this).val())) * 100).toString());
+				}
+			);
+		})
+	</script>
+	<%- end %>
+</div>

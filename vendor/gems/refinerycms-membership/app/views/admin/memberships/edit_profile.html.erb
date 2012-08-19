@@ -1,0 +1,36 @@
+<h1>Editing <%= @member.email %></h1>
+
+<%= form_for @member do |f| %>
+	<table>
+		<tbody>
+			<tr>
+				<td><%= f.label :email %><span>*</span></td>
+				<td><%= f.text_field :email %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :password %><span>*</span></td>
+				<td><%= f.password_field :password, :autocomplete => 'off' %>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><%= f.label :password_confirmation %><span>*</span></td>
+				<td><%= f.password_field :password_confirmation, :autocomplete => 'off' %>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><%= f.label :first_name %><span>*</span></td>
+				<td><%= f.text_field :first_name %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :last_name %><span>*</span></td>
+				<td><%= f.text_field :last_name %>&nbsp;</td>
+			</tr>
+			<tr>
+				<td><%= f.label :donor_number %>(opt)</td>
+				<td><%= f.text_field :donor_number %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :phone, "Phone Number" %>(opt)</td>
+				<td><%= f.text_field :phone %></td>
+			</tr>
+		</tbody>
+	</table>
+<% end %>

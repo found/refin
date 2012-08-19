@@ -1,0 +1,11 @@
+<% content_for :body_content_left do %>
+  <ul id="subscription_types">
+    <% @subscription_types.each do |subscription_type| %>
+      <li>
+        <%= link_to subscription_type.title, subscription_type_url(subscription_type) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>

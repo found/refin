@@ -1,0 +1,25 @@
+en:
+  shared:
+    admin:
+      image_picker:
+        image: image
+  plugins:
+    subscription_types:
+      title: Subscription Types
+  admin:
+    subscription_types:
+      actions:
+        create_new: Add New Subscription Type
+        reorder: Reorder Subscription Types
+        reorder_done: Done Reordering Subscription Types
+      records:
+        title: Subscription Types
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no Subscription Types yet. Click "Add New Subscription Type" to add your first subscription type.
+      subscription_type:
+        view_live_html: View this subscription type live <br/><em>(opens in a new window)</em>
+        edit: Edit this subscription type
+        delete: Remove this subscription type forever
+  subscription_types:
+    show:
+      other: Other Subscription Types

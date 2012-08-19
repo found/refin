@@ -1,0 +1,25 @@
+lolcat:
+  shared:
+    admin:
+      image_picker:
+        image: IMAGE
+  plugins:
+    content_holders:
+      title: Content Holders
+  admin:
+    content_holders:
+      actions:
+        create_new: CREATE NEW Content Holder
+        reorder: REORDR Content Holders
+        reorder_done: DUN REORDERIN Content Holders
+      records:
+        title: Content Holders
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Content Holders YET. CLICK "CREATE NEW Content Holder" 2 ADD UR FURST content holder.
+      content_holder:
+        view_live_html: VIEW DIS content holder LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS content holder
+        delete: REMOOV DIS content holder FOREVR
+  content_holders:
+    show:
+      other: OTHR Content Holders

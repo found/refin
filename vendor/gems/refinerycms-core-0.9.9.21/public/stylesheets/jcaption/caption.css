@@ -1,0 +1,10 @@
+.caption-wrapper {
+	border: 3px #ddd solid;
+	background-color:'gray';
+	padding:4px 4px 0px 4px;
+	margin-bottom:20px;
+}
+
+.caption-wrapper p {
+	font-weight:bold;
+}

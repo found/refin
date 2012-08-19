@@ -1,0 +1,28 @@
+<ul>
+  <% if Admin::ContentHoldersController.searchable? %>
+    <li>
+      <%= render :partial => "/shared/admin/search",
+                  :locals => {
+                    :url => admin_content_holders_url
+                  } %>
+    </li>
+  <% end %>
+  <li>
+    <%= link_to t('.create_new'), new_admin_content_holder_url,
+                 :class => "add_icon" %>
+  </li>
+<%# if !searching? and Admin::ContentHoldersController.sortable? and ContentHolder.count > 1 %>
+  <!-- <li> -->
+    <%#= link_to t('.reorder', :what => "Content Holders"),
+                 admin_content_holders_url,
+                 :id => "reorder_action",
+                 :class => "reorder_icon" %>
+
+    <%#= link_to t('.reorder_done', :what => "Content Holders"),
+                 admin_content_holders_url,
+                 :id => "reorder_action_done",
+                 :style => "display: none;",
+                 :class => "reorder_icon" %>
+  <!-- </li> -->
+<%# end %>
+</ul>

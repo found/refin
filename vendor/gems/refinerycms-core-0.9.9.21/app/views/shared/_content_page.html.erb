@@ -1,0 +1,107 @@
+<%
+	@page.match_all_tags if @page
+	@page.build_image_forms if @page
+	# @page.add_image_captions if @page
+	
+  # provide a default array for collecting CSS for sections
+  css = []
+
+  # if 'sections' is passed in as a local_assigns, all of this is ignored.
+  if local_assigns[:sections].blank?
+    # always have a title
+    #sections = [{:yield => :body_content_title, :fallback => page_title, :title => true}]
+		sections = []
+
+    # append sections from this page.
+    @page.parts.inject(sections) do |s, part|
+      # we have some default yields, body_content_left and body_content_right
+      # these map to 'body' and 'side_body' fields in default Refinery.
+      section = {:fallback => part.body}
+      section[:yield] = case (title_symbol = part.title.to_s.gsub(/\ /, '').underscore.to_sym)
+        when :body then :body_content_left
+        #when :side_body then :body_content_right
+        else title_symbol
+        end
+
+      # add section to the list unless we were specifically requested not to.
+      # otherwise, add css saying it's been removed.
+      unless (local_assigns[:hide_sections]||=[]).include?(section[:yield])
+        s << section
+      else
+        css << "no_#{section[:yield]}"
+      end
+    end unless @page.nil? or @page.parts.blank?
+
+    # Ensure that even without @page.parts we still have body_content_left and body_content_right
+    all_yields = sections.collect{|s| s[:yield]}
+    sections << {:yield => :body_content_left} unless all_yields.include?(:body_content_left)
+    sections << {:yield => :body_content_right} unless all_yields.include?(:body_content_right)
+  end
+
+  # you can add more sections to the list using something like this:
+  # sections |= [{:yield => :something_else, :fallback => another_method, :id => 'something'}]
+
+  sections.each do |section|
+    section[:html] = yield(section[:yield]) if section[:yield].present?
+
+    if section[:html].blank? and !local_assigns[:show_empty_sections] and
+       !local_assigns[:remove_automatic_sections] and section.keys.include?(:fallback) and
+       section[:fallback].present?
+      section[:html] = raw(section[:fallback])
+    end
+
+    dom_id = section[:id] || section[:yield]
+    if section[:html].present?
+      if section[:title]
+        section[:html] = "<h1 id='#{dom_id}'>#{section[:html]}</h1>".html_safe
+      else
+				if dom_id.to_s == "body_content_left"
+					if @supplementary_news
+						section[:html] = "<section id='#{dom_id}'><div class='inner'><div id='maincontent'>#{section[:html]}#{@supplementary_news}</div></div></section>".html_safe
+					else 
+						section[:html] = "<section id='#{dom_id}'><div class='inner'><div id='maincontent'>#{section[:html]}</div></div></section>".html_safe
+					end
+				elsif dom_id.to_s == "side_body"
+					section[:html] = "<section id='#{dom_id}'><div class='inner'><div id='right-side'>#{section[:html]}</div></div></section>".html_safe
+				else
+					section[:html] = "<section id='#{dom_id}'><div class='inner'>#{section[:html]}</div></section>".html_safe
+				end
+        
+      end
+    else
+      css << "no_#{dom_id}"
+    end
+  end
+-%>
+<section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>>
+  <%= raw sections.map{|section| section[:html]}.join("\n") -%>
+</section>
+<%= render :partial => '/shared/draft_page_message' unless @page.nil? or @page.live? -%>
+<script type='text/javascript'>
+	$(function() {
+		$.each($('.add-caption'), function() {
+			if ($(this).attr('alt') != '' && $(this).attr('alt') != null) {
+				$(this).jcaption({
+					//Element to wrap the image and caption in
+					wrapperElement: 'div',
+					//Class for wrapper element
+					wrapperClass: 'caption-wrapper',
+					//Caption Element
+					captionElement: 'p',
+					//Attribute of image to use as caption source
+					imageAttr: 'alt',
+					//If true, it checks to make sure there is caption copy before running on each image
+					requireText: true,
+					//Should inline style be copied from img element to wrapper
+					copyStyle: true,
+					//Assign the value of the image's align attribute as a class to the wrapper
+					copyAlignmentToClass: true,
+					//Assign the value of the image's float value as a class to the wrapper
+					copyFloatToClass: true,
+					//Assign a width to the wrapper that matches the image
+					autoWidth: true
+				});
+			}
+		});
+	});
+</script>

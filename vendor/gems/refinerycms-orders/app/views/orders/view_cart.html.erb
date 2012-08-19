@@ -1,0 +1,55 @@
+<% content_for :body_content_left do %>
+<h1>Your donation basket:</h1>
+
+<div style="padding: 30px">
+	<% if @order && !@order.line_items.empty? %>
+	<% form_for 'line_items', :url => "/orders/update_order/#{@order.id}" do |f| %>
+		<table id="cart">
+			<thead>
+				<tr>      
+					<th>Item</th>
+					<th>Price</th>
+					<th>Qty</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody id="line_items">
+					<% @order.line_items.each do |li| %>
+						<tr class="">
+							<td>
+								<h4>              
+									<%= link_to li.item_name, "/programs/#{li.program.id}" %>
+								</h4>
+								<%= image_fu li.item_image, '96x96#c' %>
+								<%=raw shorten(li.item_description, 120) %>
+							</td>
+							<td>
+								<%= money_from_decimal(li.price) %><%= "/month" if li.recurring? %>
+							</td>
+							<td>
+								<input type="text" value=<%= li.quantity %> name="[line_items][<%= li.id %>]">
+							</td>
+							<td>
+								<%= money_from_decimal(li.price * li.quantity)%>
+							</td>
+						</tr>
+						<tr id="none">
+							<td colspan="5"></td>
+						</tr>
+					<%- end -%>
+			</tbody>
+		</table>
+		<div id="subtotal">
+			<h3>Monthly Total: <%= money_from_decimal(@order.subscription_total) rescue "$0.00" %></h3>
+			<h3>One-Time Total: <%= money_from_decimal(@order.one_time_total) rescue "$0.00" %></h3>
+			<div class="links">
+				<%= f.submit "Update Order" %> | <%= link_to "Go to Checkout", "/orders/checkout" %>
+			</div>
+		</div>
+	<%- end %>
+	<% else %>
+		<p>You have no donations queued in your cart!</p>
+	<% end %>
+</div>
+<% end %>
+<%= render :partial => "/shared/content_page" %>

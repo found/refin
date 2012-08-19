@@ -1,0 +1,120 @@
+<% content_for :body_content_left do %>
+	<div>
+		<br />
+		<h1><%= @news_item.title %></h1>
+		<p style="margin-top:-8px;">
+			<% if !@news_item.subtitle.blank? %>
+				<strong><%= @news_item.subtitle %></strong><br />
+			<% end %>
+      <small><%= t('.published') %> <%= l(@news_item.publish_date, :format => :long) %></small>
+    </p>
+		<div style="float:right; margin:0px 20px -10px 15px;">
+			<%= image_fu @news_item.image, "300x", :class => 'add-caption', :alt => "#{@news_item.image_caption}" %>
+		</div>
+    
+    <p style="margin-top:-15px;"><%= @news_item.body.html_safe %></p>
+		<div style="clear:left;"></div>
+		<% if @news_item.has_program? %>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+			<style type="text/css">
+				.myButton {
+					-moz-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+					-webkit-box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+					box-shadow:inset 0px 1px 0px 0px #bbdaf7;
+					background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #79bbff), color-stop(1, #378de5) );
+					background:-moz-linear-gradient( center top, #79bbff 5%, #378de5 100% );
+					filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+					background-color:#79bbff;
+					-moz-border-radius:6px;
+					-webkit-border-radius:6px;
+					border-radius:6px;
+					border-top-right-radius: 6px;
+					border-top-left-radius: 6px;
+					border-bottom-right-radius: 6px;
+					border-bottom-left-radius: 6px;
+					border:3px solid #84bbf3;
+					display:inline-block;
+					color:#ffffff;
+					font-family:arial;
+					font-size:18px;
+					font-weight:bold;
+					padding:6px 10px;
+					text-decoration:none;
+					text-shadow:1px 1px 0px #528ecc;
+					width:300px;
+				}.myButton:hover {
+					color:#FFFFFF;
+					background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #378de5), color-stop(1, #79bbff) );
+					background:-moz-linear-gradient( center top, #378de5 5%, #79bbff 100% );
+					filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#378de5', endColorstr='#79bbff');
+					background-color:#378de5;
+				}.myButton:active {
+					position:relative;
+					top:1px;
+					color:#FFFFFF;
+				}
+				.myButton-orange {
+					-moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+					-webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+					box-shadow:inset 0px 1px 0px 0px #ffffff;
+					background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ef4816), color-stop(1, #d33709) );
+					background:-moz-linear-gradient( center top, #ef4816 5%, #d33709 100% );
+					filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#79bbff', endColorstr='#378de5');
+					background-color:#ef4816;
+					-moz-border-radius:6px;
+					-webkit-border-radius:6px;
+					border-radius:6px;
+					border-top-right-radius: 6px;
+					border-top-left-radius: 6px;
+					border-bottom-right-radius: 6px;
+					border-bottom-left-radius: 6px;
+					border:3px solid #ef4816;
+					display:inline-block;
+					color:#ffffff;
+					font-family:arial;
+					font-size:18px;
+					font-weight:bold;
+					padding:6px 10px;
+					text-decoration:none;
+					text-shadow:1px 1px 0px #528ecc;
+					width:300px;
+				}.myButton-orange:hover {
+					color:#FFFFFF;
+					background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #d33709), color-stop(1, #ef4816) );
+					background:-moz-linear-gradient( center top, #d33709 5%, #ef4816 100% );
+					filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#d33709', endColorstr='#ef4816');
+					background-color:#d33709;
+				}.myButton-orange:active {
+					position:relative;
+					top:1px;
+					color:#FFFFFF;
+				}
+			</style>
+			<p>
+				<button id="program-button" class="myButton">Learn more about the <%= "#{@news_item.program.program_name} (#{@news_item.program.abbreviation}) " %>program</button>&nbsp;&nbsp;<button id="program-donate-button" class="myButton-orange">Donate now to the <%= "#{@news_item.program.program_name} (#{@news_item.program.abbreviation}) " %>program</button>
+			</p>
+			<script type="text/javascript">
+				$(function() {
+					$("#program-button").click(function() {
+						window.location = "/programs/<%= @news_item.program.id%>";
+					});
+					$("#program-donate-button").click(function() {
+						window.location = "/programs/<%= @news_item.program.id%>#donate-section";
+					})
+				});
+			</script>
+		<% end %>
+    <p>
+			<br />
+      <%= link_to "Back to all News", news_items_url %>
+    </p>
+	</div>
+	
+	<div style="clear:both;"></div>
+<% end %>
+
+<% content_for :side_body do %>
+	<%= render(:partial => 'recent_posts') %>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>

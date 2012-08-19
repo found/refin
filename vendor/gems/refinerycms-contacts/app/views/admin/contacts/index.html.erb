@@ -1,0 +1,52 @@
+<% content_for :stylesheets do %>
+	<%= stylesheet_link_tag 'refinery/jqueryui.css' %>
+	<%= stylesheet_link_tag 'ui-redmond/ui-redmond.css' %>
+<% end %>
+
+<div id="maincontent" style="width:900px;">
+	<div id="member-tabs">
+		<ul>
+			<% @years.each_key do |key| %>
+				<li><a href="#tabs-<%= key %>"><%= key %></a></li>
+			<% end %>
+		</ul>
+<% @years.each_key do |key| %>
+	<div id="tabs-<%= key %>">
+			<div id="invoices-wrapper" >
+				<table class="contacts-table">
+					<thead>
+						<tr>
+				    	<th>Contact:</th>
+							<th>Short Message:</th>
+							<th>Date:</th>
+				  	</tr>
+					</thead>
+					<tbody>
+						<% @years[key].each do |ci| %>
+						  <tr>
+						    <td><%= link_to (ci.contact.email || "No email given"), "/refinery/contacts/show/#{ci.contact.id}", :class => "orange-link" %></td>
+								<td><%= shorten(ci.message, 200) %></td>
+								<td><%= ci.created_at.strftime("%m/%d/%Y at %I:%M %p EST") %></td>
+						  </tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+	</div>
+<% end %>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".contacts-table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[2,'desc']],
+			"aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+			"iDisplayLength": 25,
+			"sPaginationType": "full_numbers"
+		});
+		
+		$("#member-tabs").tabs();
+	});
+</script>
+
+<%= link_to "Export All Contacts", "/refinery/contacts/export_to_csv" %>

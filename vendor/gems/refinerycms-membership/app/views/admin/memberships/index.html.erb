@@ -1,0 +1,54 @@
+<% content_for :stylesheets do %>
+	<%= stylesheet_link_tag 'refinery/jqueryui.css' %>
+	<%= stylesheet_link_tag 'ui-redmond/ui-redmond.css' %>
+<% end %>
+<div id="membership-wrapper" >
+	<table id="member-table">
+		<thead>
+			<tr>
+				<th>Donor Number</th>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Telephone</th>
+				<th>Billing Zip</th>
+				<th>Country</th>
+				<th>State/Province</th>
+				<th>Donor Since</th>
+				<th>Verified</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @members.each do |m| %>
+				<tr>
+					<td><%= link_to "#{m.donor_number}", admin_membership_path(m.id), :class => "orange-link" %></td>
+					<td><%= m.full_name %></td>
+					<td><%= m.email %></td>
+					<td><%= m.phone rescue "" %></td>
+					<td><%= m.billing_address_from_db.postal_code rescue ""%></td>
+					<td><%= m.billing_address_from_db.country.country_name rescue "" %></td>
+					<td><%= m.billing_address_from_db.state rescue "" %></td>
+					<td><%= m.created_at.strftime("%m/%d/%Y") %></td>
+					<td><%= m.verified? ? "Yes" : "No" %></td>
+					<td>
+						<%= link_to "View", admin_membership_path(m.id), :class => "orange-link" %> | 
+						<%= link_to "Edit", edit_admin_membership_path(m.id), :class => "orange-link" %>
+					</td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<br />
+<%= link_to "Edit Country Listing", "/refinery/memberships/edit_country_listing", :class => "orange-link" %> | <%= link_to "Export All Donors", "/refinery/memberships/export_to_csv" %>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#member-table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[0,'desc']],
+			"aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+			"iDisplayLength": 100,
+			"sPaginationType": "full_numbers"
+		});
+	});
+</script>

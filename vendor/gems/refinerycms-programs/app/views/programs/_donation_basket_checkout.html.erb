@@ -1,0 +1,35 @@
+<table class="donation-basket" style="margin: 10px 20px">
+	<thead>
+		<tr>
+			<th>Amount</th>
+			<th>Description</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%- if @order && !@order.line_items.empty? -%>
+			<%- @order.line_items.each do |li| -%>
+				<tr>
+					<td>
+						<b><%= money_from_decimal(li.price) %></b><br />
+						<small>
+						<%= " monthly" if li.recurring? %>
+						<%= " one-time" if !li.recurring? %>
+						</small>
+					</td>
+					<td><%= li.item_name %></td>
+				</tr>
+			<%- end -%>
+		<%- else -%>
+			<tr>
+				<td></td>
+				<td>You have nothing in your donation basket.</td>
+			</tr>
+		<%- end -%>
+	</tbody>
+</table>
+
+<div style="float:right; margin: 20px;">
+	<a href="#"><img id="return-to-donate" src="/images/btn-action-edit-my-basket.png" /></a>
+</div>
+
+<div class="clear"></div>

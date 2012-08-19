@@ -1,0 +1,186 @@
+<% content_for :stylesheets do %>
+	<%= stylesheet_link_tag 'refinery/jqueryui.css' %>
+	<%= stylesheet_link_tag 'ui-redmond/ui-redmond.css' %>
+<% end %>
+<div id="maincontent" style="width:900px;">
+	<div id="member-tabs">
+		<ul>
+			<li><a href="#tabs-1">Active Subscriptions</a></li>
+			<li><a href="#tabs-2">Inactive Subscriptions</a></li>
+			<li><a href="#tabs-3">Donation Adjustments</a></li>
+			<li><a href="#tabs-4">Confirmed Adjustments</a></li>
+			<li><a href="#tabs-5">Monthly Receipts</a></li>
+		</ul>
+		<div id="tabs-1">
+			<table class="subscription-table">
+				<thead>
+					<tr>
+						<th>Subscription #:</th>
+						<th>Donor Number:</th>
+						<th>Program Name:</th>
+						<th>Amount Monthly:</th>
+						<th>Billing Period:</th>
+						<th>Status:</th>
+						<th>Start Date:</th>
+						<th>Date Cancelled:</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @active.each do |sub| %>
+						<tr>
+							<td><%= link_to sub.arb_subscription_id, "/refinery/subscriptions/show/#{sub.id}", :class => "orange-link" %></td>
+							<td><%= sub.member.donor_number %></td>
+							<td><%= sub.program.program_name %></td>
+							<td><%= "#{sub.active? ? (money_from_decimal sub.amount) : "---"}" %></td>
+							<td><%= sub.active? ? sub.subscription_type.title : "---" %></td>
+							<td><%= sub.active? ? "Active" : "Inactive" %></td>
+							<td><%= sub.start_date unless sub.start_date.nil? %></td>
+							<td><%= sub.end_date.strftime("%Y-%m-%d") unless sub.end_date.nil? %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<div id="tabs-2">
+			<table class="subscription-table">
+				<thead>
+					<tr>
+						<th>Subscription #:</th>
+						<th>Donor Number:</th>
+						<th>Program Name:</th>
+						<th>Amount Monthly:</th>
+						<th>Billing Period:</th>
+						<th>Status:</th>
+						<th>Start Date:</th>
+						<th>Date Cancelled:</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @inactive.each do |sub| %>
+						<tr>
+							<td><%= link_to sub.arb_subscription_id, "/refinery/subscriptions/show/#{sub.id}", :class => "orange-link" %></td>
+							<td><%= sub.member.donor_number %></td>
+							<td><%= sub.program.program_name %></td>
+							<td><%= "#{sub.active? ? (money_from_decimal sub.amount) : "---"}" %></td>
+							<td><%= sub.active? ? sub.subscription_type.title : "---" %></td>
+							<td><%= sub.active? ? "Active" : "Inactive" %></td>
+							<td><%= sub.start_date unless sub.start_date.nil? %></td>
+							<td><%= sub.end_date.strftime("%Y-%m-%d") unless sub.end_date.nil? %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="tabs-3">
+		<br />
+		<%= link_to "Create an adjustment", "/refinery/subscriptions/new_adjustment" %>
+		<br />
+		<table class="adjustment-table">
+			<thead>
+				<tr>
+					<th>Program</th>
+					<th>Percentage Change</th>
+					<th>Effective Date</th>
+					<th>Reasoning</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @adjustments.each do |a| %>
+					<tr>
+						<td><%= a.program.program_name %></td>
+						<td><%= a.percentage_change %>%</td>
+						<td><%= a.effective_date %></td>
+						<td><%= a.reasoning %></td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div id="tabs-4">
+		<br />
+		<table id="all-adjustments-table">
+			<thead>
+				<tr>
+					<th>Subscription #:</th>
+					<th>Donor Number:</th>
+					<th>Program Name:</th>
+					<th>Active?</th>
+					<th>Original Amount:</th>
+					<th>New Amount:</th>
+					<th>Billing Period:</th>
+					<th>Confirmed:</th>
+					<th>Confirmed On:</th>
+					<th>Resend</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @all_adjustments.each do |a| %>
+					<tr>
+						<td><%= link_to a.subscription.arb_subscription_id, "/refinery/subscriptions/show/#{a.subscription.id}", :class => "orange-link" %></td>
+						<td><%= a.subscription.member.donor_number %></td>
+						<td><%= a.subscription.program.program_name %></td>
+						<td><%= a.subscription.active? %></td>
+						<td><%= (money_from_decimal (a.original_amount || a.subscription.amount)) %></td>
+						<td><%= (money_from_decimal a.amount) %></td>
+						<td><%= a.subscription.active? ? a.subscription.subscription_type.title : "--- not active" %></td>
+						<td>
+							<% if a.confirmed %>
+								Accepted
+							<% elsif (a.confirmed.nil? && a.token.nil? )%>
+								Denied
+							<% else %>
+								Unanswered
+							<% end %>
+						<td><%= a.confirmed.strftime("%Y-%m-%d") rescue "" %></td>
+						<td>
+							<% if !a.confirmed || !a.token.nil? %>
+								<%= link_to "Resend Email", "/refinery/subscriptions/resend_email/#{a.id}" %>
+							<% end %>
+						</td>
+					</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div id="tabs-5">
+		<%= render partial: "monthly_receipts" %>
+	</div>
+	<hr />
+	<p>
+		<%= link_to "Export to CSV", "/refinery/subscriptions/export_to_csv", :class => "orange-link" %>
+	</p>
+</div>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$.each($(".subscription-table"), function() {
+			$(this).dataTable({
+				"bJQueryUI": true,
+				"sPaginationType": "full_numbers"
+			});
+		})
+		$("#adjustments-table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[0,'desc']],
+			"aLengthMenu": [[30, 50, 100, -1], [30, 50, 100, "All"]],
+			"iDisplayLength": 30,
+			"sPaginationType": "full_numbers"
+		});
+		$("#all-adjustments-table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[0,'desc']],
+			"aLengthMenu": [[30, 50, 100, -1], [30, 50, 100, "All"]],
+			"iDisplayLength": 30,
+			"sPaginationType": "full_numbers"
+		});
+		$("#monthly_receipts_table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[0,'desc']],
+			"aLengthMenu": [[30, 50, 100, -1], [30, 50, 100, "All"]],
+			"iDisplayLength": 30,
+			"sPaginationType": "full_numbers"
+		});
+		
+		$( "#member-tabs" ).tabs();
+	});
+</script>

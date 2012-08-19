@@ -1,0 +1,214 @@
+<% content_for :stylesheets do %>
+	<%= stylesheet_link_tag 'refinery/jqueryui.css' %>
+	<%= stylesheet_link_tag 'ui-redmond/ui-redmond.css' %>
+<% end %>
+
+<div id="maincontent" style="">
+	<div id="member-tabs">
+		<ul>
+			<li><a href="#tabs-1">Settled Invoices</a></li>
+			<li><a href="#tabs-2">Errored Invoices</a></li>
+			<li><a href="#tabs-3">Cancelled Invoices</a></li>
+			<li><a href="#tabs-4">All Invoices</a></li>
+		</ul>
+		<div id="tabs-1">
+			<table id="invoices-table">
+				<thead>
+					<tr>
+			    	<th>Invoice #:</th>
+			    	<th>Amount:</th>
+			    	<th>Status:</th>
+						<th>Receipt Sent:</th>
+						<th>Type:</th>
+						<th>Donor #:</th>
+						<th>Donor Email:</th>
+						<th>Date:</th>
+						<th>Exported?</th>
+			  	</tr>
+				</thead>
+				<tbody>
+					<% @invoices.each do |invoice| %>
+					  <tr>
+					    <td><%= link_to invoice.invoice_number, "/refinery/orders/show/#{invoice.id}", :class => "orange-link" %></td>
+					    <td><%= "#{money_from_decimal invoice.amount}" %></td>
+					    <td>
+								<%= invoice.view_status_html.html_safe %>
+							</td>
+							<td><%= invoice.receipt.sent? rescue "" %></td>
+							<td><%= if invoice.subscription
+												"Monthly Subscription"
+											else
+												"One-time Donation"
+											end
+									%>
+							</td>
+							<td><%= invoice.member.donor_number %></td>
+							<td><%= invoice.member.email %></td>
+							<td><%= invoice.created_at.strftime("%m/%d/%Y at %I:%M %p EST") %></td>
+							<td><%= invoice.settled? ? invoice.exported? : "" %></td>
+					  </tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+		<div id="tabs-2">
+			<table id="errors-table">
+				<thead>
+					<tr>
+			    	<th>Invoice #:</th>
+			    	<th>Amount:</th>
+			    	<th>Status:</th>
+						<th>Receipt Sent:</th>
+						<th>Type:</th>
+						<th>Donor #:</th>
+						<th>Donor Email:</th>
+						<th>Date:</th>
+						<th>Exported?</th>
+			  	</tr>
+				</thead>
+				<tbody>
+					<% @errors.each do |invoice| %>
+					  <tr>
+					    <td><%= link_to invoice.invoice_number, "/refinery/orders/show/#{invoice.id}", :class => "orange-link" %></td>
+					    <td><%= "#{money_from_decimal invoice.amount}" %></td>
+					    <td>
+								<%= invoice.view_status_html.html_safe %>
+							</td>
+							<td><%= invoice.receipt.sent? rescue "" %></td>
+							<td><%= if invoice.subscription
+												"Monthly Subscription"
+											else
+												"One-time Donation"
+											end
+									%>
+							</td>
+							<td><%= invoice.member.donor_number %></td>
+							<td><%= invoice.member.email %></td>
+							<td><%= invoice.created_at.strftime("%m/%d/%Y at %I:%M %p EST") %></td>
+							<td><%= invoice.settled? ? invoice.exported? : "" %></td>
+					  </tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div id="tabs-3">
+		<table id="cancelled-invoices-table">
+			<thead>
+				<tr>
+		    	<th>Invoice #:</th>
+		    	<th>Amount:</th>
+		    	<th>Status:</th>
+					<th>Receipt Sent:</th>
+					<th>Type:</th>
+					<th>Donor #:</th>
+					<th>Donor Email:</th>
+					<th>Date:</th>
+					<th>Exported?</th>
+		  	</tr>
+			</thead>
+			<tbody>
+				<% @cancelled.each do |invoice| %>
+				  <tr>
+				    <td><%= link_to invoice.invoice_number, "/refinery/orders/show/#{invoice.id}", :class => "orange-link" %></td>
+				    <td><%= "#{money_from_decimal invoice.amount}" %></td>
+				    <td>
+							<%= invoice.view_status_html.html_safe %>
+						</td>
+						<td><%= invoice.receipt.sent? rescue "" %></td>
+						<td><%= if invoice.subscription
+											"Monthly Subscription"
+										else
+											"One-time Donation"
+										end
+								%>
+						</td>
+						<td><%= invoice.member.donor_number %></td>
+						<td><%= invoice.member.email %></td>
+						<td><%= invoice.created_at.strftime("%m/%d/%Y at %I:%M %p EST") %></td>
+						<td><%= invoice.settled? ? invoice.exported? : "" %></td>
+				  </tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div id="tabs-4">
+		<table id="all-invoices-table">
+			<thead>
+				<tr>
+		    	<th>Invoice #:</th>
+		    	<th>Amount:</th>
+		    	<th>Status:</th>
+					<th>Receipt Sent:</th>
+					<th>Type:</th>
+					<th>Donor #:</th>
+					<th>Donor Email:</th>
+					<th>Date:</th>
+					<th>Exported?</th>
+		  	</tr>
+			</thead>
+			<tbody>
+				<% @all_invoices.each do |invoice| %>
+				  <tr>
+				    <td><%= link_to invoice.invoice_number, "/refinery/orders/show/#{invoice.id}", :class => "orange-link" %></td>
+				    <td><%= "#{money_from_decimal invoice.amount}" %></td>
+				    <td>
+							<%= invoice.view_status_html.html_safe %>
+						</td>
+						<td><%= invoice.receipt.sent? rescue "" %></td>
+						<td><%= if invoice.subscription
+											"Monthly Subscription"
+										else
+											"One-time Donation"
+										end
+								%>
+						</td>
+						<td><%= invoice.member.donor_number %></td>
+						<td><%= invoice.member.email %></td>
+						<td><%= invoice.created_at.strftime("%m/%d/%Y at %I:%M %p EST") %></td>
+						<td><%= invoice.settled? ? invoice.exported? : "" %></td>
+				  </tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<br />
+<%= link_to "Export Invoices", "/refinery/orders/export_to_csv", :class => "orange-link" %> | <%= link_to "Clear Empty Orders", "/refinery/orders/reconcile_empty_orders", :class => "orange-link" %>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#invoices-table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[0,'desc']],
+			"aLengthMenu": [[30, 50, 100, -1], [30, 50, 100, "All"]],
+			"iDisplayLength": 30,
+			"sPaginationType": "full_numbers"
+		});
+		
+		$("#errors-table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[0,'desc']],
+			"aLengthMenu": [[30, 50, 100, -1], [30, 50, 100, "All"]],
+			"iDisplayLength": 30,
+			"sPaginationType": "full_numbers"
+		});
+		
+		$("#all-invoices-table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[0,'desc']],
+			"aLengthMenu": [[30, 50, 100, -1], [30, 50, 100, "All"]],
+			"iDisplayLength": 100,
+			"sPaginationType": "full_numbers"
+		});
+		
+		$("#cancelled-invoices-table").dataTable({
+			"bJQueryUI": true,
+			"aaSorting": [[0,'desc']],
+			"aLengthMenu": [[30, 50, 100, -1], [30, 50, 100, "All"]],
+			"iDisplayLength": 100,
+			"sPaginationType": "full_numbers"
+		});
+		
+		$( "#member-tabs" ).tabs();
+	});
+</script>

@@ -1,0 +1,9 @@
+	<br />
+	<div id="boxfront3">
+	  <h2>Recent Posts</h2>
+	    <% @news_items.each do |item| %>
+	        <p><%= link_to item.title, news_item_url(item) %><br />
+					<small>Published on <%= l(item.publish_date, :format => :short) %></small></p>
+	    <% end %>
+	  </ul>
+	</div>

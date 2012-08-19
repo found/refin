@@ -1,0 +1,25 @@
+lolcat:
+  shared:
+    admin:
+      image_picker:
+        image: IMAGE
+  plugins:
+    emails:
+      title: Emails
+  admin:
+    emails:
+      actions:
+        create_new: CREATE NEW Email
+        reorder: REORDR Emails
+        reorder_done: DUN REORDERIN Emails
+      records:
+        title: Emails
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Emails YET. CLICK "CREATE NEW Email" 2 ADD UR FURST email.
+      email:
+        view_live_html: VIEW DIS email LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS email
+        delete: REMOOV DIS email FOREVR
+  emails:
+    show:
+      other: OTHR Emails

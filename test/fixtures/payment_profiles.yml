@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  member: 
+  payment_cim_id: MyString
+
+two:
+  member: 
+  payment_cim_id: MyString

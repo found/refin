@@ -1,0 +1,65 @@
+	<h3 class="donate-teaser">Payment Information</h3>
+	<p style="padding: 8px 12px; background: #eee; color: #444; display: block; margin: 0px 0px 10px; width: 600px; font-size: 13px; line-height: 15px; border-left: 3px solid #ddd;">
+		This information will not be saved.<br /> 
+		You may use a Credit/Debit Card, a checking account, or a savings account.
+	</p>
+	<table>
+		<tr>
+			<td><b>Please choose your payment type:</b></td>
+			<td>
+				<select id="payment_type" name="payment_type">
+					<option value="blank"></option>
+					<option value="cc">Credit Card</option>
+					<option value="bank">Bank Account</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+	<div id="cc_info" style="display:none;">
+		<table>
+			<tr>
+				<td>Credit Card Number:</td>
+				<td><%= f.text_field :number %></td>
+			</tr>
+			<tr>
+				<td>Expiration Date:</td>
+				<td><%= f.date_select :expiry_month, :order => [:month], :include_blank => true %> <%= f.date_select :expiry_year, :order => [:year], :include_blank => true %></td>
+				
+			</tr>
+			<tr>
+				<td>Verification Number (CVV on the back of your card):</td>
+				<td><%= f.text_field :ccv %></td>
+			</tr>
+		</table>
+		<br />
+	</div>
+	<div id="bank_info" style="display:none;">
+		<table>
+			<tr>
+				<td>Bank Name:</td>
+				<td><%= f.text_field :bank_name %></td>
+			</tr>
+			<tr>
+				<td>Account Type:</td>
+				<td><%= f.select :account_type, ["Checking", "Savings"] %></td>
+			</tr>
+			<tr>
+				<td>ABA Routing Number:</td>
+				<td><%= f.text_field :routing_number %></td>
+			</tr>
+			<tr>
+				<td>Account Number:</td>
+				<td><%= f.text_field :account_number %></td>
+			</tr>
+		</table>
+		<br />
+	</div>
+<script type="text/javascript">
+	$("#payment_type").change(function() {
+		var type = "#" + $("#payment_type").val() + "_info";
+		$("#cc_info").slideUp();
+		$("#bank_info").slideUp();
+
+		$(type).slideDown();
+	});
+</script>

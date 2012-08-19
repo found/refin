@@ -1,0 +1,21 @@
+nl:
+  plugins:
+    orders:
+      title: Orders
+  admin:
+    orders:
+      actions:
+        create_new: Maak een nieuwe Order
+        reorder: Wijzig de volgorde van de Orders
+        reorder_done: Klaar met het wijzingen van de volgorde van de Orders
+      records:
+        title: Orders
+        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+        no_items_yet: Er zijn nog geen Orders. Druk op 'Maak een nieuwe Order' om de eerste aan te maken.
+      order:
+        view_live_html: Bekijk deze order op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze order
+        delete: Verwijder deze order voor eeuwig
+  orders:
+    show:
+      other: Andere Orders

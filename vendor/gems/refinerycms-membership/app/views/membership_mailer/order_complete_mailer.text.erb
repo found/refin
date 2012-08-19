@@ -1,0 +1,69 @@
+Dear <%= @invoice.member.first_name rescue "Member" %>,
+
+Thank you for your donation to Christian Aid Ministries.  Your support is very much appreciated.  This is not an official receipt; your official receipt for your donation will be delivered by email <%= @invoice.has_subscriptions? ? "upon successful completion of the transaction(s)." : "within seven days from today, #{Time.now.strftime("%m/%d/%Y")}."%>
+
+Please be sure to add this email address to your trusted list to ensure delivery of your receipt.
+
+The details of your pending donation are as follows:
+
+<% if @invoice.order %>
+	<% if @invoice.has_subscriptions? %>
+		You have setup a monthly donation for: 
+		<% @invoice.line_items.each do |li| %>
+			<% str = "$"
+			dec = li.quantity * li.price.to_f
+	    if dec.to_s.split(".")[1].length == 1
+	      str += dec.to_s + "0"
+	    elsif dec.to_s.split(".").count == 1
+	      str += dec.to_s + ".00"
+	    else 
+	      str += dec.to_s
+	    end %>
+			<%= "#{str} per month donation to #{li.program.program_name rescue ""}" %>
+		<% end %>
+		
+		Your monthly donation will begin on <%= DateTime.parse(@invoice.subscription.start_date).strftime("%B %d, %Y") %> and will be charged to your <%= @invoice.payment_method %> ending in <%= @invoice.payment_number %> on the <%= @invoice.subscription.subscription_type.title.gsub("the", "every") %>.
+		
+		If you wish to discontinue these monthly donations, you may visit the website at: 
+		http://christianaidministries.org/donors/my_subscriptions at anytime, or give us a call at 330.893.2428.
+		
+		You can view your monthly donations or download your tax deductible receipt at http://christianaidministries.org/invoices/my_invoices
+		
+	<% else %>
+		You have added <%= @invoice.line_items.count %> <%= @invoice.line_items.count > 1 ? "donations" : "donation" %> for:
+		
+		<% @invoice.line_items.each do |li| %>
+			<% str = "$"
+			dec = li.quantity * li.price.to_f
+	    if dec.to_s.split(".")[1].length == 1
+	      str += dec.to_s + "0"
+	    elsif dec.to_s.split(".").count == 1
+	      str += dec.to_s + ".00"
+	    else 
+	      str += dec.to_s
+	    end %>
+			<%= str %> donation to <%= li.program.program_name rescue "" %>
+		<% end %>
+		<% str = "$"
+		dec = @invoice.amount.to_f
+    if dec.to_s.split(".")[1].length == 1
+      str += dec.to_s + "0"
+    elsif dec.to_s.split(".").count == 1
+      str += dec.to_s + ".00"
+    else 
+      str += dec.to_s
+    end %>
+		The total amount of your pending contribution is <%= str  %> and will be billed to your selected <%= @invoice.payment_method rescue "on-file" %> ending in <%= @invoice.payment_number rescue "XXXX" %>.
+		
+		Once your donation is processed, you can view the details of your donation or download your tax deductible receipt at http://christianaidministries.org/invoices/my_invoices
+		
+	<% end %>
+<% end %>	
+Again, thank you for helping to meet needs around the world.  We also appreciate your prayers.
+
+Sincerely,
+Christian Aid Ministries | PO Box 360, Berlin, OH 44610
+
+T: 330.893.2428
+F: 330.893.2305
+E: camweb@camoh.org

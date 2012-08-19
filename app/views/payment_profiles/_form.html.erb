@@ -1,0 +1,108 @@
+<% if !current_member.billing_address %>
+	<p>Please add your billing address before adding your credit card information.  </p>
+<% end %>
+
+	<h3>Profile information:</h3>
+	<table>
+		<tr>
+			<td>First Name:</td>
+			<td><%= current_member.first_name %></td>
+		</tr>
+		<tr>
+			<td>Last Name:</td>
+			<td><%= current_member.last_name %></td>
+		</tr>
+	</table>
+	<p>If this information is incorrect, please click <%= link_to "here", "/donors/edit_my_profile" %> to update it.</p>
+
+	<h3>Billing Address:</h3>
+	<table>
+		<tr>
+			<td>Address:</td>
+			<td><%= current_member.billing_address %></td>
+		</tr>
+		<tr>
+			<td>Phone Number:</td>
+			<td><%= current_member.phone %></td>
+		</tr>
+		<tr>
+			<td>Fax Number:</td>
+			<td>
+				<%- if current_member.fax != "" %>
+					<%= current_member.fax %>
+				<%- else %>
+					No fax number saved.
+				<%- end %>
+			</td>
+		</tr>
+	</table>
+	<p>If your billing details are incorrect, please click <%= link_to "here", edit_address_path(current_member.billing_address_object) %></p>
+	<br />
+
+	<h3>Payment Information</h3>
+	<table>
+		<tr>
+			<td>Payment Type:</td>
+			<td>
+				<select id="payment_type" name="payment_type">
+					<option value="blank"></option>
+					<option value="cc">Credit Card</option>
+					<option value="bank">Bank Account</option>
+				</select>
+			</td>
+		</tr>
+	</table>
+<%- form_for "cc", :url => '/payment_profile/create' do |f| %>
+	<div id="cc_info" style="display:none;">
+		<table>
+			<tr>
+				<td>Credit Card Number:</td>
+				<td><%= f.text_field :number %></td>
+			</tr>
+			<tr>
+				<td>Expiration Date:</td>
+				<td><%= f.date_select :expiry_month, :order => [:month] %> <%= f.date_select :expiry_year, :order => [:year] %></td></td>
+			</tr>
+			<tr>
+				<td>Verification Number (CCV):</td>
+				<td><%= f.text_field :ccv %></td>
+			</tr>
+		</table>
+		<br />
+		<%= f.submit "Save Credit Card Information" %>
+	</div>
+<%- end %>
+<%- form_for "bank", :url => '/payment_profile/create' do |f| %>
+	<div id="bank_info" style="display:none;">
+		<table>
+			<tr>
+				<td>Bank Name:</td>
+				<td><%= f.text_field :name %></td>
+			</tr>
+			<tr>
+				<td>Account Type:</td>
+				<td><%= f.select :account_type, ["Checking", "Savings"] %></td>
+			</tr>
+			<tr>
+				<td>ABA Routing Number:</td>
+				<td><%= f.text_field :routing_number %></td>
+			</tr>
+			<tr>
+				<td>Account Number:</td>
+				<td><%= f.text_field :account_number %></td>
+			</tr>
+		</table>
+		<br />
+		<%= f.submit "Save Bank Information" %>
+	</div>
+<%- end %>
+<br /><br />
+<script type="text/javascript">
+	$("#payment_type").change(function() {
+		var type = "#" + $("#payment_type").val() + "_info";
+		$("#cc_info").slideUp();
+		$("#bank_info").slideUp();
+
+		$(type).slideDown();
+	});
+</script>

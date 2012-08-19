@@ -1,0 +1,33 @@
+<h3>Billing Address:</h3>
+<% if @ba %>
+	<table>
+		<tbody>
+			<tr>
+				<td style="width:300px;">Address 1:</td>
+				<td><%= @ba.address_1 %></td>
+			</tr>
+			<tr>
+				<td>Address 2:</td>
+				<td><%= @ba.address_2 %></td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td><%= @ba.city %></td>
+			</tr>
+			<tr>
+				<td>State:</td>
+				<td><%= @ba.state %></td>
+			</tr>
+			<tr>
+				<td>Postal Code:</td>
+				<td><%= @ba.postal_code %></td>
+			</tr>
+			<tr>
+				<td>Country:</td>
+				<td><%= @ba.country.country_name rescue "" %></td>
+			</tr>
+		</tbody>
+	</table>
+<% else %>
+	<p><%= @member.email %> does not have a billing address.</p>
+<% end %>

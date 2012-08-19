@@ -1,0 +1,136 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".chzn-select").chosen();
+	})
+</script>
+
+<div id="maincontent">
+	<%= ContentHolder.find(81).body.html_safe %>
+	<% if notice %>
+		<p class="errordiv" style="text-align:center; content-align:center;"><%= notice %></p>
+	<% end %>
+	<p>Required fields marked with *</p>
+	
+	<% form_for @contact do |f| %>
+		<table>
+			<tbody>
+				<tr>
+					<td>
+						<%= f.label :email, "Email Address:" %>
+					</td>
+					<td>
+						<%= f.text_field :email %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= f.label :first_name, "First Name: " %>
+					</td>
+					<td>
+						<%= f.text_field :first_name %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= f.label :last_name, "Last Name: " %>
+					</td>
+					<td>
+						<%= f.text_field :last_name %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= f.label :address_1 %>:
+					</td>
+					<td>
+						<%= f.text_field :address_1 %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= f.label :address_2 %>:
+					</td>
+					<td>
+						<%= f.text_field :address_2 %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= f.label :city %>:
+					</td>
+					<td>
+						<%= f.text_field :city %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= f.label :state %>:
+					</td>
+					<td>
+						<%= f.text_field :state %>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<%= f.label :postal_code %>:
+					</td>
+					<td>
+						<%= f.text_field :postal_code %>
+					</td>
+				</tr>
+				<tr>
+					<td>Country:*</td>
+					<td><select id="contact_country" name="contact[country]" class="chzn-select">
+							<option selected="selected" value="">Please Select Your Country</option>
+							<%= options_for_select Country.all.collect{ |c| [c.country_name, c.country_name] }, { :class => "chzn-select" } %>
+						</select></td>
+				</tr>
+				<%= fields_for @contact_instance do |k| %>
+					<tr>
+						<td>
+							<%= k.hidden_field :request_follow_up, :value => false %>
+							<%= k.label :message %>:
+						</td>
+						<td>
+							<%= k.text_area :message %>
+						</td>
+					</tr>
+					<tr>
+						<td>Check for yes</td>
+						<td>
+							Would you like to receive our newsletter? <%= f.check_box :newsletter_recipient, :checked => false %>
+						</td>
+					</tr>
+				<% end %>
+				<tr>
+					<td></td>
+					<td>
+						
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><%= f.submit "Submit", :onclick => "validateForm();return false;" %></td>
+				</tr>
+			</tbody>
+		</table>
+	<% end %>
+</div>
+<script type="text/javascript">
+	function validateForm() {
+		var why = "";
+		if ($("#contact_country").val() == "") {why += "Please select your country.\n"};
+		
+		if (why != "") {
+			alert(why);
+			return false;
+		} else {
+			if ($("#contact_email").val() == "") {
+				$("#contact_email").val("Anonymous-"+(new Date).toString().replace(/\s/g, "-").replace(/:/g, "-"));
+			}
+			$("#new_contact").submit();
+			return true;
+		}
+	}
+</script>
+<%= render :partial => "shared/content_page" %>

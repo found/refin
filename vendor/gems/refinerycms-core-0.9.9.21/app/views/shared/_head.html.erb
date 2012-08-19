@@ -1,0 +1,164 @@
+<head>
+  <meta charset='<%= ::Refinery::Application.config.encoding %>' />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title><%= browser_title(yield(:title)) %></title>
+  <%= raw "<meta name=\"description\" content=\"#{@meta.meta_description}\" />" if @meta.meta_description.present? -%>
+  <%= raw "<meta name=\"keywords\" content=\"#{@meta.meta_keywords}\">" if @meta.meta_keywords.present? -%>
+  <%= csrf_meta_tag %>
+	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+  <%= yield :meta %>
+
+  <%= stylesheet_link_tag stylesheets_for_head(stylesheets||=%w(application formatting theme), theme ||= nil),
+                          :cache => ("cache/application" if Rails.root.writable? and
+                                                            RefinerySetting.find_or_set(:use_resource_caching, true) and
+                                                            request.env['HTTP_USER_AGENT'] !~ /MSIE/ and (theme ||= nil).blank?) %>
+  <%= stylesheet_link_tag "home", :theme => theme if home_page? %>
+
+  <%= yield :stylesheets %>
+  <%= render :partial => '/shared/google_analytics' unless local_request? %>
+	<link href='https://fonts.googleapis.com/css?family=Rosario:400,400italic|Open+Sans:400italic,700italic,800italic,300italic,600italic,400,800,300,600,700' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
+	<script type="text/javascript" src="/javascripts/refinery/jquery.nivo.slider.js"></script>
+	<script type="text/javascript" src="/javascripts/jcaption.min.js"></script>
+	<link rel="stylesheet" href="/stylesheets/refinery/nivoSlider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/stylesheets/jcaption/caption.css" type="text/css" media="screen" />
+	
+	<%= stylesheet_link_tag "ui-lightness/jquery-ui-1.8.15.custom.css" %>
+  <%= javascript_include_tag 'modernizr-min' %>
+	<%= javascript_include_tag 'chosen/chosen.jquery.min.js' %>
+	<%= stylesheet_link_tag 'chosen.css' %>
+	<%= auto_discovery_link_tag(:rss, news_items_url(:format => 'rss')) %>
+	<%= auto_discovery_link_tag(:rss, programs_url(:format => 'rss')) %>
+	
+	<!-- Jquery.PrettyPhoto -->
+	<script type="text/javascript" src="/jquery.prettyPhoto/js/jquery.prettyPhoto.js"></script>
+	<link rel="stylesheet" href="/jquery.prettyPhoto/css/prettyPhoto.css" />
+	
+	
+		<script type="text/javascript">
+		  $(document).ready(function(){
+				$("#nav-one li").hover(
+					function(){ $("ul", this).fadeIn("fast"); }, 
+					function() { } 
+					
+				);
+		  	if (document.all) {
+					$("#nav-one li").hoverClass ("sfHover");
+				}
+				
+				$('#slider').nivoSlider({
+					effect: 'fade', // Specify sets like: 'fold,fade,sliceDown'
+					slices: 6, // For slice animations
+					boxCols: 8, // For box animations
+					boxRows: 4, // For box animations
+					animSpeed: 600, // Slide transition speed
+					pauseTime: 4500, // How long each slide will show
+					startSlide: 0, // Set starting Slide (0 index)
+					directionNav: true, // Next & Prev navigation
+					directionNavHide: false, // Only show on hover
+					controlNav: true, // 1,2,3... navigation
+					controlNavThumbs: false, // Use thumbnails for Control Nav
+					// controlNavThumbsFromRel: false, // Use image rel for thumbs
+					// controlNavThumbsSearch: '.jpg', // Replace this with...
+					// controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
+					keyboardNav: true, // Use left & right arrows
+					pauseOnHover: true, // Stop animation while hovering
+					manualAdvance: false, // Force manual transitions
+					captionOpacity: 0.8, // Universal caption opacity
+					prevText: 'Prev', // Prev directionNav text
+					nextText: 'Next', // Next directionNav text
+				});
+		  });
+
+			$.fn.hoverClass = function(c) {
+				return this.each(function(){
+					$(this).hover( 
+						function() { $(this).addClass(c);  },
+						function() { $(this).removeClass(c); }
+					);
+				});
+			};	  
+		</script>
+		<style type="text/css">
+	/* Navigation */
+	.nav, .nav ul { 
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.nav {
+	  font-family: Arial, Helvetica, sans-serif;
+	  z-index: 100;
+	  position: relative;
+	}
+	.nav li {
+	  border-left: 1px solid #fff;
+	  float: left;
+	  margin: 0;
+	  padding: 0;
+	  position: relative;
+	}
+	.nav li a, .nav li a:link, .nav li a:active, .nav li a:visited {
+	  font: bold 1.22em/25px Arial, Helvetica, sans-serif;
+	  background: #00ff00;
+	  color: #000;
+	  display: block;
+	  padding: 0 9px;
+/*	  text-transform: lowercase;*/
+	  text-decoration: none;
+	}
+
+	.nav li a:hover {
+	  background: #ccc;
+	  color: #fff;	
+
+	}
+	#nav-one li:hover a, 
+	#nav-one li.sfHover a {
+	  background: #ccc;
+	  color: #000;
+	}
+	#nav-one li:hover ul a, 
+	#nav-one li.sfHover ul a {
+	  background: #00ff00;
+	  color: #000;	
+	}
+	#nav-one li:hover ul a:hover, 
+	#nav-one li.sfHover ul a:hover {
+	  background: #ccc;
+	  color: #000;	
+	}
+
+	.nav ul {
+	  background: #00ff00;
+	  border-bottom: 1px solid #fff;
+	  list-style: none;
+	  margin: 0;
+	  position: absolute;
+	  top: -999em;
+	  left: -1px;
+	}
+	.nav li:hover ul,
+	.nav li.sfHover ul {
+	  top: 25px;
+	}
+	.nav ul li {
+	  border: 0;
+	  float: none;
+	}
+	.nav ul a {
+	  border: 1px solid #fff;
+	  border-bottom: 0;
+	  padding-right: 20px;
+	  width: auto;
+	  white-space: nowrap;
+	}
+	.nav ul a:hover {
+	  background: #ccc;
+	  color: #000;
+	}
+		</style>
+</head>

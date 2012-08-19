@@ -1,0 +1,35 @@
+<ul>
+		<% plugins_to_ignore = ["refinerycms_base", "refinery_core", "refinery_dialogs", "refinery_i18n", "products", "donations", "refinery_generators", "refinery_dashboard"] %>
+		<% p_to_eval = [] %>
+		<% current_user.authorized_plugins.each do |p| %>
+			<% if !plugins_to_ignore.include?(p) %>
+				<% p_to_eval << p.gsub("refinery_", "").gsub("refinerycms_", "") %>
+			<% end %>
+		<% end %>
+		<% p_to_eval.sort.each do |p| %>
+				<% path = p %>
+				<% path = "resources" if path == "files" %>
+				<li>
+					<% this_p = p.gsub("_", " ").capitalize %>
+					<% if this_p == "Memberships" %>
+						<% this_p = "Donors"%>
+					<% elsif this_p == "Subscriptions" %>
+						<% this_p = "Monthly Subscriptions" %>
+					<% elsif this_p == "Users" %>
+						<% this_p = "Admin Users" %>
+					<% elsif this_p == "News" %>
+						<% this_p = "News Articles" %>
+					<% elsif this_p == "Orders" %>
+						<% this_p = "Invoices" %>
+					<% end %>
+					
+					<%= link_to "Manage #{this_p}",
+						"/refinery/#{path}",
+						:class => "add_icon"
+					%>
+				</li>
+		<% end %>
+
+  <%= render :partial => 'additional_dashboard_menu_items' %>
+</ul>
+

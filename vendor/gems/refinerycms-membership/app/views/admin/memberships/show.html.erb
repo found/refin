@@ -1,0 +1,46 @@
+<% content_for :stylesheets do %>
+	<%= stylesheet_link_tag 'ui-redmond/ui-redmond.css' %>
+<% end %>
+<h1>Displaying information for <%= @member.email %></h1>
+<script>
+	$(function() {
+		$( "#member-tabs" ).tabs();
+	});
+	</script>
+
+<div class="demo">
+
+	<div id="member-tabs">
+		<ul>
+			<li><a href="#tabs-1">Profile</a></li>
+			<li><a href="#tabs-2">Billing Address</a></li>
+			<li><a href="#tabs-3">Mailing Address</a></li>
+			<li><a href="#tabs-4">Invoices</a></li>
+			<li><a href="#tabs-5">Subscriptions</a></li>
+			<li><a href="#tabs-6">Contact Submittals</a></li>
+		</ul>
+		<div id="tabs-1">
+			<%= render :partial => "member" %>
+		</div>
+		<div id="tabs-2">
+			<%= render :partial => "billing_address" %>
+		</div>
+		<div id="tabs-3">
+			<%= render :partial => "mailing_address" %>
+		</div>
+		<div id="tabs-4">
+			<%= render :partial => "invoices" %>
+		</div>
+		<div id="tabs-5">
+			<%= render :partial => "subscriptions" %>
+		</div>
+		<div id="tabs-6">
+			<%= render :partial => "contacts" %>
+		</div>
+	</div>
+<br />
+<%= link_to "Edit Profile and Billing Address", edit_admin_membership_path(@member.id), :class => "orange-link" %> | <%= link_to "Update Mailing Address", "/refinery/memberships/edit_mailing/#{@member.id}", :class => "orange-link" %>
+</div><!-- End demo -->
+
+
+

@@ -1,0 +1,25 @@
+lolcat:
+  shared:
+    admin:
+      image_picker:
+        image: IMAGE
+  plugins:
+    subscription_types:
+      title: Subscription Types
+  admin:
+    subscription_types:
+      actions:
+        create_new: CREATE NEW Subscription Type
+        reorder: REORDR Subscription Types
+        reorder_done: DUN REORDERIN Subscription Types
+      records:
+        title: Subscription Types
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Subscription Types YET. CLICK "CREATE NEW Subscription Type" 2 ADD UR FURST subscription type.
+      subscription_type:
+        view_live_html: VIEW DIS subscription type LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS subscription type
+        delete: REMOOV DIS subscription type FOREVR
+  subscription_types:
+    show:
+      other: OTHR Subscription Types

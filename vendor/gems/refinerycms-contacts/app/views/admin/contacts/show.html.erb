@@ -1,0 +1,73 @@
+<%= link_to "Back", admin_contacts_url %>
+
+<h2>Details for this contact:</h2>
+<table>
+	<tbody>
+		<tr>
+			<td>Email:</td>
+			<td>
+				<%= @contact.email %>
+				<% if @contact.member %>
+					This contact is linked to a member. <%= link_to "View member profile", admin_membership_path(@contact.member.id), :class => "orange-link" %>
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td>First Name:</td>
+			<td><%= @contact.first_name %></td>
+		</tr>
+		<tr>
+			<td>Last Name:</td>
+			<td><%= @contact.last_name %></td>
+		</tr>
+		<tr>
+			<td>Address 1:</td>
+			<td><%= @contact.address_1 %></td>
+		</tr>
+		<tr>
+			<td>Address 2:</td>
+			<td><%= @contact.address_2 %></td>
+		</tr>
+		<tr>
+			<td>City:</td>
+			<td><%= @contact.city %></td>
+		</tr>
+		<tr>
+			<td>State:</td>
+			<td><%= @contact.state %></td>
+		</tr>
+		<tr>
+			<td>Postal Code:</td>
+			<td><%= @contact.postal_code %></td>
+		</tr>
+		<tr>
+			<td>Country:</td>
+			<td><%= @contact.country rescue "" %></td>
+		</tr>
+		<tr>
+			<td>Wants to receive a newsletter?</td>
+			<td><%= @contact.newsletter_recipient? %></td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>This contact has submitted the contact form <%= @contact.contact_instances.count %> times</h2>
+<hr />
+<table>
+	<tbody>
+		<% @contact.contact_instances.each do |ci| %>
+			<tr>
+				<td style="width:200px;">Submitted on:</td>
+				<td><%= ci.created_at.strftime("%A, %B %d, %Y at %I:%M %p UTC") rescue "some time." %></td>
+			</tr>
+			<tr>
+				<td>Message:</td>
+				<td><%= ci.message %></td>
+			</tr>
+			<tr>
+				<td><hr /></td>
+				<td><hr /></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

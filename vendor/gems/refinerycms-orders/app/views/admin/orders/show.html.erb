@@ -1,0 +1,227 @@
+<div id="maincontent" style="width:940px;">
+	<table style="width:900px;">
+		<tr>
+			<td style="width:200px;"><%= image_tag "/images/cam_logo_mini.gif" %></td>
+			<td>
+				<h2>Christian Aid Ministries</h2>
+				<p>
+					PO Box 360<br />
+					Berlin, OH 44610<br />
+					Phone: (330) 893-2428<br />
+					Fax: (330) 893-2305<br />
+					http://christianaidministries.org
+				</p>
+			</td>
+			<td>
+				<p>
+					<b>Date: </b> <%= @invoice.created_at.strftime("%m/%d/%Y at %I:%M %p EST") rescue "" %><br />
+					<b>Invoice #: </b> <%= @invoice.invoice_number %>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<hr />
+	<table style="width:900px;">
+		<tr>
+			<td style="width:100px;">&nbsp;</td>
+			<td style="width:100px;"><p><b>Bill To:</b></p></td>
+			<td>
+				<p>
+					<% @ba = @invoice.member.billing_address_from_db %>
+					<%= @invoice.member.full_name %><br />
+					<%= @ba.address_1 %><br />
+					<% if !@ba.address_2.empty? %>
+						<%= @ba.address_2 %><br />
+					<% end %>
+					<%= @ba.city %>,<%= @ba.state %> <%= @ba.postal_code %><br />
+					<%= @ba.country.country_name %>
+				</p>
+			</td>
+			<td style="width:165px;">&nbsp;</td>
+			<td style="width:100px;">
+				<p>
+					<b>Mail To:</b>
+				</p>
+			</td>
+			<td>
+				<p>
+					<% @ma = @invoice.member.mailing_address_from_db %>
+					<%= @invoice.member.full_name rescue "" %><br />
+					<%= @ma.address_1 rescue "" %><br />
+					<% if !@ma.address_2 || !@ma.address_2.empty? %>
+						<%= @ma.address_2 rescue "" %><br />
+					<% end %>
+					<%= @ma.city rescue "" %>,<%= @ma.state rescue "" %> <%= @ma.postal_code rescue "" %><br />
+					<%= @ma.country.country_name rescue "" %>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<hr />
+	<table style="width:900px;">
+		<thead>
+			<tr>
+				<th>Donation Type: </th>
+				<th>Description: </th>
+				<th>Quantity: </th>
+				<th>Amount Per: </th>
+				<th>Line Total: </th>
+			</tr>
+				<% if @invoice.order %>
+					<% @invoice.line_items.each do |li| %>
+						<tr>
+							<td><p><%= li.recurring? ? "Monthly Subscription" : "One-time Donation" %></p></td>
+							<td><p><%= li.program.program_name %></p></td>
+							<td><p><%= li.quantity %></p></td>
+							<td>
+								<p>
+									<%= "#{money_from_decimal li.price} #{li.recurring? ? "monthly starting #{@invoice.subscription.start_date rescue ""}" : ""}" %>
+									<% if @invoice.subscription && @invoice.subscription.subscription_adjustments.select{|a| a.confirmed }.empty? == false %>
+										<br />
+										<% @invoice.subscription.subscription_adjustments.select{|a| a.confirmed }.each do |a| %>
+											<strong>Adjustment:</strong> to <%= number_to_currency a.amount %> on <%= a.confirmed.strftime("%m-%d-%Y") rescue "" %><br />
+										<% end %>
+									<% end %>
+								</p>
+							</td>
+							<td><p><%= "#{money_from_decimal (li.quantity * li.price.to_f)} #{li.recurring? ? "monthly" : ""}" %></p></td>
+						</tr>
+					<% end%>
+				<% end %>
+				<tr>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+				</tr>
+				<% if @invoice.line_items.count == 1 && @invoice.line_items[0].recurring? %>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><p>Subscription (click to view details)</p></td>
+						<td><p><%= link_to @invoice.subscription.arb_subscription_id, "/refinery/subscriptions/show/#{@invoice.subscription.id}" %></p></td>
+					</tr>
+				<% end %>
+				<% if @invoice.transaction %>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><p><b>Transaction ID:</b></p></td>
+						<td><p><%= @invoice.transaction.confirmation_id || "N/A" %></p></td>
+					</tr>
+				<% end %>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><p>Payment with <%= @invoice.payment_method %><br /> Account ending in <%= @invoice.payment_number %></p></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><p><b>Total:</b></p></td>
+					<td><p>
+						<% if @invoice.settled? %>
+							<h2><%= "#{money_from_decimal @invoice.amount}" %></h2>
+						<% else %>
+							<h2><font color='red'><%= "#{money_from_decimal @invoice.amount}" %></font></h2>
+						<% end %></p>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><p><b>Payment Status:</b></p></td>
+					<td>
+						<p>
+							<% if @invoice.subscription %>
+								<% if @invoice.subscription.active? %>
+									Recurring monthly billing.
+								<% else %>
+									This subscription was <font color="red">cancelled</font> on <%= @invoice.subscription.end_date.strftime("%Y-%m-%d") rescue "" %>
+								<% end %>
+							<% else %>
+								<% if @invoice.settled? %>
+									This invoice has been <b>settled.</b>
+								<% else %>
+									There was an <font color='red'>error</font>.  Nothing was charged.
+								<% end %>
+							<% end %>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><p><b>Notes:</b></p></td>
+					<td><%= @invoice.notes rescue "None" %></td>
+				</tr>
+				<tr>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+				</tr>
+				<tr>
+					<td colspan=5>
+						<% if @invoice.receipt && @invoice.receipt.sent? %>
+							<p>A receipt for this invoice has already been mailed out.</p>
+							<p><%= link_to "Click Here", "/refinery/orders/send_email_receipt/#{@invoice.id}" %> to re-send the receipt.</p>
+						<% else %>
+							<p>
+								<% if @invoice.receipt && @invoice.receipt.cancelled? %>
+									This receipt has been cancelled on <%= @invoice.receipt.date_cancelled.strftime("%m/%d/%Y") rescue "" %> before its scheduled delivery on <%= @invoice.receipt.date_to_send.strftime("%m/%d/%Y") rescue "NO DATE" %>.<br />
+									<% if @invoice.receipt.date_to_send > Time.now %>
+										<%= link_to "Click Here", "/refinery/orders/enable_email_receipt/#{@invoice.id}" %> to re-enable the automatic deliver of this receipt.
+									<% else %>
+										The timeline to enable automatic delivery has lapsed.  If you would like to send the receipt manually, <%= link_to "Click Here", "/refinery/orders/send_email_receipt/#{@invoice.id}" %>
+									<% end %>
+								<% else %>
+									This receipt is set to be mailed on <%= @invoice.receipt.date_to_send.strftime("%m/%d/%Y") rescue "NO DATE"%><br />
+									<%= link_to "Click Here", "/refinery/orders/cancel_email_receipt/#{@invoice.id}" %> to stop this receipt from being sent.
+								<% end %>
+							</p>
+						<% end %>
+						<p>To receive a proof copy of the email receipt to the address webinfochanges@camoh.org <%= link_to "Click Here", "/refinery/orders/send_email_receipt_to_admin/#{@invoice.id}" %></p>
+						<p>
+							<% if @invoice.cancelled? %>
+								Status: <b>Cancelled</b>
+								<% form_for "cancellation", :url => "/refinery/orders/uncancel_invoice/#{@invoice.id}" do |f| %>
+									<br /><%= f.label :passphrase %>
+									<%= f.hidden_field :id, :value => @invoice.id %>
+									<%= f.password_field :passphrase %><br />
+									<%= f.submit "Reinstate this invoice" %>
+								<% end %>
+							<% else %>
+								Status: <b>Active</b>
+								<% form_for "cancellation", :url => "/refinery/orders/cancel_invoice/#{@invoice.id}" do |f| %>
+									<br /><%= f.label :passphrase %>
+									<%= f.hidden_field :id, :value => @invoice.id %>
+									<%= f.password_field :passphrase %><br />
+									<%= f.submit "Cancel this invoice" %>
+								<% end %>
+							<% end %>
+						Note: this does NOT stop money transfers in batch processing.</p>
+						<p>
+							<% form_for "destroy", :url => "/refinery/orders/destroy/#{@invoice.id}" do |f| %>
+								<br /><%= f.label :passphrase %>
+								<%= f.hidden_field :id, :value => @invoice.id %>
+								<%= f.password_field :passphrase %><br />
+								<br /> This action is not recoverable.  Be really sure before you click.<br />
+								<%= f.submit "Destroy this invoice" %>
+							<% end %>
+						</p>
+					</td>
+				</tr>
+		</thead>
+	</table>
+	<%= link_to 'View All Invoices', admin_orders_path %>
+</div>

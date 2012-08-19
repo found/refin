@@ -1,0 +1,8 @@
+default:
+  api_login_id: 3S2uG9tXPYzR
+  api_transaction_key: 2b56a799JG3Fzp6Z
+  merchant_hash_value: zerocool
+
+development: 
+test: 
+production: 

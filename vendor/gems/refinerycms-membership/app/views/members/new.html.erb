@@ -1,0 +1,144 @@
+<script type="text/javascript">
+	function verifyNameLength() {
+		if (escape($("#member_first_name").val() + " " + $("#member_last_name").val()).length > 31) {
+			$("#length-callout").slideDown();
+			$("#register-button").hide();
+		} else {
+			$("#length-callout").slideUp();
+			$("#register-button").show();
+		}
+	}
+
+	$(document).ready(function() {
+		$("#address_country_id").chosen();
+		$("#member_first_name").blur(verifyNameLength);
+		$("#member_last_name").blur(verifyNameLength);
+	});
+</script>
+
+<div id="maincontent" style="width:900px;">
+  <div id="new_member_form" style="float:left;">
+    <%= form_for @member, :as => :member, :url => members_path(:p => params[:p]) do |f| %>
+      <%= render :partial => "error_messages",
+        :locals => {
+        :object => @member,
+        :include_object_name => true
+      } %>     
+			<% if flash[:error] -%>
+			  <p class='error'><%=h flash[:error] %></p>
+			<% end -%>
+			<% if flash[:notice] -%>
+			  <p class='notice'><%=h flash[:notice] %></p>
+			<% end -%> 
+			
+			<h1>Register a new account!</h1>
+			<p>Please fill out the fields below to create your account.  Required fields are marked with *</p>
+			<p id="length-callout" style="display:none;">
+				Unfortunately, you're name is too long for our payment provider to handle.  If you can shorten your first name, please do so!  Including things like &amp;, dashes, and putting more than one first name in the first name field can often trigger this.  If you feel you can't shorten your name, Simply use your first initial.
+			</p>
+				<table style="width:900px;">
+					<tr>
+						<td>
+							<table>
+								<tbody>
+									<tr>
+										<td><%= f.label :email %><span>*</span></td>
+										<td><%= f.text_field :email %></td>
+									</tr>
+									<tr>
+										<td><%= f.label :password %><span>*</span></td>
+										<td><%= f.password_field :password, :autocomplete => 'off' %>&nbsp;</td>
+									</tr>
+									<tr>
+										<td><%= f.label :password_confirmation %><span>*</span></td>
+										<td><%= f.password_field :password_confirmation, :autocomplete => 'off' %>&nbsp;</td>
+									</tr>
+									<tr>
+										<td><%= f.label :first_name %><span>*</span></td>
+										<td><%= f.text_field :first_name %></td>
+									</tr>
+									<tr>
+										<td><%= f.label :last_name %><span>*</span></td>
+										<td><%= f.text_field :last_name %>&nbsp;</td>
+									</tr>
+									<tr>
+										<td><%= f.label :donor_number %>(opt)</td>
+										<td><%= f.text_field :donor_number %></td>
+									</tr>
+									<tr>
+										<td><%= f.label :phone, "Phone Number" %>(opt)</td>
+										<td><%= f.text_field :phone %></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+						<td>
+							<table>
+								<tbody>
+									<%= fields_for @address do |k| %>
+										<tr>
+											<td>Address 1:<span>*</span></td>
+											<td><%= k.text_field :address_1 %></td>
+										</tr>
+										<tr>
+											<td>Address 2:</td>
+											<td><%= k.text_field :address_2 %></td>
+										</tr>
+										<tr>
+											<td>City:<span>*</span></td>
+											<td><%= k.text_field :city %></td>
+										</tr>
+										<tr>
+											<td>State:<span>*</span></td>
+											<td><%= k.text_field :state %></td>
+										</tr>
+										<tr>
+											<td>Country:<span>*</span></td>
+											<td>
+													<%= k.select :country_id, Country.all.collect{ |c| [c.country_name, c.id] }, { :class => "chzn-select" } %>
+											</td>
+										</tr>
+										<tr>
+											<td>Postal Code (Zip Code):<span>*</span></td>
+											<td><%= k.text_field :postal_code %></td>
+										</tr>
+									<% end %>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><INPUT TYPE="image" id="register-button" SRC="/images/btn-action-register.png" BORDER="0" ALT="Register for an account" name="submit"></td>
+					</tr>
+				</table>
+    <% end %>
+		
+				<h1>... Or sign in!</h1>
+				<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+					<table style="width:250px;">
+						<tr>
+							<td><%= f.label :login %></td>
+							<td><%= f.text_field :login, :class => 'larger widest' %></td>
+						</tr>
+						<tr>
+							<td><%= f.label :password %></td>
+							<td><%= f.password_field :password, :autocomplete => 'off', :class => 'larger widest' %></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+				      <td><%= f.check_box :remember_me %> <%= f.label :remember_me %></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td><%= link_to 'Forgot Password', new_password_path(resource_name) %> | <%= link_to 'Register', "/members/register" %></td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td><INPUT TYPE="image" SRC="/images/btn-action-login.png" BORDER="0" ALT="Submit Form" name="submit">
+							</td>
+						</tr>
+					</table>
+				<% end -%>
+  </div>
+</div>

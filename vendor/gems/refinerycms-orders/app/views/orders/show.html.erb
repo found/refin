@@ -1,0 +1,45 @@
+<% content_for :body_content_title do %>
+  <%= @order.title %>
+<% end %>
+
+<% content_for :body_content_left do %>
+  <section>
+    <h1>Member</h1>
+    <p>
+      <%=raw @order.member_id %>
+    </p>
+  </section>
+  <section>
+    <h1>Item Total</h1>
+    <p>
+      <%=raw @order.item_total %>
+    </p>
+  </section>
+  <section>
+    <h1>Total</h1>
+    <p>
+      <%=raw @order.total %>
+    </p>
+  </section>
+  <section>
+    <h1>Order State</h1>
+    <p>
+      <%=raw @order.order_state_id %>
+    </p>
+  </section>
+<% end %>
+
+<% content_for :body_content_right do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="orders">
+      <% @orders.each do |order| %>
+        <li>
+          <%= link_to order.title, order_url(order) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>

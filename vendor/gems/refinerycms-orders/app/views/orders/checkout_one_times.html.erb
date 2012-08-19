@@ -1,0 +1,48 @@
+<% content_for :body_content_left do %>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#payment_form_holder").slideUp();
+			$("#use_payment_profile").change(function() {
+				$("#payment_method").val(this.value);
+				if (this.value == "yes") { 
+					$("#payment_form_holder").slideUp(); 
+					$("#payment_profile_holder").slideDown();
+				} else if (this.value == "no") {
+					$("#payment_profile_holder").slideUp();
+					$("#payment_form_holder").slideDown(); 
+				}
+			});
+		});
+	</script>
+
+	<% @cart = current_cart %>
+	<h1>Checkout</h1>
+	<% form_for 'contribution', :url => "/orders/process_one_times" do |f| %>
+		<input type="hidden" name='donor_id' value="<%= current_member.id %>" />
+		<input type="hidden" name="amount" value="<%= @amount %>" />
+		<input type="hidden" name="payment_method" id="payment_method" value="yes" />
+		<p>Total amount of one-time donations: <b><%= money_from_decimal(@cart.one_time_total) %></b></p><br />
+		<div id="billing_details_holder">
+			<%= render :partial => "billing_details" %>
+		</div>
+		<p>
+			Would you like to use a saved payment profile?
+			<select id="use_payment_profile" name="use_payment_profile">
+				<option value="yes">Yes</option>
+				<option value="no">No</option>
+			</select>
+		</p>
+		<strong><%= @amount %></strong><br />
+		<div id="payment_profile_holder">
+			<%= f.select :payment_profile, options_for_select(@payment_profiles) %>
+		</div>
+		<div id="payment_form_holder">
+			<%= render :partial => "payment_form", :locals => {:f => f} %>
+		</div>
+		<br />
+			<%= f.submit "Donate NOW!" %>
+	<% end %>
+<% end %>
+
+
+<%= render :partial => "/shared/content_page" %>

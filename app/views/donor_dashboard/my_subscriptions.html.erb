@@ -1,0 +1,32 @@
+<div id="maincontent" style="width:900px;">
+	<h1>Your Monthly Subscriptions:</h1>
+	<p>Here is a listing of all of your active and inactive monthly subscriptions.  From this console, you can view your current monthly subscriptions, edit them, and remove them.</p>
+	<table>
+		<thead>
+			<tr>
+				<th>Subscription #:</th>
+				<th>Program Name:</th>
+				<th>Amount Monthly:</th>
+				<th>Billing Period:</th>
+				<th>Status:</th>
+				<th>Start Date:</th>
+				<th>Date Cancelled:</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @donor.subscriptions.each do |sub| %>
+				<tr>
+					<td><%= link_to sub.arb_subscription_id, "/subscriptions/#{sub.id}" %></td>
+					<td><%= sub.program.program_name %></td>
+					<td><%= "#{sub.active? ? (money_from_decimal sub.amount) : "---"}" %></td>
+					<td><%= sub.active? ? sub.subscription_type.title : "---" %></td>
+					<td><%= sub.active? ? "Active" : "Inactive" %></td>
+					<td><%= sub.start_date unless sub.start_date.nil? %></td>
+					<td><%= sub.end_date.strftime("%Y-%m-%d") unless sub.end_date.nil? %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<hr />
+	<p><%= link_to "Back to Dashboard", "/donors/me" %></p>
+</div>

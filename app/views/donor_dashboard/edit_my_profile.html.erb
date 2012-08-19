@@ -1,0 +1,96 @@
+<script type="text/javascript">
+	function verifyNameLength() {
+		if (escape($("#member_first_name").val().replace("&", "&amp;") + " " + $("#member_last_name").val()).length > 31) {
+			
+			$("#length-callout").slideDown();
+			$("#member_submit").hide();
+		} else {
+			$("#length-callout").slideUp();
+			$("#member_submit").show();
+		}
+	}
+	
+	$(document).ready(function() {
+		$(".chzn-select").chosen();
+		$("#member_first_name").blur(verifyNameLength);
+		$("#member_last_name").blur(verifyNameLength);
+	})
+</script>
+<div id="maincontent" style="width:80%;">
+	<h1>Edit your Profile</h1>
+	<p>Here, you can update your profile information.  Required fields are marked with *</p>
+	<p id="length-callout" style="display:none;">
+		Unfortunately, you're name is too long for our payment provider to handle.  If you can shorten your first name, please do so!  Including things like &amp;, dashes, and putting more than one first name in the first name field can often trigger this.  If you feel you can't shorten your name, Simply use your first initial.
+	</p>
+	<%= form_for @donor, :url => '/donors/update_my_profile' do |f| %>
+		<div style="float:left;">
+			<h3>Profile Information</h3>
+			<table>
+				<tbody>
+					<tr>
+						<td>Email:<span>*</span></td>
+						<td>
+							<%= f.text_field :email %>
+						</td>
+					</tr>
+					<tr>
+						<td>First Name:<span>*</span> </td>
+						<td><%= f.text_field :first_name %></td>
+					</tr>
+					<tr>
+						<td>Last Name:<span>*</span></td>
+						<td><%= f.text_field :last_name %></td>
+					</tr>
+					<tr>
+						<td>Phone: </td>
+						<td><%= f.text_field :phone %></td>
+					</tr>
+					<tr>
+						<td>Turn off non-essential emails?</td>
+						<td><%= f.check_box :restrict_emails %> (check for yes)</td>
+					</tr>
+				</table>
+			</div>
+			<div style="float:right;">
+				<h3>Billing Address</h3>
+				<table>
+					<tbody>
+						<%= fields_for @donor.addresses.select{|a| a.address_type == "billing"}[0] do |k| %>
+							<tr>
+								<td>Address 1:</td>
+								<td><%= k.text_field :address_1 %></td>
+							</tr>
+							<tr>
+								<td>Address 2:</td>
+								<td><%= k.text_field :address_2 %></td>
+							</tr>
+							<tr>
+								<td>City:</td>
+								<td><%= k.text_field :city %></td>
+							</tr>
+							<tr>
+								<td>State:</td>
+								<td><%= k.text_field :state %></td>
+							</tr>
+							<tr>
+								<td>Country:</td>
+								<td><select id="address_country_id" name="address[country_id]" class="chzn-select">
+										<%= options_for_select Country.all.collect{|c| [c.country_name, c.id]}%>
+									</select></td>
+							</tr>
+							<tr>
+								<td>Postal Code (Zip Code):</td>
+								<td><%= k.text_field :postal_code %></td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+			<div style="clear:both;"></div>
+			<div>
+				<input type="hidden" name="referer" value="<%= @referer %>">
+				<%= f.submit "Update" %>
+			</div>
+			
+	<% end %>
+</div>

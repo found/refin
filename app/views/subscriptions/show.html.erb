@@ -1,0 +1,116 @@
+<style>
+	ul {
+		list-style-type: none;
+	}
+	
+	.datepicker {
+		width: 80px;
+	}
+	
+	.ui-widget-header { border: 1px solid #777; background: #437db3; color: #ffffff; font-weight: bold; }
+	.ui-widget-header a { color: #ffffff; }
+	.ui-state-hover a, .ui-state-hover a:hover { color: #437db3; text-decoration: none; }
+	.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  {border: 1px solid #fed22f; background: #ddd; color: #000; }
+	.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #777; background: #437db3; font-weight: bold; color: #fff; }
+	.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #437db3; text-decoration: none; }
+</style>
+<div id="maincontent" style="width:900px;">
+	<% if flash[:error] -%>
+	  <p class='error'><font color="red"><%=h flash[:error] %></font></p>
+	<% end -%>
+	<% if flash[:notice] -%>
+	  <p class='notice' style="border: 1px solid '#00aa00';"><font color="#00aa00"><%=h flash[:notice] %></font></p>
+	<% end -%>
+	<br />
+	<h2>Your Subscription to <em><%= @subscription.program.program_name %></em> (#<%= @subscription.arb_subscription_id %>)</h2>
+	<hr />
+	<div style="float:left; margin-right:10px;">
+		<ul>
+			<li>
+				<p><strong><%= "#{money_from_decimal @subscription.amount}" %></strong> billed monthly on the <strong><%= @subscription.subscription_type.title.downcase %></strong></p>
+			</li>
+			<li><p>Subscription started on <strong><%= Time.strptime(@subscription.start_date, "%Y-%m-%d").strftime("%B %d, %Y") rescue "" %></strong></p></li>
+			<% if !@subscription.active? %>
+				<li>
+					<p>This subscription was cancelled on <%= @subscription.end_date.strftime("%B %d, %Y") %></p>
+				</li>
+			<% end %>
+			<li>
+				Payment Information:
+				<ul>
+					<li><%= @subscription.payment_method %></li>
+					<li>Ending with <%= @subscription.payment_number %></li>
+				</ul>
+			</li>
+			<% if @subscription.subscription_adjustments %>
+				<ul>
+					<% @subscription.subscription_adjustments.select{|a| a.confirmed }.each do |s| %>
+						<li>Adjustment - <%= number_to_currency(s.amount) %> confirmed on <%= s.confirmed.strftime("%B %d, %Y") %></li>
+					<% end %>
+				</ul>
+			<% end %>
+			<li>
+				<% if @subscription.active? %>
+					<input type="button" id="cancel_sub" value="Cancel this subscription?" /> &nbsp;&nbsp; <input type="button" id="update_payment" value="Update payment method" />
+
+					<script type="text/javascript">
+					$(document).ready(function() {
+						$("#cancel_sub").click(function() {
+							var where_to = confirm("Are you sure you really want to cancel this subscription?");
+							if (where_to == true) {
+								u = window.location.href.split("/");
+								window.location = "http://" + u[2] + "/subscriptions/cancel_subscription/" + u[u.length - 1];
+							}
+						});
+
+						$("#update_payment").click(function() {
+							u = window.location.href.split("/");
+							window.location = "http://" + u[2] + "/subscriptions/change_payment/" + u[u.length - 1];
+						})
+					});
+					</script>
+				<% else %>
+					This subscription has been <font color="red">cancelled</font>.  If you would like to subscribe to this program again, please re-create your monthly subscription.
+				<% end %>
+			</li>
+		</ul>
+	</div>
+	<div style="float:left; min-height: 350px; width:3px; margin-top:-10px; background-color:#ddd; margin-right:10px;">&nbsp;</div>
+	<div style="float:left;">
+		<h4>Your Receipts:</h4>
+		<p>Below, you can print individual invoices on a monthly basis.</p>
+		<ul>
+			<% @subscription.subscription_transactions.each do |t| %>
+				<li>
+					<%= link_to "#{t.success? ? "Successful" : "Failed" } on #{t.created_at.strftime("%B %d, %Y")}", "/subscriptions/monthly_receipt/#{t.id}" %>
+				</li>
+			<% end %>
+		</ul>
+		<br />
+		<p>
+			<em>Need a receipt for multiple months?</em><br /> 
+			<span style="font-size:12px;">(Be sure to have the start date earlier than the end date!)</span>
+		</p>
+		
+		<div>
+			<%= form_for "range", :url => "/subscriptions/receipt_range/#{@subscription.id}" do |f| %>
+				<span style="float:left;"><p style="padding:0 0 0 0;">Start</p><%= f.text_field :start, :class => "datepicker" %></span>
+				<span style="float:left; margin-left:8px;"><p style="padding:0 0 0 0;">End</p><%= f.text_field :end, :class => "datepicker" %></span><br />
+				<br />
+				<%= f.submit "Go!" %>
+				
+			<% end %>
+			<br /><br /><br />
+		</div>
+	</div>
+	<div style="clear:both;">&nbsp;</div>
+	<hr style="margin-top:-20px;" />
+	<p><%= link_to 'Back to My Subscriptions', '/donors/my_subscriptions' %></p>
+</div>
+
+
+<%= content_for :javascripts do %>
+	<script type="text/javascript">
+		$(".datepicker").datepicker();
+	</script>
+<% end %>

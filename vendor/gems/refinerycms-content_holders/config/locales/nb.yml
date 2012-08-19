@@ -1,0 +1,21 @@
+nb:
+  plugins:
+    content_holders:
+      title: Content Holders
+  admin:
+    content_holders:
+      actions:
+        create_new: Lag en ny Content Holder
+        reorder: Endre rekkefølgen på Content Holders
+        reorder_done: Ferdig å endre rekkefølgen Content Holders
+      records:
+        title: Content Holders
+        sorry_no_results: Beklager! Vi fant ikke noen resultater.
+        no_items_yet: Det er ingen Content Holders enda. Klikk på "Lag en ny Content Holder" for å legge til din første content holder.
+      content_holder:
+        view_live_html: Vis hvordan denne content holder ser ut offentlig <br/><em>(åpner i et nytt vindu)</em>
+        edit: Rediger denne content holder
+        delete: Fjern denne content holder permanent
+  content_holders:
+    show:
+      other: Andre Content Holders

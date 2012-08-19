@@ -1,0 +1,150 @@
+<% content_for :side_body do %>
+	<br />
+	<div id="boxfront3">
+		<h2>My Donation Basket</h2>
+		<%= render :partial => "donation_basket" %>
+	</div>
+	<br />
+	<div id="boxfront3">
+		<h3>All Our Programs</h3>
+		<ul>
+			<% Program.where(:disabled => false).each do |p| %>
+				<li><%= link_to p.program_name, program_url(p) %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+
+<% content_for :body_content_left do %>
+	<h1><%= @program.program_name %></h1>
+	<div>
+      <%=raw @program.program_short_description %>
+	</div>
+  <section id="main_section">
+		<div style="float:left; margin:0px 20px 0px 0px;">
+	      <%= image_fu @program.program_image, "x300", :class => 'add-caption', :alt => "#{@program.image_caption}" %>
+		</div>
+      <%=raw @program.program_description %>
+			
+		<div class="divider-line"></div>
+			<a name="donate-section"></a>
+			<h3 class="donate-teaser"><b>Make a Donation:</b> <%= @program.program_name %></h3>
+			<div id="donation_form">
+				<input type="hidden" id="pro-<%= @program.id %>-default-type" value="<%= @program.default_donation_type %>" />
+      	<% form_for 'contribution', :url => "/orders/add_program_to_cart/#{@program.id}" do |f| %>
+					<div style="margin: 10px 20px;">
+						<strong>Choose:</strong>
+						<table class="choose-monthly-or">
+							<tr>
+								<td><div id="monthly-label">Monthly Donation</div></td>
+								<td class="or"><div id="or-label">or</div></td>
+								<td><div id="one-time-label">One-time Donation</div></td>
+							</tr>
+							<tr class="button-row">
+								<td>
+									<input class="donation_type" type="radio" id="monthly" name="contribution[type]" value="monthly" <%= @program.default_donation_type == "monthly" ? 'checked="checked"' : "" %>></input>
+								</td>
+								<td></td>
+								<td>
+									<input class="donation_type" type="radio" id="one-time" name="contribution[type]" value="one-time" <%= @program.default_donation_type == "one-time" ? 'checked="checked"' : "" %>>   </input>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<hr />
+					<br />
+					
+					
+					<%= render :partial => "monthly_program", :locals => { :program => @program, :f => f } %>
+					<%= render :partial => "one_time_program", :locals => { :program => @program, :f => f } %><br />
+					<button><img src="/images/btn-action-add-to-basket.png" /></button> <b class="orFloat">OR</b> <img id="add_program_to_cart_and_checkout" src="/images/btn-action-donate.png" /></a>
+				<% end %>
+			</div>
+    </p>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			onInit();
+			
+			function onInit() {
+				var value = window.location.href.split("/")[(window.location.href.split("/").length - 1)];
+				var monthlyEnabled = $("#sa-monthly-enabled-"+value).val();
+				var oneTimeEnabled = $("#sa-onetime-enabled-"+value).val();
+
+				var defaultType = $("#pro-"+ value +"-default-type").val()
+				if (monthlyEnabled == "false") {
+					$("#monthly").hide();
+					$("#monthly-label").hide();
+					$("#or-label").hide();
+				} else {
+					$("#monthly").show();
+					$("#monthly-label").show();
+					$("#or-label").show();
+				}
+
+				if (oneTimeEnabled == "false") {
+					$("#one-time").hide();
+					$("#one-time-label").hide();
+					$("#or-label").hide();
+				} else {
+					$("#one-time").show();
+					$("#one-time-label").show();
+					$("or-label").show();
+				}
+				
+				$("#" + defaultType).attr('checked', true);
+				if (defaultType == "one-time") {
+					showOneTime();
+				} else {
+					showMonthly();
+				}
+			}
+			
+			$("#add_program_to_cart_and_checkout").click(function() {
+				$("#donation_form form").attr("action", $("#donation_form form").attr("action").replace("add_program_to_cart", "add_program_to_cart_and_checkout"));
+				$("#donation_form form").submit();
+			});
+			
+			$(".poo-<%= @program.id %>").prop("disabled", true)
+			$(".donation_type").click(function() {
+				if (this.id == "monthly") {
+					$("#sa-<%= @program.id %>-monthly").slideDown()
+					$("#sa-<%= @program.id %>-one-time").slideUp()
+					$(".poi-<%= @program.id %>").prop("disabled", false)
+					$(".poo-<%= @program.id %>").prop("disabled", true)
+				} else {
+					$("#sa-<%= @program.id %>-monthly").slideUp()
+					$("#sa-<%= @program.id %>-one-time").slideDown()
+					$(".poi-<%= @program.id %>").prop("disabled", true)
+					$(".poo-<%= @program.id %>").prop("disabled", false)
+				}
+			});
+			if ($("#one-time").prop("checked")) {
+				showOneTime();
+				$(".program-suggested-once program-suggested-once-<%= @program.id %>").val("")
+			}
+			function showOneTime() {
+				$("#sa-<%= @program.id %>-monthly").slideUp()
+				$("#sa-<%= @program.id %>-one-time").slideDown()
+				$(".poi-<%= @program.id %>").prop("disabled", true)
+				$(".poo-<%= @program.id %>").prop("disabled", false)			
+			}
+			function showMonthly() {
+				$("#sa-<%= @program.id %>-monthly").slideDown()
+				$("#sa-<%= @program.id %>-one-time").slideUp()
+				$(".poi-<%= @program.id %>").prop("disabled", false)
+				$(".poo-<%= @program.id %>").prop("disabled", true)			
+			}
+			
+			$("#checkout_wrapper").slideUp();
+			
+			$("#donate-now").click(function() {
+				$("#main_section").slideUp();
+				$("#checkout_wrapper").slideDown();
+			})
+		});
+	</script>
+ </section>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>

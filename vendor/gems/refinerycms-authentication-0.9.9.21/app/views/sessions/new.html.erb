@@ -1,0 +1,37 @@
+<div id="maincontent">
+	<br />
+	<h1>Please login to your account</h1>
+	<% if flash[:warning] or flash[:notice] %>
+	  <div id="notice" <% if flash[:warning] %>class="warning"<% end %>>
+	    <%= flash[:warning] || flash[:notice] %>
+	  </div>
+	  <script type="text/javascript">
+	    setTimeout("new Effect.Fade('notice');", 15000)
+	  </script>
+	<% end %>
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+	<table style="width:250px;">
+		<tr>
+			<td><%= f.label :login %></td>
+			<td><%= f.text_field :login, :class => 'larger widest' %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :password %></td>
+			<td><%= f.password_field :password, :autocomplete => 'off', :class => 'larger widest' %></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+      <td><%= f.check_box :remember_me %> <%= f.label :remember_me %></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><%= link_to t('.forgot_password'), new_password_path(resource_name) %> | <%= link_to 'Register', "/members/register" %></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><%= image_submit_tag "btn-action-login.png" %></td>
+		</tr>
+	</table>
+<% end -%>
+</div>

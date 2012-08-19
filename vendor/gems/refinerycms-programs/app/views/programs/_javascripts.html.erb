@@ -1,0 +1,203 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+  	var lastId = 0;
+  	var oldDonationType = "";
+  	var thisObj = null;
+		
+		var url = window.location.href;
+		$("#accordion").accordion({ 
+			collapsible: true,
+			active: true,
+			alwaysOpen: true,
+			active: 0
+		});
+		
+		if (url.indexOf("#checkout") != -1) {
+			$("#entire_thing_wrapper").slideUp();
+  		$("#checkout_wrapper").slideDown();
+		} else {
+			$("#checkout_wrapper").hide();
+			if (url.indexOf("#") != -1) {
+				var loc = url.indexOf("#");
+				var total = url.length;
+				
+				var thisId = url.substring(loc + 1, total);
+				if (thisId != "") {
+					$(".linker").each(function() {
+						if ($(this).attr('href').replace("#", "") == thisId) {
+							linkerCaller(this);
+						} 
+					})
+				}
+			}
+		}
+		
+		$("#agree_to_toc").val(false);
+		
+  	$(".donation_type").click(function() {
+  		swapSuggestedAmounts(thisObj, this.id);
+  		oldDonationType = this.id;
+  	});
+	
+  	$('.linker').click(function() {
+			linkerCaller(this)
+		});
+
+		function linkerCaller(obj) {
+			var value = $(obj).attr("href").replace("#", "");
+			
+			var monthlyEnabled = $("#sa-monthly-enabled-"+value).val();
+			var oneTimeEnabled = $("#sa-onetime-enabled-"+value).val();
+			
+			var defaultType = $("#pro-"+ value +"-default-type").val()
+
+			if (monthlyEnabled == "false") {
+				$("#monthly").hide();
+				$("#monthly-label").hide();
+				$("#or-label").hide();
+			} else {
+				$("#monthly").show();
+				$("#monthly-label").show();
+				$("#or-label").show();
+			}
+			
+			if (oneTimeEnabled == "false") {
+				$("#one-time").hide();
+				$("#one-time-label").hide();
+				$("#or-label").hide();
+			} else {
+				$("#one-time").show();
+				$("#one-time-label").show();
+				$("or-label").show();
+			}
+			
+  		$("#donation_form").show();
+  		thisObj = obj;
+			
+			$("#" + defaultType).attr('checked', true);
+			swapSuggestedAmounts(obj, defaultType);
+		}
+
+		function swapSuggestedAmounts(obj, newDonationType) {
+  		$("#program_name").text($(obj).text())
+  		$("#program_desc").text($("" + $(obj).attr("href")+"title").text())
+  		$("#program_desc").html($("#program_desc").html() + $($(obj).attr("href")+"-link").html())
+  		var value = $(obj).attr("href").replace("#","");
+  		$("form")[1].action = "/orders/add_program_to_cart/" + value;
+
+  		if (($("#sa-" + lastId + "-" + oldDonationType))) { 
+  			$("#sa-" + lastId + "-" + oldDonationType).hide();
+  		}
+
+  		$("#sa-"+value + "-" + newDonationType).slideDown();
+
+  		lastId = value;
+  		oldDonationType = newDonationType;
+  	};
+
+	
+  	$("#checkout_begin_button").click(function() {
+  		$("#checkout_wrapper").slideDown();
+			$("#entire_thing_wrapper").slideUp();
+  	});
+
+		$("#return-to-donate").click(function() {
+			$("#entire_thing_wrapper").slideDown();
+			$("#checkout_wrapper").slideUp();
+		});
+	
+  	$("#use_payment_profile").change(function() {
+  		$("#payment_method").val(this.value);
+  		if (this.value == "yes") { 
+  			$("#payment_form_holder").slideUp(); 
+  			$("#payment_profile_holder").slideDown();
+  		} else if (this.value == "no") {
+  			$("#payment_profile_holder").slideUp();
+  			$("#payment_form_holder").slideDown(); 
+  		}
+  	});
+		
+		$("#contribution_number, #contribution_ccv").keyup(function() {
+			validateContributionForm();
+		}).blur(function() {
+			validateContributionForm();
+		});
+		
+		$("#payment_type, #contribution_expiry_year_1i, #contribution_expiry_month_2i").change(function() {
+			validateContributionForm();
+		})
+		
+		$("#agree_to_toc").click(function() {
+			if ($(this).attr("checked") == 'checked') {
+				$(this).val(true);
+			} else {
+				$(this).val(false);
+			}
+			validateContributionForm();
+		})
+		
+		function validateContributionForm() {
+			var truths = 0;
+			var d = new Date();
+			if ($("#agree_to_toc").val() == "true" && $("#use_payment_profile").val() == "yes") {
+				adjustDonateButton(4);
+				return;
+			} else if ($("#agree_to_toc").val() == "false" && $("#use_payment_profile").val() == "yes") {
+				adjustDonateButton(0);
+				return;
+			}
+			
+			if ($("#payment_type").val() == "cc") {
+				if ($("#agree_to_toc").val() == "true") { truths++ };
+				if (validateCreditCard($("#contribution_number").val())) { truths++ };
+				if ($("#contribution_ccv").val().length > 2) { truths++ };
+				if (Number($("#contribution_expiry_year_1i").val()) > d.getFullYear()) {
+					truths++
+				} else if ((Number($("#contribution_expiry_year_1i").val()) == d.getFullYear()) && (Number($("#contribution_expiry_month_2i").val()) > d.getMonth())) {
+					truths++
+				}
+				adjustDonateButton(truths);
+			} else if ($("#payment_type").val() == "bank") {
+				if ($("#agree_to_toc").val() == "true") {
+					adjustDonateButton(4);
+				} else {
+					adjustDonateButton(0);
+				}
+			} else {
+				adjustDonateButton(0);
+			}
+		}
+		
+		function adjustDonateButton(truths) {
+			if (truths == 4) {
+				$("#contribution_submit").removeClass("grey-out")
+				$("#monthlycheckout").removeAttr("disabled");
+			} else {
+				$("#monthlycheckout").attr("disabled", "disabled");					
+				if (!($("#contribution_submit").hasClass("grey-out"))) {
+					$("#contribution_submit").addClass("grey-out");
+				}
+			}
+		}
+		
+		function validateCreditCard(s) {
+			var v = "0123456789";
+			var w = "";
+			for (i=0; i < s.length; i++) {
+				x = s.charAt(i);
+				if (v.indexOf(x,0) != -1)
+				w += x;
+			}
+			j = w.length / 2;
+			k = Math.floor(j);
+			m = Math.ceil(j) - k;
+			c = 0;
+			for (i=0; i<k; i++) {
+				a = w.charAt(i*2+m) * 2;
+				c += a > 9 ? Math.floor(a/10 + a%10) : a;
+			}
+			for (i=0; i<k+m; i++) c += w.charAt(i*2+1-m) * 1;
+			return (c%10 == 0);
+		}
+  });
+</script

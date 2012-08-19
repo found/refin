@@ -1,0 +1,141 @@
+<div id="maincontent" style="width: 100%">
+<h1>My Account</h1>
+<% if @donor.full_name %>
+	<h5><i><%= @donor.full_name rescue ""%></i>  <span style="color: #369; font-weight: normal;">Member # <%= !@donor.donor_number.nil? ? @donor.donor_number : "-- Please contact CAM to update your member number" %></span></h5>
+<% end %>
+
+	<div style="float:left;">
+		<h2>Transaction History</h2><br />
+		<% if !@donor.invoices.empty? %>
+			<table style="margin: -20px 20px 0px 20px;" class="program-index">
+				<thead>
+					<tr>
+						<th>Invoice</th>
+						<th>Amount</th>
+						<th>Date</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% @donor.invoices.order("created_at DESC").limit(10).reject{|i| !i.settled? }.each do |i| %>
+						<tr>
+							<td><%= link_to i.invoice_number, invoice_path(i) %></td>
+							<td><%= "#{money_from_decimal i.amount}" %></td>
+							<td><%= i.updated_at.strftime("%m/%d/%Y") %></td>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<p>
+				<%= link_to "View all of my Invoices", :controller => "invoices", :action => "my_invoices" %><br />
+			</p>
+		<% else %>
+			<p>You don't currently have any invoices.</p>
+		<% end %>
+		
+	</div>
+	<div style="float:right;">
+		<div>
+			<%= image_tag "monthly_donation_receipt_button.png", :style => "float:right; margin-right:18px;" %> <br /><br /><br /><br />
+			<p style="font-size:12px;">
+				Click the active subscription below to view your receipt.
+			</p>
+		</div>
+		<div class="boxfrontX" style="float:right;">
+			<h2>Monthly Subscriptions</h2>
+			<% if !@donor.subscriptions.active.empty? %>
+				<p>These are all of your active monthly subscriptions.  Click the subscription for more options.</p>
+				<table style="margin: -20px 20px 0px 20px;" class="program-index">
+					<thead>
+						<tr>
+							<th style="padding-right:5px;">Subscription</th>
+							<th>Program</th>
+							<th>Amount</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @donor.subscriptions.active.reverse.each do |sub| %>
+							<tr>
+								<td><%= link_to sub.arb_subscription_id, "/subscriptions/#{sub.id}" %></td>
+								<td><%= sub.program.program_name %></td>
+								<td>
+									<% if sub.subscription_adjustments.select{|a| a.confirmed}.empty? == false %>
+										<%= number_to_currency sub.subscription_adjustments.select{|a| a.confirmed }.last.amount %>
+									<% else %>
+										<%= "#{money_from_decimal sub.amount}" %>
+									<% end %>
+								</td>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+			<% else %>
+				<p>
+					You don't currently have any active subscriptions.  Click the link below to see all of your subscriptions to date (including those no longer active).
+				</p>
+			<% end %>
+			<p><%= link_to "View all of my Subscriptions", :controller => "donor_dashboard", :action => "my_subscriptions" %></p>
+			<div style="clear:both;"></div>
+		</div>
+		<div style="clear:both;"></div>
+	</div>
+	<div style="clear:both;"></div>
+		<hr style="margin: 40px 20px;" />
+		<div id="boxfront1">
+			<h2>Mailing Address</h2>
+			<% if !@mailing_address.nil? %>
+				<p><%= link_to image_tag("btn-action-edit-mailing-address.png"), edit_address_path(@mailing_address) %></p>
+				<%= render :partial => 'address', :locals => { :a => @mailing_address } %>
+			<% else %>
+				<p>Please add your mailing address to your profile</p>
+				<p><%= link_to "Add your Mailing Address", new_address_path("mailing") %></p>
+			<% end %>
+		</div>
+		
+		
+	<div id="boxfront2">
+		<h2>Billing Information</h2>
+		<% if !@billing_address.nil? %>
+			<%= render :partial => 'address', :locals => { :a => @billing_address } %>
+			<p><%= link_to image_tag("btn-action-edit-billing-address.png"), edit_address_path(@billing_address) %></p>
+		<% else %>
+			<p>Please add your billing address to your profile</p>
+			<p><%= link_to image_tag("btn-action-edit-billing-address.png"), new_address_path("billing") %></p>
+		<% end %>
+		<h2>Payment Methods</h2>
+		<p>
+			<% if !@donor.payment_profiles.empty? %>
+				<% @donor.get_payment_profiles.each do |p| %>
+					<%= p[0] %><br />
+				<% end %>
+			<% else %>
+				You don't have any saved payment methods!  Add one now for fast and easy donating!
+			<% end %>
+		</p>
+		<p><%= link_to image_tag("btn-action-edit-payment-methods.png"), :controller => "payment_profiles", :action => "my_profiles" %></p>
+	</div>
+	<div id="boxfront3" style="float:right;">
+		<h2>Profile Details</h2>
+		<% if current_member %>
+			<%= render :partial => "donor_profile", :locals => { :donor => current_member }%>
+		<% end %>
+		<p><%= link_to image_tag("btn-action-update-my-profile.png"), :controller => "donor_dashboard", :action => "edit_my_profile" %></p>
+		<p><%= link_to image_tag("btn-action-change-my-password.png"), :controller => "donor_dashboard", :action => "edit_my_password" %></p>
+		<% if @donor && @donor.contact && @donor.contact.newsletter_recipient? %>
+			<p>
+				<%= link_to "Remove me from the newsletter listing", "/donors/remove_from_newsletter/#{@donor.id}" %>
+			</p>
+		<% else %>
+			<p>
+				<%= link_to "Sign Up for the CAM Newsletter!", "/contacts/newsletter_signup" %>
+			</p>
+		<% end %>
+	</div>
+	
+	<div style="clear:both;"></div>
+
+</div>
+
+
+
+
+<%= render :partial => "/shared/content_page" %>

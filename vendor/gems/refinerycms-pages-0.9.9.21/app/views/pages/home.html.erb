@@ -1,0 +1,17 @@
+<% @supplementary_news = "#{ image_tag "recent_posts.png" }" %>
+
+	<% NewsItem.find(:all, :conditions => ["publish_date < ? AND news_type = ?", Time.now, "News Release"], :order => "publish_date DESC", :limit => 5).each do |news| %>
+		<% @supplementary_news += "
+			<div id='news-item-#{news.id}' class='news-snippets'> 
+				<p style='margin-top:-12px;'>
+					<div style='float:left; padding-right:6px;'>#{link_to (image_fu news.image, "150x150>"), (news_item_url(news))}</div>
+					#{link_to news.title, (news_item_url(news))} --
+					<small>#{shorten(strip_tags(news.body), 180) + '<b>' + news.long_time + "</b>"}</small>
+				</p>
+				<div style='clear:left;'></div>
+			</div>
+			<hr />
+			"%>
+			
+	<% end %>
+<%= render :partial => "/shared/content_page" %>

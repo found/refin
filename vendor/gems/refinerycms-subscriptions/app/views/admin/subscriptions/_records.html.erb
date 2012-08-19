@@ -1,0 +1,26 @@
+<table class="subscription-table">
+	<thead>
+		<tr>
+			<th>Subscription #:</th>
+			<th>Program Name:</th>
+			<th>Amount Monthly:</th>
+			<th>Billing Period:</th>
+			<th>Status:</th>
+			<th>Start Date:</th>
+			<th>Date Cancelled:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% subscriptions.each do |sub| %>
+			<tr>
+				<td><%= link_to sub.arb_subscription_id, "/subscriptions/#{sub.id}" %></td>
+				<td><%= sub.program.program_name %></td>
+				<td><%= "$#{sub.active? ? sub.amount : "---"}" %></td>
+				<td><%= sub.active? ? sub.subscription_type.title : "---" %></td>
+				<td><%= sub.active? ? "Active" : "Inactive" %></td>
+				<td><%= sub.start_date unless sub.start_date.nil? %></td>
+				<td><%= sub.end_date.strftime("%Y-%m-%d") unless sub.end_date.nil? %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>

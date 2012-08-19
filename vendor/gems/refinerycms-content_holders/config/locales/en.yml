@@ -1,0 +1,25 @@
+en:
+  shared:
+    admin:
+      image_picker:
+        image: image
+  plugins:
+    content_holders:
+      title: Content Holders
+  admin:
+    content_holders:
+      actions:
+        create_new: Add New Content Holder
+        reorder: Reorder Content Holders
+        reorder_done: Done Reordering Content Holders
+      records:
+        title: Content Holders
+        sorry_no_results: Sorry! There are no results found.
+        no_items_yet: There are no Content Holders yet. Click "Add New Content Holder" to add your first content holder.
+      content_holder:
+        view_live_html: View this content holder live <br/><em>(opens in a new window)</em>
+        edit: Edit this content holder
+        delete: Remove this content holder forever
+  content_holders:
+    show:
+      other: Other Content Holders

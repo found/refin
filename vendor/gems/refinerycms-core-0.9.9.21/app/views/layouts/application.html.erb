@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<%= render :partial => "/shared/html_tag" %>
+  <% site_bar = render(:partial => "/shared/site_bar", :locals => {:head => true}) -%>
+  <%= render :partial => "/shared/head" %>
+  <body>
+    <%= site_bar -%>
+    <%= render :partial => "/shared/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
+	<p><a class="skiplink" href="#maincontent">Skip over navigation</a></p>
+	<div id="container">
+		<div id="wrapheader">
+			<div id="wrapshadow">
+				<div id="wrapper">
+					<%= render :partial => "/shared/header" -%>
+						<div id="content">
+							<%#= render :partial => '/shared/no_script' %>
+	            			<%#= render :partial => "/shared/message" %>
+							<%= yield %>
+							<div class="clear"></div>
+						</div>
+					<div id="footer">
+						<%= render :partial => "/shared/footer" -%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<%= render :partial => "/shared/javascripts" %>    
+</html>

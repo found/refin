@@ -1,0 +1,25 @@
+lolcat:
+  shared:
+    admin:
+      image_picker:
+        image: IMAGE
+  plugins:
+    contacts:
+      title: Contacts
+  admin:
+    contacts:
+      actions:
+        create_new: CREATE NEW Contact
+        reorder: REORDR Contacts
+        reorder_done: DUN REORDERIN Contacts
+      records:
+        title: Contacts
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Contacts YET. CLICK "CREATE NEW Contact" 2 ADD UR FURST contact.
+      contact:
+        view_live_html: VIEW DIS contact LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS contact
+        delete: REMOOV DIS contact FOREVR
+  contacts:
+    show:
+      other: OTHR Contacts

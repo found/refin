@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+
+  <head>
+  <meta charset='utf-8' />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>About CAM - Locations - Christian Aid Ministries</title>
+      
+	<link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico">
+  
+
+  <link href="/stylesheets/refinery/application.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/application.css?1339606499" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/refinery/formatting.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/formatting.css?1339606499" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/refinery/theme.css" media="screen" rel="stylesheet" type="text/css" />
+<link href="/stylesheets/theme.css?1339606499" media="screen" rel="stylesheet" type="text/css" />
+  
+
+  
+  <!-- asynchronous google analytics: mathiasbynens.be/notes/async-analytics-snippet -->
+<script>var _gaq=[['_setAccount','UA-11649918-2'],['_trackPageview']];(function(d,t){
+var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+g.async=1;g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)
+}(document,'script'))</script>
+
+	<link href='https://fonts.googleapis.com/css?family=Rosario:400,400italic|Open+Sans:400italic,700italic,800italic,300italic,600italic,400,800,300,600,700' rel='stylesheet' type='text/css'>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/jwplayer/jwplayer.js"></script>
+	<script type="text/javascript" src="/javascripts/refinery/jquery.nivo.slider.js"></script>
+	<script type="text/javascript" src="/javascripts/jcaption.min.js"></script>
+	<link rel="stylesheet" href="/stylesheets/refinery/nivoSlider.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="/stylesheets/jcaption/caption.css" type="text/css" media="screen" />
+	
+	<link href="/stylesheets/ui-lightness/jquery-ui-1.8.15.custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <script src="/javascripts/modernizr-min.js" type="text/javascript"></script>
+	<script src="/javascripts/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+	<link href="/stylesheets/chosen.css" media="screen" rel="stylesheet" type="text/css" />
+	<link href="https://www.christianaidministries.org/news.rss" rel="alternate" title="RSS" type="application/rss+xml" />
+	<link href="https://www.christianaidministries.org/programs.rss" rel="alternate" title="RSS" type="application/rss+xml" />
+	
+	<!-- Jquery.PrettyPhoto -->
+	<script type="text/javascript" src="/jquery.prettyPhoto/js/jquery.prettyPhoto.js"></script>
+	<link rel="stylesheet" href="/jquery.prettyPhoto/css/prettyPhoto.css" />
+	
+	
+		<script type="text/javascript">
+		  $(document).ready(function(){
+				$("#nav-one li").hover(
+					function(){ $("ul", this).fadeIn("fast"); }, 
+					function() { } 
+					
+				);
+		  	if (document.all) {
+					$("#nav-one li").hoverClass ("sfHover");
+				}
+				
+				$('#slider').nivoSlider({
+					effect: 'fade', // Specify sets like: 'fold,fade,sliceDown'
+					slices: 6, // For slice animations
+					boxCols: 8, // For box animations
+					boxRows: 4, // For box animations
+					animSpeed: 600, // Slide transition speed
+					pauseTime: 4500, // How long each slide will show
+					startSlide: 0, // Set starting Slide (0 index)
+					directionNav: true, // Next & Prev navigation
+					directionNavHide: false, // Only show on hover
+					controlNav: true, // 1,2,3... navigation
+					controlNavThumbs: false, // Use thumbnails for Control Nav
+					// controlNavThumbsFromRel: false, // Use image rel for thumbs
+					// controlNavThumbsSearch: '.jpg', // Replace this with...
+					// controlNavThumbsReplace: '_thumb.jpg', // ...this in thumb Image src
+					keyboardNav: true, // Use left & right arrows
+					pauseOnHover: true, // Stop animation while hovering
+					manualAdvance: false, // Force manual transitions
+					captionOpacity: 0.8, // Universal caption opacity
+					prevText: 'Prev', // Prev directionNav text
+					nextText: 'Next', // Next directionNav text
+				});
+		  });
+
+			$.fn.hoverClass = function(c) {
+				return this.each(function(){
+					$(this).hover( 
+						function() { $(this).addClass(c);  },
+						function() { $(this).removeClass(c); }
+					);
+				});
+			};	  
+		</script>
+		<style type="text/css">
+	/* Navigation */
+	.nav, .nav ul { 
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	.nav {
+	  font-family: Arial, Helvetica, sans-serif;
+	  z-index: 100;
+	  position: relative;
+	}
+	.nav li {
+	  border-left: 1px solid #fff;
+	  float: left;
+	  margin: 0;
+	  padding: 0;
+	  position: relative;
+	}
+	.nav li a, .nav li a:link, .nav li a:active, .nav li a:visited {
+	  font: bold 1.22em/25px Arial, Helvetica, sans-serif;
+	  background: #00ff00;
+	  color: #000;
+	  display: block;
+	  padding: 0 9px;
+/*	  text-transform: lowercase;*/
+	  text-decoration: none;
+	}
+
+	.nav li a:hover {
+	  background: #ccc;
+	  color: #fff;	
+
+	}
+	#nav-one li:hover a, 
+	#nav-one li.sfHover a {
+	  background: #ccc;
+	  color: #000;
+	}
+	#nav-one li:hover ul a, 
+	#nav-one li.sfHover ul a {
+	  background: #00ff00;
+	  color: #000;	
+	}
+	#nav-one li:hover ul a:hover, 
+	#nav-one li.sfHover ul a:hover {
+	  background: #ccc;
+	  color: #000;	
+	}
+
+	.nav ul {
+	  background: #00ff00;
+	  border-bottom: 1px solid #fff;
+	  list-style: none;
+	  margin: 0;
+	  position: absolute;
+	  top: -999em;
+	  left: -1px;
+	}
+	.nav li:hover ul,
+	.nav li.sfHover ul {
+	  top: 25px;
+	}
+	.nav ul li {
+	  border: 0;
+	  float: none;
+	}
+	.nav ul a {
+	  border: 1px solid #fff;
+	  border-bottom: 0;
+	  padding-right: 20px;
+	  width: auto;
+	  white-space: nowrap;
+	}
+	.nav ul a:hover {
+	  background: #ccc;
+	  color: #000;
+	}
+		</style>
+</head>
+
+  <body>
+          <!--[if lte IE 6]>
+    <div id="ie6msg_wrapper">
+      <div id="ie6msg">
+        <h4>Did you know that your browser is out of date?</h4>
+        <div id='ie6message'>
+          <p>
+            To get the best possible experience using our website we recommend that you upgrade your browser to a newer version. The current version is
+            <a class="getie8" href="http://upgradeie.s3.amazonaws.com/eng/index.html">Internet Explorer 8</a>.
+            The upgrade is free. If you're using a PC at work you should contact your IT administrator.
+          </p>
+          <p>
+            If you want to you may also try some other popular and <strong>free</strong> Internet browsers like:<br/>
+            <a class="ie6expl" href="http://www.google.com/chrome" target='_blank'>Google Chrome</a>,
+            <a class="ie6expl" href="http://www.apple.com/safari/download/" target='_blank'>Safari</a>,
+            <a class="ie6expl" href="http://getfirefox.com" target='_blank'>Firefox</a> or
+            <a class="ie6expl" href="http://www.opera.com" target='_blank'>Opera</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  <![endif]-->
+	<p><a class="skiplink" href="#maincontent">Skip over navigation</a></p>
+	<div id="container">
+		<div id="wrapheader">
+			<div id="wrapshadow">
+				<div id="wrapper">
+						<div id="header">
+		<a href="/" class="replace" id="logo"></a>
+	</div>
+	<div id="topmost-links">
+		<a href="/donate" class="donation-basket">My Donation Basket</a>
+			<a href="/members/register" class="donation-basket">Register</a>
+			<a href="/members/login" class="donation-basket">Login</a>
+	</div>
+	<div id="placesocial">
+        <a href="/contacts/newsletter_signup"><img src="/images/btn_newsletter.gif" /></a> 
+        <a href="/donate"><img src="/images/btn_make_a_donation.gif" /></a>
+</div>
+
+<div id="placemainmenu">
+        <div id="placemainmenu">
+                <ul id="mainmenu">
+                        <li>
+                                <a href="/">Home</a>
+                        </li>
+                        <li>
+                                <a href="/programs">Our Programs</a>
+                        </li>
+                        <li>
+                                <a href="/news">News</a>
+                                <ul>
+                                        <li>
+                                                <a href="/news/releases">Recent posts</a>
+                                        </li>
+                                        <li>
+                                                <a href="/news/newsletters">CAM Newsletters</a>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li>
+                                <a href="/donate">Donate</a>
+                        </li>
+                        <li>
+                                <a href="/about-cam/who-we-are">About Us</a>
+                                <ul>
+                                        <li>
+                                                <a href="/about-cam/who-we-are">Who we are</a>
+                                        </li>
+                                        <li>
+                                                <a href="/about-cam/locations">Locations</a>
+                                        </li>
+                                        <li>        <a href="/about-cam/financial-accountability">Financial Accountability</a>
+                                                <ul>
+                                                        <li>
+                                                                <a href="/about-cam/financial-accountability/financial-statements">Financial Statements</a>
+                                                        </li>
+                                                </ul>
+                                        </li>
+                                        <li>
+                                                <a href="/about-cam/statement-of-faith">Statement of Faith</a>
+                                        </li>
+                                        <li>
+                                                <a href="/about-cam/biblical-stewardship-services">Biblical Stewardship Services</a>
+                                        </li>
+                                        <li>
+                                                <a href="/about-cam/tgs-international">TGS International</a>
+                                        </li>
+                                </ul>
+                        </li>
+                        <li>
+                                <a href="/contacts/new">Contact Us</a>
+                        </li>
+                        <div>
+                                <form id="frmsearch" accept-charset="UTF-8" action="/search" method="post">
+                                        <input name="utf8" value="?" type="hidden" />
+                                        <input name="authenticity_token" value="Vz1EFjKUWJbBQx7qXoLHmhK6jfetnglnhcvOVhCunQw=" type="hidden" />
+                                        <input id="query" name="query" class="textboxsearch" type="search" />
+                                        <input class="submitsearch" name="commit" value="Search!" type="submit" />
+                                </form>
+                        </div>
+                </ul>
+        </div>
+</div>
+
+	<!-- <div style="float:right;">
+	</div> -->
+<div style="clear:right;"></div>
+
+						<div id="content">
+							<section id='body_content' class='no_body_content_right'>
+  <section id='body_content_left'><div class='inner'><div id='maincontent'><br />
+<h1>CAM Locations:</h1>
+<p>At CAM's home office in Berlin, Ohio, staff members do behind the scenes work such as processing donations, accounting, fundraising, procuring GIK products, making decisions, and directing the various CAM state-side operations and field bases.</p>
+<p><img class="add-caption" rel="450x450" alt="Home Office, Berlin, Oh" title="Home Office, Berlin, Oh" src="/system/images/BAhbB1sHOgZmSSIsMjAxMS8wOC8xMC8xM18xMF8zOV8yMTBfcGFya2luZ19sb3QucG5nBjoGRVRbCDoGcDoKdGh1bWJJIg00NTB4NDUwPgY7BlQ/parking_lot.png" width="450" height="149" /></p>
+<p>We have a 55,000 sq. ft. distribution center in Ephrata, Pennsylvania, where food parcels are packed and other relief shipments organized. Next to the distribution center is our meat canning facility.</p>
+<p><img class="add-caption" rel="450x450" alt="Distribution center and meat canning facility, Ephrata, Pennsylvania" title="Distribution Center And Meat Canning Facility, Ephrata, Pennsylvania" src="/system/images/BAhbB1sHOgZmSSIpMjAxMS8wOC8xMC8xM18xMF81NV84OTNfYnVpbGRpbmcucG5nBjoGRVRbCDoGcDoKdGh1bWJJIg00NTB4NDUwPgY7BlQ/building.png" width="450" height="338" /></p>
+
+
+<p>CAM has staff and distribution networks in Romania, Moldova, Ukraine, Haiti, Nicaragua, Liberia, and Israel.</p>
+
+<p><img class="add-caption" rel="450x450" alt="Warehouse, Suceava, Romania" title="Warehouse, Suceava, Romania" src="/system/images/BAhbB1sHOgZmSSI6MjAxMS8xMC8xMi8yMF80MV80N185MjFfV2FyZWhvdXNlX1N1Y2VhdmFfUm9tYW5pYS5qcGcGOgZFVFsIOgZwOgp0aHVtYkkiDTQ1MHg0NTA+BjsGVA/Warehouse_Suceava_Romania.jpg" width="450" height="338" /></p>
+<p><img class="add-caption" rel="450x450" alt="Warehouse, Cluj, Romania" title="Warehouse, Cluj, Romania" src="/system/images/BAhbB1sHOgZmSSI3MjAxMS8xMC8xMi8yMF81OV80NV8zNzdfV2FyZWhvdXNlX0NsdWpfUm9tYW5pYS5qcGcGOgZFVFsIOgZwOgp0aHVtYkkiDTQ1MHg0NTA+BjsGVA/Warehouse_Cluj_Romania.jpg" width="450" height="300" /></p>
+<p><img class="add-caption" rel="450x450" alt="Warehouse, Chisinau, Moldova" title="Warehouse, Chisinau, Moldova" src="/system/images/BAhbB1sHOgZmSSI7MjAxMS8xMC8xMi8yMF80MV80Nl81NDFfV2FyZWhvdXNlX0NoaXNpbmF1X01vbGRvdmEuanBnBjoGRVRbCDoGcDoKdGh1bWJJIg00NTB4NDUwPgY7BlQ/Warehouse_Chisinau_Moldova.jpg" width="450" height="338" /></p>
+<p><img class="add-caption" rel="450x450" alt="Office and Warehouse, Kiev, Ukraine" title="Office and Warehouse, Kiev, Ukraine" src="/system/images/BAhbB1sHOgZmSSJCMjAxMS8xMC8xMi8yMF80MV80Ml82ODZfT2ZmaWNlX2FuZF9XYXJlaG91c2VfS2lldl9Va3JhaW5lLmpwZwY6BkVUWwg6BnA6CnRodW1iSSINNDUweDQ1MD4GOwZU/Office_and_Warehouse_Kiev_Ukraine.jpg" width="450" height="299" /></p>
+<p><img class="add-caption" rel="450x450" alt="Office and Warehouse, Titanyen, Haiti" title="Office and Warehouse, Titanyen, Haiti" src="/system/images/BAhbB1sHOgZmSSJEMjAxMS8xMC8xMi8yMF81OV80NV8yODNfT2ZmaWNlX2FuZF9XYXJlaG91c2VfVGl0YW55ZW5fSGFpdGkuanBnBjoGRVRbCDoGcDoKdGh1bWJJIg00NTB4NDUwPgY7BlQ/Office_and_Warehouse_Titanyen_Haiti.jpg" width="450" height="338" /></p>
+<p><img class="add-caption" rel="450x450" alt="Joshua Memorial Clinic, La Source, Haiti" title="Joshua Memorial Clinic, La Source, Haiti" src="/system/images/BAhbB1sHOgZmSSJFMjAxMS8xMC8xMi8yMF81OV80NV85X0pvc2h1YV9NZW1vcmlhbF9DbGluaWNfTGFfU291cmNlX0hhaXRpLmpwZwY6BkVUWwg6BnA6CnRodW1iSSINNDUweDQ1MD4GOwZU/20_59_45_9_Joshua_Memorial_Clinic_La_Source_Haiti.jpg" width="450" height="338" /></p>
+<p><img class="add-caption" rel="450x450" alt="Office and Warehouse, Managua, Nicaragua" title="Office and Warehouse, Managua, Nicaragua" src="/system/images/BAhbB1sHOgZmSSJHMjAxMS8xMC8xMi8yMF81OV80NV8xMDlfT2ZmaWNlX2FuZF9XYXJlaG91c2VfTWFuYWd1YV9OaWNhcmFndWEuanBnBjoGRVRbCDoGcDoKdGh1bWJJIg00NTB4NDUwPgY7BlQ/Office_and_Warehouse_Managua_Nicaragua.jpg" width="450" height="338" /></p>
+<p><img class="add-caption" rel="450x450" alt="Balm of Gilead Clinic, Waslala, Nicaragua" title="Balm Of Gilead Clinic, Waslala, Nicaragua" src="/system/images/BAhbB1sHOgZmSSJIMjAxMS8xMC8xMi8yMF81OV80NF84MjRfQmFsbV9vZl9HaWxlYWRfQ2xpbmljX1dhc2xhbGFfTmljYXJhZ3VhLmpwZwY6BkVUWwg6BnA6CnRodW1iSSINNDUweDQ1MD4GOwZU/Balm_of_Gilead_Clinic_Waslala_Nicaragua.jpg" width="450" height="338" /></p>
+<p><img class="add-caption" rel="450x450" alt="Office and Warehouse, Monrovia, Liberia" title="Office and Warehouse, Monrovia, Liberia" src="/system/images/BAhbB1sHOgZmSSJGMjAxMS8xMC8xMi8yMF81OV80NV8xOTRfT2ZmaWNlX2FuZF9XYXJlaG91c2VfTW9ucm92aWFfTGliZXJpYS5qcGcGOgZFVFsIOgZwOgp0aHVtYkkiDTQ1MHg0NTA+BjsGVA/Office_and_Warehouse_Monrovia_Liberia.jpg" width="450" height="338" /></p>
+<p>CAM also operates five clothing centers where clothing, footwear, comforters, and fabric are received, sorted, and prepared for shipment overseas.
+</p>
+</div></div></section>
+<section id='side_body'><div class='inner'><div id='right-side'><p>&#160; <a href="/programs/38" title="Favorite Stories from the Bible"><img src="/system/images/BAhbBlsHOgZmSSIjMjAxMi8wNi8xNC8wMF8xNF8yNV8yOV9waWMuanBnBjoGRVQ/pic.jpg" height="175" width="290" /></a>
+
+
+<a href="/news/schedule-of-events-%E2%80%93-june-july" title="Schedule of Events"><img src="/system/images/BAhbBlsHOgZmSSIqMjAxMi8wNi8yMC8wMF8zN18wOV80MDZfZXZlbnRzMTIzLmpwZwY6BkVU/events123.jpg" height="175" width="290" /></a>
+<a target="_blank" class="prompt" href="http://www.tgsinternational.com" title="TGS International"><img src="/system/images/BAhbBlsHOgZmSSIkMjAxMi8wNi8xNC8wMF8yM18wOF81MzJfVEdTLmpwZwY6BkVU/TGS.jpg" height="175" width="290" /></a>
+
+<a href="/news/2012-cam-open-house" title="Open House 2012"><img src="/system/images/BAhbBlsHOgZmSSIrMjAxMi8wNi8xNS8yMF81OV81MF85Mjhfb3Blbl9ob3VzZS5qcGcGOgZFVA/open_house.jpg" height="175" width="290" /></a>
+<a href="/about-cam/biblical-stewardship-services" title="Biblical Stewardship Services"><img src="/system/images/BAhbBlsHOgZmSSI+MjAxMi8wNi8xNS8yM18wNF8xOV81MjRfQmlibGljYWxfc3Rld2FyZHNoaXBfc2VydmljZXMuanBnBjoGRVQ/Biblical_stewardship_services.jpg" /></a>
+<div class="boxnav">
+<h3>Letter from CAM supporter</h3>
+<p><em>I love receiving your newsletters. They are great to remind me how to fulfill Jesus’ commands and as a follower of Christ, be His hands and feet to this hurting world. I so appreciate you all being a channel to reach God’s dear people. I am so blessed, and I want to bless God by blessing others. </em>-PA</p>
+<div class="clear"></div>
+							</div>
+
+<a href="/news/five-minutes-and-a-red-plastic-cup" title="Five minutes and a red plastic cup"><img src="/system/images/BAhbBlsHOgZmSSIkMjAxMi8wNC8yNS8xOV8yNF8xNV84NjNfU0FMLmpwZwY6BkVU/SAL.jpg" height="500" width="290" /></a>
+</p></div></div></section>
+</section>
+<script type='text/javascript'>
+	$(function() {
+		$.each($('.add-caption'), function() {
+			if ($(this).attr('alt') != '' && $(this).attr('alt') != null) {
+				$(this).jcaption({
+					//Element to wrap the image and caption in
+					wrapperElement: 'div',
+					//Class for wrapper element
+					wrapperClass: 'caption-wrapper',
+					//Caption Element
+					captionElement: 'p',
+					//Attribute of image to use as caption source
+					imageAttr: 'alt',
+					//If true, it checks to make sure there is caption copy before running on each image
+					requireText: true,
+					//Should inline style be copied from img element to wrapper
+					copyStyle: true,
+					//Assign the value of the image's align attribute as a class to the wrapper
+					copyAlignmentToClass: true,
+					//Assign the value of the image's float value as a class to the wrapper
+					copyFloatToClass: true,
+					//Assign a width to the wrapper that matches the image
+					autoWidth: true
+				});
+			}
+		});
+	});
+</script>
+
+
+							<div class="clear"></div>
+						</div>
+					<div id="footer">
+							<div class="boxfooter">
+		<h4>Site Features</h4>
+		<ul class="menufooter">
+			<li><a href="/about-cam/who-we-are">About Us</a>
+</li>
+                        <li><a href="/about-cam/statement-of-faith">Statement of Faith</a>
+</li>
+			
+			<li><a target="_blank" title="2010 Annual Report" href="/system/resources/2011/09/29/11_28_08_653_2010_AR_sm.pdf?iframe=true&amp;width=800&amp;height=1000">Annual Report</a>
+</li>
+                       <li><a href="/about-cam/tgs-international">TGS International</a>
+</li>
+		</ul>
+<a href="http://www.ecfa.org/" target="_blank"><img src="/images/ecfa_logo.png" style="margin-top:90px; margin-left:0px;" /></a>
+	</div>
+	<div class="boxfooter">
+				<h4>Ways to Donate</h4>
+		<ul class="menufooter">
+			<li><a href="/programs#category-29">Bible &amp; Literature Distribution</a>
+</li>
+			<li><a href="/programs#category-15">Crisis Projects &amp; Disaster Relief</a>
+</li>
+			<li><a href="/programs/8">Church Planting</a>
+</li>
+			<li><a href="/about-cam/biblical-stewardship-services">Biblical Stewardship Services</a>
+</li>
+		</ul>
+		
+	</div>
+	<div class="boxfooter">
+				<h4>Latest News</h4>
+		<ul class="menufooter">
+                        
+<li><a href="/news/the-absence-of-love">The absence of love</a>
+</li>
+<li><a href="/news/light-in-the-darkness">Light in the darkness</a>
+</li>			
+<li><a href="/news/correspondence-courses-teach-young-people-biblical-truths">Correspondence courses teach young people Biblical truths</a>
+</li>
+<li><a href="/news/billboard-evangelism--2">Billboard Evangelism</a>
+</li>
+					
+
+</ul>
+	</div>
+	<div id="boxtwitter">	
+				<h4>Christian Aid Ministries</h4>
+		<p>PO BOX 360<br />
+			Berlin, OH  44610
+		</p>
+		<br />
+		<p>
+		T: 330.893.2428<br />
+		F: 330.893.2305 <br />
+		E: <a href="mailto:camweb@camoh.org">camweb@camoh.org</a>
+<br />
+		</p>
+	</div>
+	<div class="clear"></div>
+	<div id="bottomfooter">
+				<p><a href="/site-map">site map</a> |
+			<a href="/contacts/new">contact</a> |
+			<a href="/privacy-policy">privacy policy</a> |
+                        <a href="/terms-and-conditions">terms and conditions</a> |
+                        <a href="/solicitation-disclosure">solicitation disclosure</a>
+		</p>
+	<p>
+	  Christian Aid Ministries, 2011</p>
+	</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+  <!--[if lt IE 7 ]>
+    <script src="/javascripts/dd_belatedpng.js" type="text/javascript"></script>
+    <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+  <![endif]-->
+
+<script type="text/javascript">
+	$(function() {
+		$(".prompt").click(function() {
+			var ele = $(this);
+			var resp = confirm("You are being redirected away from http://christianaidministries.org");
+			if (resp == true) {
+				$(ele).append("<br /><span style='color:#727980'; font-size:'12px';>You are now leaving http://christianaidministries.org.  You will be redirected shortly.</span>");
+				var interval = setTimeout(function() {
+					window.location.href = $(ele).attr("href");
+					return false;
+				}, 5500);
+				interval = null;
+				return false;
+			} else {
+				return false;
+			}
+		})
+	})
+</script>
+    
+</html>

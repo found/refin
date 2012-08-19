@@ -1,0 +1,4 @@
+<%- form_for 'order', :url => "/orders/add_product_to_cart/#{p.id}" do |f| -%>
+	<%= f.text_field :quantity, :value => 1 %>
+	<%= f.submit "Add to cart!" %>
+<%- end -%>

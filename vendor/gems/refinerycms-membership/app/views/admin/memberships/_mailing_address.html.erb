@@ -1,0 +1,33 @@
+<h3>Mailing Address:</h3>
+<% if @ma %>
+	<table>
+		<tbody>
+			<tr>
+				<td style="width:300px;">Address 1:</td>
+				<td><%= @ma.address_1 %></td>
+			</tr>
+			<tr>
+				<td>Address 2:</td>
+				<td><%= @ma.address_2 %></td>
+			</tr>
+			<tr>
+				<td>City:</td>
+				<td><%= @ma.city %></td>
+			</tr>
+			<tr>
+				<td>State:</td>
+				<td><%= @ma.state %></td>
+			</tr>
+			<tr>
+				<td>Postal Code:</td>
+				<td><%= @ma.postal_code %></td>
+			</tr>
+			<tr>
+				<td>Country:</td>
+				<td><%= @ma.country.country_name rescue "" %></td>
+			</tr>
+		</tbody>
+	</table>
+<% else %>
+	<p><%= @member.email %> does not have a mailing address yet.</p>
+<% end %>

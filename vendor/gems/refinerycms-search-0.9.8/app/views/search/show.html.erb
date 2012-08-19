@@ -1,0 +1,57 @@
+<% content_for :body_content_left do %>
+	<h1>Search Results for '<%=h params[:query] %>'</h1>
+	<br />
+	<ul class="search_results">
+	<% if @objects.empty? %>
+		<li><p>I'm sorry but your search results are empty!<br /> Please try broadening your search term and try again!</p></li>
+	<% else %>
+		<% @objects.each_key do |key| %>
+			<% @objects[key].each do |result| %>
+				<% if key.to_s == 'pages' %>
+	      			<li>
+						<h4>
+						<%= link_to raw(result.title.gsub(/(#{params[:query]})/i,'<mark>\1</mark>')), result_url(result) %>
+						<small></small>
+						</h4>
+						<p><%= search_snippet result.parts.select{|p| p.title == "Body"}[0].body, 230 %><p>
+					</li>
+				<% elsif key.to_s == 'news' %>
+		  			<li>
+						<h4>
+						<%= link_to raw(result.title.gsub(/(#{params[:query]})/i,'<mark>\1</mark>')), result_url(result) %>
+						<small>
+							<% if result.news_type == "News Release" %> 
+							<a href="/news/releases">in News Releases</a></small>
+							<% else %>
+							<a href="/news/newsletters">in CAM Newsletters</a></small>
+							<% end %>
+						</small>
+						</h4>
+						<p><em><%= result.subtitle %></em> <br /><%= search_snippet result.body, 230 %><p>
+					</li>
+				<% elsif key.to_s == 'programs' %>
+					<li>
+						<h4>
+						<%= link_to raw(result.program_name.gsub(/(#{params[:query]})/i,'<mark>\1</mark>')), result_url(result) %> 
+						<small><a href="programs">in Programs</a></small>
+						</h4>
+						<p><%= search_snippet result.program_short_description, 230 %><p>
+						</li>
+				<% elsif key.to_s == 'categories' %>
+					<% result.programs.each do |program| %>
+						<li>
+						<h4>
+						<%= link_to raw(program.program_name.gsub(/(#{params[:query]})/i,'<mark>\1</mark>')), result_url(result) %>
+						<small><a href="/programs#category-<%= result.id %>">in Programs for <mark><%= raw(result.category_name) %></mark></a></small>
+						</h4>
+						<p><%= search_snippet program.program_short_description, 230 %><p>
+						</li>
+					<% end %>
+				<% end %>
+			<% end %>
+		<% end %>
+	<% end %>
+	</ul>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>

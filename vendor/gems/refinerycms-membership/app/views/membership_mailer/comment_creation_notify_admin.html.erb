@@ -1,0 +1,18 @@
+<%= @contact.email.nil? ? @contact.email : 'A visitor' %> has submitted a new contact form!<br />
+
+Here are the details of their submittal: <br />
+
+<%= @message rescue "" %> <br />
+
+A few of their details are here:<br /><br />
+First Name: <%= @contact.first_name rescue "" %><br />
+Last Name: <%= @contact.last_name rescue "" %><br />
+Email: <%= @contact.email rescue "" %><br />
+Address 1: <%= @contact.address_1 rescue "" %><br />
+Address 2: <%= @contact.address_2 rescue "" %><br />
+City: <%= @contact.city rescue "" %><br />
+State: <%= @contact.state rescue "" %><br />
+Postal Code: <%= @contact.postal_code rescue "" %><br />
+Country: <%= @contact.country rescue "" %><br />
+Established member? <%= @contact.member.nil? ? "no" : "yes" %><br />
+Date signed up: <%= @contact.updated_at.strftime("%B %d, %Y") rescue "today" %><br />

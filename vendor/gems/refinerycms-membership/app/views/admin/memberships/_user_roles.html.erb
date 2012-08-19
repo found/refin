@@ -1,0 +1,28 @@
+<table width="100%" id="members" cellpadding="5" cellspacing="5" style="display: inline" class="datatable">
+  <thead>
+    <tr>
+      <th align="center">Name</th>
+      <th align="center">Organization</th>
+      <th align="center">Email</th>
+      <th align="center">Added</th>
+    </tr>
+  </thead>
+  <tbody>
+		<% members.each do |m| %>
+			<tr>
+				<td>
+					<%= (m.first_name rescue " ") + " " + (m.last_name rescue " ") %>
+				</td>
+				<td>
+					<%= m.organization rescue "" %>
+				</td>
+				<td>
+					<%= m.email rescue "" %>
+				</td>
+				<td>
+					<%= m.created_at rescue "" %>
+				</td>
+			</tr>
+		<% end %>
+  </tbody>
+</table>

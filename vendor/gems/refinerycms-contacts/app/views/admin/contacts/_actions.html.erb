@@ -1,0 +1,14 @@
+<ul>
+  <% if Admin::ContactsController.searchable? %>
+    <li>
+      <%= render :partial => "/shared/admin/search",
+                  :locals => {
+                    :url => admin_contacts_url
+                  } %>
+    </li>
+  <% end %>
+  <!-- <li> -->
+    <%#= link_to t('.create_new'), new_admin_contact_url,
+                 :class => "add_icon" %>
+  <!-- </li> -->
+</ul>

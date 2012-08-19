@@ -1,0 +1,81 @@
+<% content_for :body_content_title do %>
+  <%= @contact.email %>
+<% end %>
+
+<% content_for :body_content_left do %>
+  <section>
+    <h1>Email</h1>
+    <p>
+      <%=raw @contact.email %>
+    </p>
+  </section>
+  <section>
+    <h1>First Name</h1>
+    <p>
+      <%=raw @contact.first_name %>
+    </p>
+  </section>
+  <section>
+    <h1>Last Name</h1>
+    <p>
+      <%=raw @contact.last_name %>
+    </p>
+  </section>
+  <section>
+    <h1>Address 1</h1>
+    <p>
+      <%=raw @contact.address_1 %>
+    </p>
+  </section>
+  <section>
+    <h1>Address 2</h1>
+    <p>
+      <%=raw @contact.address_2 %>
+    </p>
+  </section>
+  <section>
+    <h1>City</h1>
+    <p>
+      <%=raw @contact.city %>
+    </p>
+  </section>
+  <section>
+    <h1>State</h1>
+    <p>
+      <%=raw @contact.state %>
+    </p>
+  </section>
+  <section>
+    <h1>Postal Code</h1>
+    <p>
+      <%=raw @contact.postal_code %>
+    </p>
+  </section>
+  <section>
+    <h1>Member</h1>
+    <p>
+      <%=raw @contact.member_id %>
+    </p>
+  </section>
+  <section>
+    <h1>Newsletter Recipient</h1>
+    <p>
+      <%=raw @contact.newsletter_recipient %>
+    </p>
+  </section>
+<% end %>
+
+<% content_for :body_content_right do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="contacts">
+      <% @contacts.each do |contact| %>
+        <li>
+          <%= link_to contact.email, contact_url(contact) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>

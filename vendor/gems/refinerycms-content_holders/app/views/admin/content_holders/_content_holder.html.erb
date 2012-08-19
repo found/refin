@@ -1,0 +1,21 @@
+<li class='clearfix record <%= cycle("on", "on-hover") %>' id="<%= dom_id(content_holder) -%>">
+  <span class='title'>
+    <%= content_holder.title %>
+    <span class="preview">&nbsp;</span>
+  </span>
+  <span class='actions'>
+    <%= link_to refinery_icon_tag("application_go.png"), content_holder_url(content_holder),
+        :title => t('.view_live_html'),
+        :target => "_blank" %>
+    <%= link_to refinery_icon_tag("application_edit.png"), edit_admin_content_holder_path(content_holder),
+         :title => t('.edit') %>
+    <%= link_to refinery_icon_tag("delete.png"), admin_content_holder_path(content_holder),
+        :class => "cancel confirm-delete",
+        :title => t('.delete'),
+        :confirm => t('message', :scope => 'shared.admin.delete', :title => content_holder.title),
+        :method => :delete %>
+  </span><br />
+	<span style="float:right;">
+		Embed Tag: {{ content_holder_<%= content_holder.id %> }}
+	</span>
+</li>

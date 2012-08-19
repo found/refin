@@ -1,0 +1,33 @@
+<h1>Listing invoices</h1>
+
+<table>
+  <tr>
+    <th>Member</th>
+    <th>Subscription</th>
+    <th>Transaction</th>
+    <th>Amount</th>
+    <th>Number</th>
+    <th>Settled</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @invoices.each do |invoice| %>
+  <tr>
+    <td><%= invoice.member %></td>
+    <td><%= invoice.subscription rescue "" %></td>
+    <td><%= invoice.transaction %></td>
+    <td><%= money_from_decimal invoice.amount %></td>
+    <td><%= invoice.number %></td>
+    <td><%= invoice.settled %></td>
+    <td><%= link_to 'Show', invoice %></td>
+    <td><%= link_to 'Edit', edit_invoice_path(invoice) %></td>
+    <td><%= link_to 'Destroy', invoice, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Invoice', new_invoice_path %>

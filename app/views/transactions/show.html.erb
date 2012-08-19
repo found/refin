@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Invoice:</b>
+  <%= @transaction.invoice %>
+</p>
+
+<p>
+  <b>Confirmation:</b>
+  <%= @transaction.confirmation_id %>
+</p>
+
+<p>
+  <b>Error:</b>
+  <%= @transaction.error %>
+</p>
+
+<p>
+  <b>Error code:</b>
+  <%= @transaction.error_code %>
+</p>
+
+<p>
+  <b>Error message:</b>
+  <%= @transaction.error_message %>
+</p>
+
+
+<%= link_to 'Edit', edit_transaction_path(@transaction) %> |
+<%= link_to 'Back', transactions_path %>

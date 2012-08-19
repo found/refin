@@ -1,0 +1,13 @@
+<h1>Billing Addresses:</h1>
+
+<% if @donor.addresses.blank? %>
+	<p>You have not created any billing addresses yet.  Please do so <a href="/addresses/create">here.</a></p>
+<% end %>
+
+<% for a in @donor.addresses.select{|a| a.address_type == "Billing" } %>
+	<%= a.address_1 %>
+	<%= a.address_2 %>
+	<%= a.city %>
+	<%= a.state %>
+	<%= a.postal_code %>
+<% end %>

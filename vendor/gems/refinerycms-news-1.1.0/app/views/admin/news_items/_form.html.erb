@@ -1,0 +1,61 @@
+<%= form_for [:admin, @news_item] do |f| %>
+  <%= render :partial => "/shared/admin/error_messages",
+             :locals => {
+               :object => @news_item,
+               :include_object_name => true
+             } %>
+
+  <%= render :partial => "locale_picker",
+             :locals => {
+               :current_locale => Thread.current[:globalize_locale]
+             } if defined?(::Refinery::I18n) %>
+
+  <div class='field'>
+    <%= f.label :title %>
+    <%= f.text_field :title, :class => "larger widest" %>
+  </div>
+
+	<div class='field'>
+    <%= f.label :subtitle %>
+    <%= f.text_field :subtitle, :class => "larger widest" %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :publish_date %>
+    <%= f.datetime_select :publish_date %>
+  </div>
+
+	<div class='field'>
+		<%= f.label :news_type %>
+		<%= f.select :news_type, ["CAM Newsletter", "News Release"]%>
+	</div>
+	
+	<div class="field">
+		<%= f.label :program_id, "Program Affiliation (leave blank for none)" %>
+		<%= f.select :program_id, Program.program_name_asc.collect{ |p| ["#{p.abbreviation} - #{p.program_name}", p.id] }.sort, { :include_blank => true } %>
+	</div>
+
+  <div class='field'>
+    <%= f.label :content %>
+    <%= f.text_area :content, :rows => "20", :class => "wymeditor widest" %>
+  </div>
+
+  <div class='field'>
+    <%= f.label :image %>
+    <%= render :partial => "/shared/admin/image_picker", :locals => {:f => f, :field => :image_id, :image => @news_item.image } %>
+  </div>
+
+	<div class='field'>
+		<%= f.label :image_caption %>
+		<%= f.text_field :image_caption %>
+	</div>
+
+  <%= render :partial => "/shared/admin/form_actions",
+             :locals => {
+               :f => f,
+               :continue_editing => true,
+               :delete_title => t('admin.news_items.news_item.delete'),
+               :delete_confirmation => t('shared.admin.delete.message', :title => @news_item.title)
+             } %>
+
+<% end %>

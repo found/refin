@@ -1,0 +1,34 @@
+<%= form_for [:admin, @order] do |f| -%>
+  <%= render :partial => "/shared/admin/error_messages", :locals => {
+          :object => @order,
+          :include_object_name => true
+        } %>
+  
+  <div class='field'>
+    <%= f.label :member_id -%>
+    <%= f.text_field :member_id, :class => 'larger widest' -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :item_total -%>
+    <%= f.text_field :item_total -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :total -%>
+    <%= f.text_field :total -%>
+  </div>
+  
+  <div class='field'>
+    <%= f.label :order_state_id -%>
+    <%= f.text_field :order_state_id -%>
+  </div>
+  
+  <%= render :partial => "/shared/admin/form_actions",
+              :locals => {
+                :f => f,
+                :continue_editing => false,
+                :delete_title => t('delete', :scope => 'admin.orders.order'),
+                :delete_confirmation => t('message', :scope => 'shared.admin.delete')
+              } %>
+<% end -%>

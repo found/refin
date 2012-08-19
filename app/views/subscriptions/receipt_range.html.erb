@@ -1,0 +1,153 @@
+<div id="maincontent" style="width:940px; margin-top:12px;">
+	<p><%= link_to "Back to Subscription Details", subscription_path(@subscription) %></p>
+	<table style="width:900px;">
+		<tr>
+			<td style="width:200px;"><%= image_tag "/images/cam_logo_mini.gif" %></td>
+			<td>
+				<h2>Christian Aid Ministries</h2>
+				<p>
+					PO Box 360<br />
+					Berlin, OH 44610<br />
+					Phone: (330) 893-2428<br />
+					Fax: (330) 893-2305<br />
+					http://christianaidministries.org
+				</p>
+			</td>
+			<td>
+				<p>
+					<b>Dates: </b> From <%= @start_date.strftime("%B %d, %Y") %> to <%= @end_date.strftime("%B %d, %Y") %><br />
+					<b>Subscription ID:</b> <%= @subscription.arb_subscription_id %>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<hr />
+	<table style="width:900px;">
+		<tr>
+			<td style="width:100px;">&nbsp;</td>
+			<td style="width:100px;"><p><b>Bill To:</b></p></td>
+			<td>
+				<p>
+					<% @ba = @invoice.member.billing_address_from_db %>
+					<%= @invoice.member.full_name %><br />
+					<%= @ba.address_1 %><br />
+					<% if !@ba.address_2.empty? %>
+						<%= @ba.address_2 %><br />
+					<% end %>
+					<%= @ba.city %>,<%= @ba.state %> <%= @ba.postal_code %><br />
+					<%= @ba.country.country_name || "" %>
+				</p>
+			</td>
+			<td style="width:165px;">&nbsp;</td>
+			<td style="width:100px;">
+				<p>
+					<b>Mail To:</b>
+				</p>
+			</td>
+			<td>
+				<p>
+					<% @ma = @invoice.member.mailing_address_from_db %>
+					<%= @invoice.member.full_name rescue "" %><br />
+					<%= @ma.address_1 rescue "" %><br />
+					<% if !@ma.address_2 || !@ma.address_2.empty? %>
+						<%= @ma.address_2 rescue "" %><br />
+					<% end %>
+					<%= @ma.city rescue "" %>,<%= @ma.state rescue "" %> <%= @ma.postal_code rescue "" %><br />
+					<%= @ma.country.country_name rescue "" %>
+				</p>
+			</td>
+		</tr>
+	</table>
+	<hr />
+	<table style="width:900px;">
+		<thead>
+			<tr>
+				<th>Donation Type: </th>
+				<th>Description: </th>
+				<th>Quantity: </th>
+				<th>Amount Per: </th>
+				<th style="width:100px;">Line Total: </th>
+				<th>Payments:</th>
+			</tr>
+				<% if @invoice.order %>
+					<% @invoice.line_items.each do |li| %>
+						<tr>
+							<td><p><%= li.recurring? ? "Monthly Subscription" : "One-time Donation" %></p></td>
+							<td><p><%= li.program.program_name %></p></td>
+							<td><p><%= li.quantity %></p></td>
+							<td>
+								<p>
+									<%= "#{money_from_decimal li.price} #{li.recurring? ? " starting on  #{@subscription.created_at.strftime("%m-%d-%Y") rescue ""}" : ""}" %>
+									<% if @invoice.subscription && @invoice.subscription.subscription_adjustments.select{|a| a.confirmed }.empty? == false %>
+										<br />
+										<% @invoice.subscription.subscription_adjustments.select{|a| a.confirmed }.each do |a| %>
+											<strong>Adjustment:</strong> to <%= number_to_currency a.amount %> on <%= a.confirmed.strftime("%m-%d-%Y") rescue "" %><br />
+										<% end %>
+									<% end %>
+								</p>
+							</td>
+							<td><p><%= "#{money_from_decimal (li.quantity * li.price.to_f)} #{li.recurring? ? "monthly" : ""}" %></p></td>
+							<td>
+								<p>
+									<% @trannies.each do |t| %>
+										<%= t.success? ? "<font color='green'>Success</font>".html_safe : "<font color='red'>Failed</font>".html_safe %> on <%= t.created_at.strftime("%m-%d-%Y") %> for <%= number_to_currency t.amount %><br />
+									<% end %>
+									</p>
+							</td>
+						</tr>
+					<% end%>
+				<% end %>
+				<tr>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+				</tr>
+				<% if @invoice.line_items.count == 1 && @invoice.line_items[0].recurring? %>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><p>Subscription (click to view details)</p></td>
+						<td><p><%= link_to @invoice.subscription.arb_subscription_id, subscription_path(@invoice.subscription) %></p></td>
+					</tr>
+				<% end %>
+				<% if @invoice.transaction %>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td><p><b>Transaction ID:</b></p></td>
+						<td><p><%= @invoice.transaction.confirmation_id || "N/A" %></p></td>
+					</tr>
+				<% end %>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td><p>
+								<b>Total:</b>
+							</p>
+					</td>
+					<td>
+						<h2>
+							<%= number_to_currency(@trannies.select{|t| t.success? }.collect{|t| t.amount }.inject{|sum, x| sum + x}) %>
+						</h2>
+					</td>
+				</tr>
+				<tr>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+				</tr>
+		</thead>
+	</table>
+	<%= ContentHolder.find(111).body.html_safe rescue "" %>
+	<hr />
+	<%= link_to 'View All Invoices', invoices_path %>
+</div>

@@ -1,0 +1,28 @@
+Dear <%= @donor.full_name %>,
+<br />
+<br />
+Thank you for your donations to the <strong><%= @program.program_name %></strong> program!  <%= @adjustment.donation_adjustment.reasoning %><br />
+<br />
+Our costs for this program have increased to the point where we needed to raise the sponsorship price.  If this price change is acceptable to you, your sponsorship dollar amount will change from <%= number_to_currency((@subscription.subscription_adjustments.nil? ? @subscription.amount : @subscription.subscription_adjustments.last.original_amount).to_i) %> per month to <%= "#{number_to_currency(@adjustment.amount)}" %> per month.<br />
+<br />
+If this price increase is acceptable to you, please click the link below.<br />
+<br />
+<%= link_to "Yes, I accept the price increase.", "https://christianaidministries.org/donors/accept_adjustment/#{@adjustment.token}" %><br />
+<br />
+If you choose to accept this price change and modify your existing sponsorship, we will send you a new receipt reflecting the price change of the sponsorship.  The new donation amount will go into effect on the next billing cycle set to occur on <%= "#{@subscription.next_billing_cycle}" %>.<br />
+<br />
+If you feel you cannot accept the price increase, and choose to continue paying the dollar amount you had originally signed up for, please click on the link below.<br />
+<br />
+<%= link_to "No, I do not accept the price increase.", "https://christianaidministries.org/donors/deny_adjustment/#{@adjustment.token}" %><br />
+<br />
+Please contact us if you have any questions.  God bless you!<br />
+<br />
+Christian Aid Ministries<br />
+PO Box 360<br />
+Berlin, OH 44610<br />
+T: 330.893.2428<br />
+F: 330.893.2305<br />
+E: camweb@camoh.org<br />
+W: www.christianaidministries.org<br />
+
+

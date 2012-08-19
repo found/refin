@@ -1,0 +1,58 @@
+<% content_for :body_content_title do %>
+  <%= @category.category_name %>
+<% end %>
+
+<% content_for :body_content_left do %>
+  <section>
+    <p>
+      <%=raw @category.category_description %>
+    </p>
+  </section>
+  <section>
+    <p>
+      <%= image_fu @category.category_image, nil %>
+    </p>
+  </section>
+	<section>
+		<h3>Subcategories	</h3>
+		<ul>
+			<% @category.children.each do |c| %>
+				<li><%= link_to c.category_name, category_url(c) %></li>
+			<% end %>	
+		</ul>
+		
+	</section>
+	<% @category.products.each do |p| %>
+		<section>
+	      <h1><a href="<%= product_path(p) %>"><%=raw p.product_name %></a></h1>
+	  </section>
+	  <section>
+	    <p>
+	      <%=raw p.product_description %>
+	    </p>
+	  </section>
+	  <section>
+	    <p>
+	      <%= image_fu p	.product_image, nil %>
+	    </p>
+	  </section>
+		<section>
+			<%= render :partial => 'shared/mini_add_to_cart', :locals => { :p => p } %>
+		</section>
+	<% end%>
+<% end %>
+
+<% content_for :body_content_right do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="categories">
+      <% @categories.each do |category| %>
+        <li>
+          <%= link_to category.category_name, category_url(category) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>

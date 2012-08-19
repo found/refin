@@ -1,0 +1,63 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+	
+	<title>Christian Aid Ministries Admin Console</title>
+
+	<link type="text/css" href="/stylesheets/admin_style.css" rel="stylesheet" /> <!-- the layout css file -->
+	<link type="text/css" href="/stylesheets/jquery.cleditor.css" rel="stylesheet" />
+	
+	<script type='text/javascript' src='/javascripts/jquery-1.4.2.min.js'></script>	<!-- jquery library -->
+	<script type='text/javascript' src='/javascripts/jquery-ui-1.8.5.custom.min.js'></script> <!-- jquery UI -->
+	<script type='text/javascript' src='/javascripts/cufon-yui.js'></script> <!-- Cufon font replacement -->
+	<script type='text/javascript' src='/javascripts/ColaborateLight_400.font.js'></script> <!-- the Colaborate Light font -->
+	<script type='text/javascript' src='/javascripts/easyTooltip.js'></script> <!-- element tooltips -->
+	<script type='text/javascript' src='/javascripts/jquery.tablesorter.min.js'></script> <!-- tablesorter -->
+	
+	<!--[if IE 8]>
+		<script type='text/javascript' src='javascripts/excanvas.js'></script>
+		<link rel="stylesheet" href="stylesheets/IEfix.css" type="text/css" media="screen" />
+	<![endif]--> 
+ 
+	<!--[if IE 7]>
+		<script type='text/javascript' src='javascripts/excanvas.js'></script>
+		<link rel="stylesheet" href="stylesheets/IEfix.css" type="text/css" media="screen" />
+	<![endif]--> 
+	
+	<script type='text/javascript' src='/javascripts/visualize.jQuery.js'></script> <!-- visualize plugin for graphs / statistics -->
+	<script type='text/javascript' src='/javascripts/iphone-style-checkboxes.js'></script> <!-- iphone like checkboxes -->
+	<script type='text/javascript' src='/javascripts/jquery.cleditor.min.js'></script> <!-- wysiwyg editor -->
+
+	<script type='text/javascript' src='/javascripts/custom.js'></script> <!-- the "make them work" script -->
+</head>
+
+<body>
+
+	<div id="container">
+		<div id="bgwrap">
+			<div id="primary_left">
+        
+				<div id="logo">
+					<a href="dashboard.html" title="Dashboard"><img src="<%= site_var("logo_url") %>" alt="" /></a>
+				</div> <!-- logo end -->
+
+				<div id="menu"> <!-- navigation menu -->
+					<%= render :partial => "donor_shared/left_nav" %>
+				</div> <!-- navigation menu end -->
+			</div> <!-- sidebar end -->
+
+			<div id="primary_right">
+				<div class="inner">
+					
+					<%= yield %>
+
+					<%= render :partial => "shared/footer" %>
+					
+				</div> <!-- inner -->
+			</div> <!-- primary_right -->
+		</div> <!-- bgwrap -->
+	</div> <!-- container -->
+	<%= yield :js_bottom %>
+</body>
+</html>

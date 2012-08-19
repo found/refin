@@ -1,0 +1,11 @@
+<div id='recent_activity'>
+	<h2>Recent Contact Submittals</h2>
+	<ul class='clickable'>
+		<% @contact_instances.each do |ci| %>
+			<li class='<%= cycle("on", "on-hover", :name => 'recent_activity_cycle') %>'>
+				<%= link_to "New Contact from #{ci.contact.email rescue ""} Click to View", "/refinery/contacts/show/#{ci.contact.id rescue ""}", :class => "orange-link" %>
+			</li>
+		<% end %>
+	</ul>
+</div>
+<br />

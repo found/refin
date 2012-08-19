@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Subject:</b>
+  <%= @email_content.subject %>
+</p>
+
+<p>
+  <b>From:</b>
+  <%= @email_content.from %>
+</p>
+
+<p>
+  <b>Bcc:</b>
+  <%= @email_content.bcc %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @email_content.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_email_content_path(@email_content) %> |
+<%= link_to 'Back', email_contents_path %>

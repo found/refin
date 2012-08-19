@@ -1,0 +1,34 @@
+<nav id="menu">
+	<% exclude_from_menu = ["Categories", "Content Holders", "Files", "Images", "Settings", "Subscription Types"] %>
+  <% Refinery::Plugins.active.in_menu.each do |plugin| -%>
+		<% if !exclude_from_menu.include?(plugin.title) %>
+		
+			<% if plugin.title == "Memberships" %>
+				<%= link_to "Donors", plugin.url, :class => (plugin.highlighted?(params) ? "active" : ""), :id => "plugin_#{plugin.name}" %>
+			<% elsif plugin.title == "Subscriptions" %>
+				<%= link_to "Monthly Subscriptions", plugin.url, :class => (plugin.highlighted?(params) ? "active" : ""), :id => "plugin_#{plugin.name}" %>
+			<% elsif plugin.title == "Subscriptions" %>
+				<%= link_to "Monthly Subscriptions", plugin.url, :class => (plugin.highlighted?(params) ? "active" : ""), :id => "plugin_#{plugin.name}" %>
+			<% elsif plugin.title == "Users" %>
+				<%= link_to "Admin Users", plugin.url, :class => (plugin.highlighted?(params) ? "active" : ""), :id => "plugin_#{plugin.name}" %>
+			<% elsif plugin.title == "News" %>
+				<%= link_to "News Articles", plugin.url, :class => (plugin.highlighted?(params) ? "active" : ""), :id => "plugin_#{plugin.name}" %>
+			<% elsif plugin.title == "Orders" %>
+				<%= link_to "Invoices", plugin.url, :class => (plugin.highlighted?(params) ? "active" : ""), :id => "plugin_#{plugin.name}" %>
+			<% else %>
+	    	<%= link_to plugin.title, plugin.url, :class => (plugin.highlighted?(params) ? "active" : ""), :id => "plugin_#{plugin.name}" %>
+			<% end %>
+			
+		<% end %>
+  <% end -%>
+  <% if Refinery::Plugins.active.in_menu.many? -%>
+    <%= link_to refinery_icon_tag('arrow_switch.png'), "",
+                :id => "menu_reorder",
+                :title => t('.reorder_menu') %>
+
+    <%= link_to refinery_icon_tag('tick.png'), "",
+                :id => "menu_reorder_done",
+                :title => t('.reorder_menu_done'),
+                :style => "display: none;" %>
+  <% end %>
+</nav>

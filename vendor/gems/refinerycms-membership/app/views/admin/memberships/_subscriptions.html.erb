@@ -1,0 +1,51 @@
+<h2>Active Subscriptions</h2>
+<% if !@member.subscriptions.active.empty? %>
+	<table>
+		<thead>
+			<tr>
+				<th style="padding-right:5px;">Subscription</th>
+				<th>Program</th>
+				<th>Amount</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @member.subscriptions.active.reverse.each do |sub| %>
+				<tr>
+					<td><%= link_to sub.arb_subscription_id, "/refinery/subscriptions/show/#{sub.id}" %></td>
+					<td><%= sub.program.program_name %></td>
+					<td><%= "$#{sub.amount}" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<p>
+		There are no active subscriptions.
+	</p>
+<% end %>
+
+<h2>Inactive Subscriptions</h2>
+<% if !@member.subscriptions.inactive.empty? %>
+	<table>
+		<thead>
+			<tr>
+				<th style="padding-right:5px;">Subscription</th>
+				<th>Program</th>
+				<th>Amount</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @member.subscriptions.inactive.reverse.each do |sub| %>
+				<tr>
+					<td><%= link_to sub.arb_subscription_id, "/subscriptions/#{sub.id}" %></td>
+					<td><%= sub.program.program_name %></td>
+					<td><%= "$#{sub.amount}" %></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+<% else %>
+	<p>
+		There are no inactive subscriptions.
+	</p>
+<% end %>

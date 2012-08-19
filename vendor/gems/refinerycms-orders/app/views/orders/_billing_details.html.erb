@@ -1,0 +1,29 @@
+<% if !current_member.billing_address %>
+	<p>Please add your billing address before adding your credit card information.  </p>
+<% end %>
+
+	<h3 class="donate-teaser">Billing Details:</h3>
+	<table class="informational">
+		<tr>
+			<td>First Name:</td>
+			<td><%= current_member.first_name %></td>
+		</tr>
+		<tr>
+			<td>Last Name:</td>
+			<td><%= current_member.last_name %></td>
+		</tr>
+		<tr>
+			<td>Address:</td>
+			<td><%= current_member.billing_address %></td>
+		</tr>
+		<tr>
+			<td>Phone Number:</td>
+			<td><%= current_member.phone %></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td><a href="/donors/edit_my_profile"><img src="/images/btn-action-edit-billing-info.png" /></a>
+			</td>
+		</tr>
+	</table>
+	<br /><br />

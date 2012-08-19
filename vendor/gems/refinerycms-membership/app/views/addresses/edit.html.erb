@@ -1,0 +1,42 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$(".chzn-select").chosen();
+	})
+</script>
+<h1>Editing your <%= @address.address_type %> address</h1>
+<% form_for @address, :url => {:controller => :addresses, :action => "update" } do |f| %>
+<table>
+	<tbody>
+		<tr>
+			<td>Address 1:</td>
+			<td><%= f.text_field :address_1 %></td>
+		</tr>
+		<tr>
+			<td>Address 2:</td>
+			<td><%= f.text_field :address_2 %></td>
+		</tr>
+		<tr>
+			<td>City:</td>
+			<td><%= f.text_field :city %></td>
+		</tr>
+		<tr>
+			<td>State:</td>
+			<td><%= f.text_field :state %></td>
+		</tr>
+		<tr>
+			<td>Country:</td>
+			<td><select id="address_country_id" name="address[country_id]" class="chzn-select">
+					<%= options_for_select Country.all.collect{|c| [c.country_name, c.id]}%>
+				</select></td>
+		</tr>
+		<tr>
+			<td>Postal Code:</td>
+			<td><%= f.text_field :postal_code %></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><%= f.submit "Update this address" %></td>
+		</tr>
+	</tbody>
+</table>
+<% end %>

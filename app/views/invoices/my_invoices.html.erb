@@ -1,0 +1,44 @@
+<div id="maincontent">
+	<br />
+	<h1>Your Invoices</h1>
+
+	<% if !@invoices.empty? %>
+		<table>
+		  <tr>
+		    <th>Invoice #:</th>
+		    <th>Amount:</th>
+		    <th>Status:</th>
+				<th>Type:</th>
+		  </tr>
+		<% @invoices.each do |invoice| %>
+		  <tr>
+		    <td><%= link_to invoice.invoice_number, invoice %></td>
+		    <td><%= "#{money_from_decimal invoice.amount}" %></td>
+		    <td>
+					<% if invoice.subscription && invoice.subscription.active? %>
+						<b>Billed Monthly</b>
+					<% elsif invoice.subscription && !invoice.subscription.active? %>
+						<font color="red">Cancelled</font>
+					<% elsif invoice.has_one_times? && invoice.settled? %>
+						<b>Paid</b>
+					<% else %>
+						<font color="red">Error</font>
+					<% end %>
+				</td>
+				<td><%= if invoice.subscription
+									"Monthly Subscription"
+								else
+									"One-time Donation"
+								end
+						%>
+				</td>
+		  </tr>
+		<% end %>
+		</table>
+	<% else %>
+		<p>You currently don't have any invoices</p>
+	<% end %>
+	
+<%= link_to "Back to Dashboard", "/donors/me" %>
+</div>
+

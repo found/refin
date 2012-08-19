@@ -1,0 +1,24 @@
+Hey folks,
+<br />
+This is a notification that a member has removed themselves from the Newsletter mailing list.
+<br />
+<br />
+A few of their details are here:<br /><br />
+
+<% if @contact.member.donor_number && @contact.member.donor_number != nil %>
+	<%= "Donor Number: #{@contact.member.donor_number rescue "" }" %>
+<% end %><br />
+<% if @contact.member.customer_cim_id && @contact.member.customer_cim_id != nil %>
+	<%= "Customer CIM #: #{@contact.member.customer_cim_id rescue "" }" %>
+<% end %><br />
+First Name: <%= @contact.first_name rescue "" %><br />
+Last Name: <%= @contact.last_name rescue "" %><br />
+Email: <%= @contact.email rescue "" %><br />
+Address 1: <%= (@contact.address_1 == "" ? @contact.member.address_1 : @contact.address_1) rescue "" %><br />
+Address 2: <%= (@contact.address_2 == "" ? @contact.member.address_2 : @contact.address_2) rescue "" %><br />
+City: <%= (@contact.city == "" ? @contact.member.city : @contact.city) rescue "" %><br />
+State: <%= (@contact.state == "" ? @contact.member.state : @contact.state) rescue "" %><br />
+Postal Code: <%= (@contact.postal_code == "" ? @contact.member.postal_code : @contact.postal_code) rescue "" %><br />
+Country: <%= (@contact.country == "" ? @contact.member.country : @contact.country) rescue "" %><br />
+Established member? <%= @contact.member.nil? ? "no" : "yes" %><br />
+Date of removal: <%= @contact.updated_at.strftime("%B %d, %Y") rescue "today" %><br />

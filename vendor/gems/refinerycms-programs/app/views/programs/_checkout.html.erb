@@ -1,0 +1,30 @@
+<% if @order.line_items.empty? %>
+	<h3 class="donate-teaser" style="padding: 10px 16px; background:#ffc; border: 2px solid #cc3; margin: 0px 50px 50px;">
+		It looks like you meant to make a donation...<br /><br />
+		 but unfortunately, you don't have anything in your donation basket. <br /><br />
+		 <a href="#">Please go back</a> and <a href="#"><img align="absmiddle" id="return-to-donate" src="/images/btn-action-edit-my-basket.png" /></a></h3>
+<% else %>
+	<div style="float:left;">
+		<% if current_member %>
+			<h3 class="donate-teaser">Make a Donation: <b>Checkout</b></h3>
+			<% if current_member.billing_address_object %>
+				<% if @order.has_subscriptions? %>
+					<%= render :partial => "monthly_checkout" %>
+				<% else %>
+					<%= render :partial => "one_time_checkout" %>
+				<% end %>
+			<% else %>
+				<h3 class="donate-teaser">It appears you haven't added your billing address... <b>Click </b><%= link_to "here", "/addresses/new" %> <b> to add it!</b></h3>
+			<% end %>
+		<% else %>
+			<h3 class="donate-teaser">It appears you aren't logged in... <b>Click </b><%= link_to "here", "/members/register" %> <b> to sign in or register!</b></h3>
+		<% end %>
+	</div>
+<% end %>
+
+<% if !@order.line_items.empty? %>
+<div id="boxfront3" style="float:right;">
+	<h2>My Donation Basket</h2>
+	<%= render :partial => "donation_basket_checkout" %>
+</div>
+<% end %>

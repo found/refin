@@ -1,0 +1,31 @@
+<%# content_for :header, t('enter_email_address', :scope => 'users.forgot') %>
+<div id="maincontent">
+	<h1>Enter your email address below</h1>
+	<% if flash[:warning] or flash[:notice] %>
+	  <div id="notice" <% if flash[:warning] %>class="warning"<% end %>>
+	    <%= flash[:warning] || flash[:notice] %>
+	  </div>
+	  <script type="text/javascript">
+	    setTimeout("new Effect.Fade('notice');", 15000)
+	  </script>
+	<% end %>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+	
+	<p>We will email you instructions on how to reset your password.</p>
+  <div class='field'>
+    <%= f.text_field :email, :class => "larger widest",
+                     :placeholder => t('email_address', :scope => 'users.forgot') %>
+  </div>
+	<br />
+	<%= f.submit "Reset my Password" %> | <%= link_to "Cancel", "/members/register" %>
+<% end -%>
+<script type="text/javascript">
+	$(function() {
+		$("#member_submit").click(function() {
+			if ($("#member_email") != "") {
+				alert("Password reset instructions will be emailed to you shortly.  Please be sure to check your spam folder if you cannot locate it.");
+			}
+		})
+	})
+</script>
+</div>
