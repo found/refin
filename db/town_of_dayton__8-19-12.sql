@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.12)
 # Database: town_of_dayton
-# Generation Time: 2012-08-19 16:57:40 +0000
+# Generation Time: 2012-08-19 18:04:09 +0000
 # ************************************************************
 
 
@@ -1034,7 +1034,7 @@ LOCK TABLES `content_holders` WRITE;
 INSERT INTO `content_holders` (`id`, `title`, `body`, `position`, `created_at`, `updated_at`)
 VALUES
 	(1,'Header (do not remove)','<div id=\"placesocial\">\r\n        <a href=\"/contacts/newsletter_signup\"><img src=\"/images/btn_newsletter.gif\" /></a> \r\n        <a href=\"/donate\"><img src=\"/images/btn_make_a_donation.gif\" /></a>\r\n</div>\r\n\r\n<div id=\"placemainmenu\">\r\n        <div id=\"placemainmenu\">\r\n                <ul id=\"mainmenu\">\r\n                        <li>\r\n                                <a href=\"/\">Home</a>\r\n                        </li>\r\n                        <li>\r\n                                <a href=\"/programs\">Our Programs</a>\r\n                        </li>\r\n                        <li>\r\n                                <a href=\"/news\">News</a>\r\n                                <ul>\r\n                                        <li>\r\n                                                <a href=\"/news/releases\">Recent posts</a>\r\n                                        </li>\r\n                                        <li>\r\n                                                <a href=\"/news/newsletters\">CAM Newsletters</a>\r\n                                        </li>\r\n                                </ul>\r\n                        </li>\r\n                        <li>\r\n                                <a href=\"/donate\">Donate</a>\r\n                        </li>\r\n                        <li>\r\n                                <a href=\"/about-cam/who-we-are\">About Us</a>\r\n                                <ul>\r\n                                        <li>\r\n                                                <a href=\"/about-cam/who-we-are\">Who we are</a>\r\n                                        </li>\r\n                                        <li>\r\n                                                <a href=\"/about-cam/locations\">Locations</a>\r\n                                        </li>\r\n                                        <li>        <a href=\"/about-cam/financial-accountability\">Financial Accountability</a>\r\n                                                <ul>\r\n                                                        <li>\r\n                                                                <a href=\"/about-cam/financial-accountability/financial-statements\">Financial Statements</a>\r\n                                                        </li>\r\n                                                </ul>\r\n                                        </li>\r\n                                        <li>\r\n                                                <a href=\"/about-cam/statement-of-faith\">Statement of Faith</a>\r\n                                        </li>\r\n                                        <li>\r\n                                                <a href=\"/about-cam/biblical-stewardship-services\">Biblical Stewardship Services</a>\r\n                                        </li>\r\n                                        <li>\r\n                                                <a href=\"/about-cam/tgs-international\">TGS International</a>\r\n                                        </li>\r\n                                </ul>\r\n                        </li>\r\n                        <li>\r\n                                <a href=\"/contacts/new\">Contact Us</a>\r\n                        </li>\r\n                        <div>\r\n                                <form id=\"frmsearch\" accept-charset=\"UTF-8\" action=\"/search\" method=\"post\">\r\n                                        <input name=\"utf8\" value=\"?\" type=\"hidden\" />\r\n                                        <input name=\"authenticity_token\" value=\"Vz1EFjKUWJbBQx7qXoLHmhK6jfetnglnhcvOVhCunQw=\" type=\"hidden\" />\r\n                                        <input id=\"query\" name=\"query\" class=\"textboxsearch\" type=\"search\" />\r\n                                        <input class=\"submitsearch\" name=\"commit\" value=\"Search!\" type=\"submit\" />\r\n                                </form>\r\n                        </div>\r\n                </ul>\r\n        </div>\r\n</div>\r\n',0,'2011-08-11 20:26:55','2012-01-03 16:08:13'),
-	(2,'Footer (do not remove)','		<p><a href=\"/site-map\">site map</a> |\r\n			<a href=\"/contacts/new\">contact</a> |\r\n			<a href=\"/privacy-policy\">privacy policy</a> |\r\n                        <a href=\"/terms-and-conditions\">terms and conditions</a> |\r\n                        <a href=\"/solicitation-disclosure\">solicitation disclosure</a>\r\n		</p>\r\n	<p>\r\n	  Christian Aid Ministries, 2011</p>',0,'2011-08-11 19:30:57','2012-02-28 16:32:12'),
+	(2,'Footer (do not remove)','		<p><p>The Municipal Building is located at 125 Eastview Street, Dayton, VA 22821 &#160;| &#160;(540) 879-2241<br />Office and drive-thru hours are 8 a.m.  4:30 p.m. Monday  Friday</p>\r\n</p>',0,'2011-08-11 19:30:57','2012-08-19 17:45:59'),
 	(5,'RRT Sidebar','<div class=\"boxnav\">\r\n<h3>Rapid Response Team</h3>\r\n<p>Currently we are looking for volunteers in the PA area to help clean up flooded houses from Hurricane Irene. If you&#39;d like to volunteer or schedule a volunteer group, please contact <em>Susan</em> at 330-893-2428. </p>\r\n</div>',0,'2011-08-09 15:38:17','2011-09-02 19:37:29'),
 	(6,'attention_farmers','<div class=\"boxnav\">\r\n								<h3>Attention farmers!</h3>\r\n<p>Did you know you could make tax-deductible donations of grain or other commodities to Christian Aid Ministries? We can arrange for your grain donation to be received by the local mill or grain elevator of your choice. For more information, call the CAM office<strong> (330-893-2428)</strong> and ask for <em>Paul A. Miller </em>or <em>Eli Weaver</em>.</p>\r\n<div class=\"clear\"></div>\r\n							</div>',1,'2011-08-09 15:38:43','2011-09-09 19:11:17'),
 	(8,'homepage_sidebar','<p><br />{{ content_holder_112 }}{{ content_holder_100 }}{{ content_holder_113 }}{{ content_holder_103 }}{{ content_holder_82 }}{{ content_holder_104 }}</p>',3,'2011-08-09 15:40:37','2012-06-15 19:05:56'),
@@ -1076,7 +1076,8 @@ VALUES
 	(108,'Menius','<p><img src=\"/system/images/BAhbB1sHOgZmSSInMjAxMi8wNC8xOC8xN180N18wOV8zNjJfTWVuaXVzLmpwZwY6BkVUWwg6BnA6CnRodW1iSSINNDUweDQ1MD4GOwZU/Menius.jpg\" height=\"218\" width=\"290\" /></p>',32,'2012-04-18 14:16:13','2012-04-18 14:16:13'),
 	(109,'ML-stories','<br />\r\n<h3 class=\"text-align-center\">\r\nSALT Microfinance Stories\r\n</h3>\r\n <p>\r\n\r\n<br />\r\n\r\n<a title=\"Sobia\" href=\"/news/sustainability-for-sobia%E2%80%99s-family\"><img src=\"/system/images/BAhbBlsHOgZmSSImMjAxMi8wNi8xOS8wMF80MF80M183Mzdfc29iaWEuanBnBjoGRVQ/sobia.jpg\" height=\"218\" width=\"290\" /></a>\r\n\r\n\r\n<br />\r\n\r\n<a title=\"Menius\" href=\"/Menius\"><img src=\"/system/images/BAhbBlsHOgZmSSInMjAxMi8wNi8xOS8wMF80Ml8zOV8xMDhfbWVuaXVzLmpwZwY6BkVU/menius.jpg\" height=\"218\" width=\"290\" /></a>\r\n\r\n\r\n<br />\r\n\r\n<a title=\"Gosiane\" href=\"/Gosiane\"><img src=\"/system/images/BAhbBlsHOgZmSSIoMjAxMi8wNi8xOS8yMV8wMV8xOV80NjVfR29zaWFuZS5qcGcGOgZFVA/Gosiane.jpg\" height=\"218\" width=\"290\" /></a>\r\n\r\n<br />\r\n\r\n<a title=\"Hermitha\" href=\"/hermitha\"><img src=\"/system/images/BAhbBlsHOgZmSSItMjAxMi8wNi8xOS8yMV8wM180N18yNDlfaGVybWl0aGFfdnMxLnBuZwY6BkVU/hermitha_vs1.png\" height=\"218\" width=\"290\" /></a>\r\n\r\n<br />\r\n\r\n<a title=\"Blind but not begging\" href=\"/news/blind-but-not-begging\"><img src=\"/system/images/BAhbBlsHOgZmSSIoMjAxMi8wNi8xOS8yMV8wNl8xMV81OTBfYmxpbmRfMi5qcGcGOgZFVA/blind_2.jpg\" height=\"218\" width=\"290\" /></a>\r\n\r\n<br />\r\n\r\n<a title=\"Forest Camile\" href=\"/forest-camile\"><img src=\"/system/images/BAhbBlsHOgZmSSIoMjAxMi8wNi8xOS8yMV8wOF8yM18xM19mb3Jlc3RfMi5qcGcGOgZFVA/forest_2.jpg\" height=\"218\" width=\"290\" /></a>\r\n<br />\r\n<a title=\"Viergelene\" href=\"/Viergelene\"><img src=\"/system/images/BAhbBlsHOgZmSSIpMjAxMi8wNi8xOS8yMV8xMF80Ml8yX1ZpZXJnZWxlbmUuanBnBjoGRVQ/21_10_42_2_Viergelene.jpg\" height=\"218\" width=\"290\" /></a>\r\n\r\n\r\n\r\n</p>',33,'2012-04-18 14:37:51','2012-06-19 17:13:10'),
 	(111,'Invoice Disclaimer','<p>\r\n		<strong>Disclaimers</strong>\r\n<br />\r\n		<br />\r\n		Donee has not provided any goods or services in consideration for this contribution.\r\n		<br />\r\n		<strong>Colorado residents</strong> may obtain copies of registration and financial documents from the office of the Secretary of State, 303-894-2860,www.sos.state.co.us/ re: Reg. No. 20113021578. <strong>Florida residents:</strong> A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE, 1-800-435-7352 WITHIN THE STATE. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE. REGISTRATION NUMBER CH35002. <strong>Georgia residents:</strong> A full and fair description of Christian Aid Ministries and its financial statements are available upon request from Christian Aid Ministries, P.O. Box 360, Berlin, OH 44610. <strong>Illinois residents:</strong> Contracts and reports regarding Christian Aid Ministries are on file with the Illinois Attorney General. <strong>Maryland residents:</strong> For the cost of postage and copying, documents and information filed under the Maryland charitable organizations laws can be obtained from the Secretary of State, Charitable Division, State House, Annapolis, MD 21401, 800-825-4510. <strong>Michigan residents:</strong> The registration number of Christian Aid Ministries in the state of Michigan is CS 46826. <strong>New Jersey residents:</strong> Information filed with the Attorney General concerning this charitable solicitation may be obtained from the Attorney General of the State of New Jersey by calling 1-973-504-6215. Registration with the Attorney General does not imply endorsement. <strong>New York residents:</strong> A copy of the most recent annual report is available from the State of New York Department of Law, Charities Bureau, 120 Broadway, New York, New York, 10271. <strong>North Carolina residents:</strong> Financial information about this organization and a copy of its license are available from the State Solicitation Licensing Branch at 1-919-733-4510. The license is not an endorsement by the State. <strong>Pennsylvania residents:</strong> The official registration and financial information of Christian Aid Ministries may be obtained from the Pennsylvania Department of State by calling toll-free, within Pennsylvania, 1-800-732-0999. Registration does not imply endorsement. <strong>Virginia residents:</strong> A copy of the financial statement is available from the Division of Consumer Affairs, Department of Agricultural and Consumer Services, 1100 Bank Street, Richmond, VA 23219 or call 1-804-786-1343. <strong>Washington residents:</strong> Thank you for supporting Christian Aid Ministries. For additional information regarding the organization\'s activities or financial information, Christian Aid Ministries is registered with the Washington State Charities Program as required by law and information may be obtained by calling 800-332-4483 or 360-725-0378. <strong>West Virginia residents:</strong> West Virginia residents may obtain a summary of the registration and financial documents from the Secretary of State, State Capital, Charleston, WV 25305. Registration does not imply endorsement.\r\n\r\n		Federal I.D. #34-1344364\r\n		\r\n	</p>',35,'2012-06-06 01:16:58','2012-06-06 01:16:58'),
-	(113,'TGS','<p><a target=\"_blank\" class=\"prompt\" href=\"http://www.tgsinternational.com\" title=\"TGS International\"><img src=\"/system/images/BAhbBlsHOgZmSSIkMjAxMi8wNi8xNC8wMF8yM18wOF81MzJfVEdTLmpwZwY6BkVU/TGS.jpg\" height=\"175\" width=\"290\" /></a>\r\n</p>',37,'2012-06-13 20:23:20','2012-06-13 20:28:09');
+	(113,'TGS','<p><a target=\"_blank\" class=\"prompt\" href=\"http://www.tgsinternational.com\" title=\"TGS International\"><img src=\"/system/images/BAhbBlsHOgZmSSIkMjAxMi8wNi8xNC8wMF8yM18wOF81MzJfVEdTLmpwZwY6BkVU/TGS.jpg\" height=\"175\" width=\"290\" /></a>\r\n</p>',37,'2012-06-13 20:23:20','2012-06-13 20:28:09'),
+	(3,'Quick Links Homepage','	      <ul>\n	        <li><a href=\"#\">Looking for the latest Water Quality Report? &raquo;</a></li>\n	        <li><a href=\"#\">Need to know the trash collection schedule? &raquo;</a></li>\n	        <li><a href=\"#\">Starting a business and need a license? &raquo;</a></li>\n	        <li><a href=\"#\">Go green. Get the Town newsletter via email. &raquo;</a></li>\n	        <li><a href=\"#\">Attend our next Town Council meeting. &raquo;</a></li>\n	        <li><a href=\"#\">Reserve a shelter at one of our Town parks. &raquo;</a></li>\n	      </ul>\n',3,'2012-06-13 20:23:20','2012-06-13 20:23:20');
 
 /*!40000 ALTER TABLE `content_holders` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2328,6 +2329,15 @@ CREATE TABLE `news_items` (
   KEY `index_news_items_on_id` (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+LOCK TABLES `news_items` WRITE;
+/*!40000 ALTER TABLE `news_items` DISABLE KEYS */;
+
+INSERT INTO `news_items` (`id`, `title`, `body`, `publish_date`, `created_at`, `updated_at`, `external_url`, `image_id`, `news_type`, `image_caption`, `program_id`, `subtitle`)
+VALUES
+	(1,'Scam Alert!','<p>A local resident reported that she received a call from a woman claiming that she needed to send her a new social security card. The person on the phone asked for checking account numbers for \"verification.\" When the resident refused to do so, the woman became very angry and kept insisting. Legitimate agencies do not ask for</p>','2012-08-19 13:34:00','2012-08-19 17:34:59','2012-08-19 17:34:59',NULL,NULL,'News Release','',NULL,'Phone calls phishing for social security numbers');
+
+/*!40000 ALTER TABLE `news_items` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table order_states
@@ -2409,8 +2419,8 @@ LOCK TABLES `page_part_translations` WRITE;
 
 INSERT INTO `page_part_translations` (`id`, `page_part_id`, `locale`, `body`, `created_at`, `updated_at`)
 VALUES
-	(1,1,'en','<div class=\"slider-wrapper them-default\">\r\n<div class=\"ribbon\"></div>\r\n<br />\r\n<div id=\"slider\" class=\"nivoSlider\">\r\n{{ content_holder_83 }}\r\n</div>\r\n</div>\r\n\r\n<h1>Welcome to Christian Aid Ministries</h1>\r\n\r\n\r\n<p><strong>Christian Aid Ministries\' </strong>primary purpose is to be a trustworthy and efficient channel for Amish, Mennonite, and other conservative Anabaptist groups and individuals to minister to physical and spiritual needs around the world. </p>\r\n<p>Each year, CAM supporters provide approximately 15 million pounds of food, clothing, medicines, seeds, Bibles, Bible story books, and other Christian literature for needy people. Supporters funds also help clean up and rebuild for natural disaster victims, support several church-planting efforts, put up Gospel billboards, operate two CAM medical clinics, and provide resources for needy families to make their own living. <a title=\"/about-cam/who-we-are\" href=\"/about-cam/who-we-are\">Read more...</a> </p>\r\n<a title=\"/about-cam/who-we-are\" href=\"/about-cam/who-we-are\"> </a>\r\n					\r\n<hr />','2011-05-20 17:07:58','2012-01-03 17:59:31'),
-	(2,2,'en','<p>{{ content_holder_8 }}</p>','2011-05-20 17:07:58','2011-08-26 19:16:41'),
+	(1,1,'en','','2011-05-20 17:07:58','2012-08-19 17:51:45'),
+	(2,2,'en','','2011-05-20 17:07:58','2012-08-19 17:21:51'),
 	(3,3,'en','<h2>Sorry, there was a problem...</h2>\r\n<p>The page you requested was not found.</p>\r\n<p><a href=\"/\">Return to the home page</a>\r\n</p>','2011-05-20 17:07:58','2011-11-28 19:37:52'),
 	(4,4,'en','','2011-05-20 17:07:58','2011-08-11 20:36:35'),
 	(5,5,'en','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla nisi a elit. Duis ultricies orci ut arcu. Ut ac nibh. Duis blandit rhoncus magna. Pellentesque semper risus ut magna. Etiam pulvinar tellus eget diam. Morbi blandit. Donec pulvinar mauris at ligula. Sed pellentesque, ipsum id congue molestie, lectus risus egestas pede, ac viverra diam lacus ac urna. Aenean elit.</p>','2011-05-20 17:07:58','2011-05-20 17:07:58'),
@@ -2512,8 +2522,8 @@ LOCK TABLES `page_parts` WRITE;
 
 INSERT INTO `page_parts` (`id`, `page_id`, `title`, `body`, `position`, `created_at`, `updated_at`)
 VALUES
-	(1,1,'Body','<div class=\"slider-wrapper them-default\">\r\n<div class=\"ribbon\"></div>\r\n<br />\r\n<div id=\"slider\" class=\"nivoSlider\">\r\n{{ content_holder_83 }}\r\n</div>\r\n</div>\r\n\r\n<h1>Welcome to Christian Aid Ministries</h1>\r\n\r\n\r\n<p><strong>Christian Aid Ministries\' </strong>primary purpose is to be a trustworthy and efficient channel for Amish, Mennonite, and other conservative Anabaptist groups and individuals to minister to physical and spiritual needs around the world. </p>\r\n<p>Each year, CAM supporters provide approximately 15 million pounds of food, clothing, medicines, seeds, Bibles, Bible story books, and other Christian literature for needy people. Supporters funds also help clean up and rebuild for natural disaster victims, support several church-planting efforts, put up Gospel billboards, operate two CAM medical clinics, and provide resources for needy families to make their own living. <a title=\"/about-cam/who-we-are\" href=\"/about-cam/who-we-are\">Read more...</a> </p>\r\n<a title=\"/about-cam/who-we-are\" href=\"/about-cam/who-we-are\"> </a>\r\n					\r\n<hr />',0,'2011-05-20 17:07:58','2012-05-09 15:58:30'),
-	(2,1,'Side Body','<p>{{ content_holder_8 }}</p>',1,'2011-05-20 17:07:58','2012-05-09 15:58:30'),
+	(1,1,'Body','',0,'2011-05-20 17:07:58','2012-08-19 17:52:18'),
+	(2,1,'Side Body','',1,'2011-05-20 17:07:58','2012-08-19 17:52:18'),
 	(3,2,'Body','<h2>Sorry, there was a problem...</h2>\r\n<p>The page you requested was not found.</p>\r\n<p><a href=\"/\">Return to the home page</a>\r\n</p>',0,'2011-05-20 17:07:58','2011-11-28 19:37:52'),
 	(4,3,'Body','',0,'2011-05-20 17:07:58','2011-08-11 20:36:35'),
 	(5,3,'Side Body','<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus fringilla nisi a elit. Duis ultricies orci ut arcu. Ut ac nibh. Duis blandit rhoncus magna. Pellentesque semper risus ut magna. Etiam pulvinar tellus eget diam. Morbi blandit. Donec pulvinar mauris at ligula. Sed pellentesque, ipsum id congue molestie, lectus risus egestas pede, ac viverra diam lacus ac urna. Aenean elit.</p>',1,'2011-05-20 17:07:58','2011-08-11 20:36:35'),
@@ -2614,7 +2624,7 @@ LOCK TABLES `page_translations` WRITE;
 
 INSERT INTO `page_translations` (`id`, `page_id`, `locale`, `title`, `custom_title`, `created_at`, `updated_at`)
 VALUES
-	(1,1,'en','Home','','2011-05-20 17:07:58','2011-05-23 13:54:55'),
+	(1,1,'en','Home','Town of Dayton - Virginia','2011-05-20 17:07:58','2012-08-19 17:52:18'),
 	(2,2,'en','Page not found','','2011-05-20 17:07:58','2011-10-19 15:37:55'),
 	(3,3,'en','About CAM','','2011-05-20 17:07:58','2011-05-23 15:12:17'),
 	(5,5,'en','Who We Are','','2011-05-23 15:09:40','2011-05-23 15:09:40'),
@@ -2701,7 +2711,7 @@ LOCK TABLES `pages` WRITE;
 
 INSERT INTO `pages` (`id`, `parent_id`, `position`, `path`, `created_at`, `updated_at`, `show_in_menu`, `link_url`, `menu_match`, `deletable`, `custom_title_type`, `draft`, `skip_to_first_child`, `lft`, `rgt`, `depth`)
 VALUES
-	(1,NULL,0,NULL,'2011-05-20 17:07:58','2012-05-09 15:58:30',1,'/','^/$',0,'none',0,0,1,4,0),
+	(1,NULL,0,NULL,'2011-05-20 17:07:58','2012-08-19 17:52:18',1,'/','^/$',0,'text',0,0,1,4,0),
 	(2,1,0,NULL,'2011-05-20 17:07:58','2011-11-28 19:37:51',0,NULL,'^/404$',0,'none',0,0,2,3,1),
 	(3,NULL,1,NULL,'2011-05-20 17:07:58','2011-08-11 20:36:35',1,'',NULL,1,'none',0,1,5,20,0),
 	(5,3,3,NULL,'2011-05-23 15:09:40','2011-12-05 19:21:55',1,'',NULL,1,'none',0,0,6,7,1),
@@ -3655,7 +3665,7 @@ VALUES
 	(5,'approximate_ascii','--- \"false\"\n',1,'2011-05-20 17:08:21','2011-05-20 17:08:21','pages',0,NULL,'text_area'),
 	(6,'strip_non_ascii','--- \"false\"\n',1,'2011-05-20 17:08:21','2011-05-20 17:08:21','pages',0,NULL,'text_area'),
 	(7,'i18n_translation_locales','--- \n:en: English\n:fr: \"Fran\\xC3\\xA7ais\"\n:nl: Nederlands\n:\"pt-BR\": \"Portugu\\xC3\\xAAs\"\n:da: Dansk\n:nb: \"Norsk Bokm\\xC3\\xA5l\"\n:sl: Slovenian\n:es: \"Espa\\xC3\\xB1ol\"\n:it: Italiano\n:de: Deutsch\n:lv: Latviski\n:ru: \"\\xD0\\xA0\\xD1\\x83\\xD1\\x81\\xD1\\x81\\xD0\\xBA\\xD0\\xB8\\xD0\\xB9\"\n:sv: Svenska\n:pl: Polski\n:\"zh-CN\": Simplified Chinese\n:\"zh-TW\": Traditional Chinese\n:el: \"\\xCE\\x95\\xCE\\xBB\\xCE\\xBB\\xCE\\xB7\\xCE\\xBD\\xCE\\xB9\\xCE\\xBA\\xCE\\xAC\"\n:rs: Srpski\n:cs: \"\\xC4\\x8Cesky\"\n:sk: \"Slovensk\\xC3\\xBD\"\n:jp: \"\\xE6\\x97\\xA5\\xE6\\x9C\\xAC\\xE8\\xAA\\x9E\"\n',1,'2011-05-20 17:08:27','2011-05-20 17:08:27','refinery',0,NULL,'text_area'),
-	(8,'site_name','--- Christian Aid Ministries\n',1,'2011-05-20 17:08:28','2011-05-20 20:08:24',NULL,0,NULL,'text_area'),
+	(8,'site_name','--- Town of Dayton, Virginia\n...\n',1,'2011-05-20 17:08:28','2012-08-19 17:57:13',NULL,0,NULL,'text_area'),
 	(9,'use_resource_caching','--- \"true\"\n',1,'2011-05-20 17:08:28','2011-05-20 17:08:28',NULL,0,NULL,'text_area'),
 	(10,'use_google_ajax_libraries','--- \"false\"\n',1,'2011-05-20 17:08:28','2011-05-20 17:08:28',NULL,0,NULL,'text_area'),
 	(11,'i18n_translation_default_locale','--- :en\n',1,'2011-05-20 20:08:09','2011-05-20 20:08:09','refinery',0,NULL,'text_area'),
@@ -3674,7 +3684,7 @@ VALUES
 	(24,'default_page_parts','--- \n- Body\n- Side Body\n',1,'2011-05-23 15:06:56','2011-05-23 15:06:56',NULL,0,NULL,'text_area'),
 	(25,'user_image_sizes','--- \n:small: 110x110>\n:medium: 225x255>\n:large: 450x450>\n',0,'2011-05-23 17:03:54','2011-05-23 17:03:54',NULL,0,NULL,'text_area'),
 	(26,'superuser_can_assign_roles','--- \"false\"\n',1,'2011-05-23 17:25:49','2011-05-23 17:25:49',NULL,0,NULL,'text_area'),
-	(27,'page_title','--- Christian Aid Ministries\n',1,'2011-05-24 19:38:59','2011-05-24 19:38:59',NULL,0,NULL,'text_area'),
+	(27,'page_title','--- Town of Dayton, Virginia\n...\n',1,'2011-05-24 19:38:59','2012-08-19 17:56:38',NULL,0,NULL,'text_area'),
 	(28,'logo_url','--- /images/found_logo.jpg\n',1,'2011-05-24 19:39:17','2011-05-24 19:39:17',NULL,0,NULL,'text_area'),
 	(29,'logo_alt_text','--- Developed by Found\n',1,'2011-05-24 19:39:33','2011-05-24 19:39:33',NULL,0,NULL,'text_area'),
 	(30,'analytics_page_code','UA-11649918-2',1,'2011-08-19 14:37:38','2011-11-21 14:32:51',NULL,0,NULL,'text_area'),
@@ -4614,7 +4624,12 @@ VALUES
 	(638,7,'Page::Translation',NULL,NULL,NULL,'2012-07-23 19:58:39','2012-07-23 19:58:39'),
 	(639,7,'Page::Translation',NULL,NULL,NULL,'2012-07-23 20:00:52','2012-07-23 20:00:52'),
 	(640,57,'Page::Translation',NULL,NULL,NULL,'2012-07-30 15:36:17','2012-07-30 15:36:17'),
-	(641,57,'Page::Translation',NULL,NULL,NULL,'2012-07-30 15:36:17','2012-07-30 15:36:17');
+	(641,57,'Page::Translation',NULL,NULL,NULL,'2012-07-30 15:36:17','2012-07-30 15:36:17'),
+	(642,1,'Page::Translation',NULL,NULL,NULL,'2012-08-19 17:21:23','2012-08-19 17:21:23'),
+	(643,1,'Page::Translation',NULL,NULL,NULL,'2012-08-19 17:21:51','2012-08-19 17:21:51'),
+	(644,1,'Page::Translation',NULL,NULL,NULL,'2012-08-19 17:47:58','2012-08-19 17:47:58'),
+	(645,1,'Page::Translation',NULL,NULL,NULL,'2012-08-19 17:51:45','2012-08-19 17:51:45'),
+	(646,1,'Page::Translation',NULL,NULL,NULL,'2012-08-19 17:52:18','2012-08-19 17:52:18');
 
 /*!40000 ALTER TABLE `seo_meta` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -4804,7 +4819,8 @@ VALUES
 	(180,'food-parcels-bring-hope-to-nicaraguan-families',74,1,'NewsItem',NULL,'2012-07-19 15:03:02','en'),
 	(181,'schedule-of-events--july-august',56,1,'NewsItem',NULL,'2012-07-23 20:17:15','en'),
 	(182,'syrian-refugee-crisis',67,1,'NewsItem',NULL,'2012-07-27 20:28:53','en'),
-	(183,'emails-page',41,1,'Page',NULL,'2012-07-30 15:36:17','en');
+	(183,'emails-page',41,1,'Page',NULL,'2012-07-30 15:36:17','en'),
+	(184,'scam-alert',1,1,'NewsItem',NULL,'2012-08-19 17:34:59','en');
 
 /*!40000 ALTER TABLE `slugs` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -4975,23 +4991,23 @@ VALUES
 	(204,1,'refinery_pages',2),
 	(205,1,'programs',3),
 	(206,1,'content_holders',4),
-	(207,1,'memberships',5),
+	(207,1,'memberships',4),
 	(208,1,'categories',6),
 	(209,1,'products',7),
 	(210,1,'refinery_files',8),
 	(211,1,'refinery_images',9),
 	(212,1,'refinerycms_base',10),
 	(213,1,'refinery_settings',11),
-	(214,1,'refinery_users',12),
-	(215,1,'subscriptions',13),
+	(214,1,'refinery_users',5),
+	(215,1,'subscriptions',6),
 	(216,1,'subscription_types',14),
 	(217,1,'refinery_core',15),
 	(218,1,'refinery_dialogs',16),
-	(219,1,'orders',17),
+	(219,1,'orders',7),
 	(220,1,'donations',18),
 	(221,1,'refinery_i18n',19),
 	(222,1,'refinery_generators',20),
-	(223,1,'contacts',21),
+	(223,1,'contacts',9),
 	(224,1,'refinerycms_search',22),
 	(225,2,'categories',0),
 	(226,2,'contacts',1),
@@ -5115,7 +5131,7 @@ VALUES
 	(446,13,'subscription_types',12),
 	(447,13,'subscriptions',13),
 	(448,13,'refinery_users',14),
-	(449,1,'emails',23),
+	(449,1,'emails',8),
 	(450,2,'emails',13),
 	(451,3,'emails',15),
 	(452,4,'emails',15),
