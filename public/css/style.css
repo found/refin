@@ -165,7 +165,7 @@ p em, a p em {
 	text-decoration:underline;
 	background:none;
 }
-#container_header #header_content #sub_nav li a.right {
+#container_header #header_content #sub_nav li.last a {
 	margin-right:0;
 	padding-right:6;
 	border-right:none;
@@ -218,6 +218,7 @@ p em, a p em {
 	/* For IE 5.5 - 7 */
 	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
 }
+
 #container_header #header_content #nav li:hover a {
 	color:#c95151;
 }
@@ -242,7 +243,26 @@ p em, a p em {
 	margin-bottom:0;
 	padding-bottom:0;
 	width:180px;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	/* For IE 8 */
+	-ms-filter: "";
+	/* For IE 5.5 - 7 */
+	filter: none;
+
 }
+
+#container_header #header_content #nav li a {
+	-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.5);
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
 #container_header #header_content #nav li:hover ul li a:hover {
 	color:#c95151;
 }
@@ -433,4 +453,33 @@ p em, a p em {
 	position:relative;
 	z-index:3000;
 	color:#eee;
+}
+
+
+#maincolumn h1 {
+	font-size: 32px;
+	color: #8fa35d;
+	font-weight: bold;
+}
+
+#maincolumn h2 {
+	font-size: 24px;
+	color: #222;
+}
+
+#maincolumn h3 {
+	font-size: 18px;
+	color: #222;
+}
+
+#maincolumn li {
+	color: #222;
+	border-bottom: 1px solid #ddd;
+	list-style-type: disc;
+	margin-left: 15px;
+}
+
+#maincolumn a:link, #maincolumn a:visited {
+	color: #369;
+	text-decoration: underline;
 }

@@ -1,10 +1,12 @@
+<a name="top"></a>
 <div id="container_header">
   <div id="header_content" class="container_1000px"> <a href="/" id="container_logo"> </a>
     <ul id="sub_nav">
       <li><a href="/">Home</a></li>
-      <li><a href="#">FAQ</a></li>
-      <li><a href="#">Links</a></li>
-      <li><a class="right" href="#">Downloads</a></li>
+	<%= render :partial => '/shared/menu', locals: { 
+											roots: @menu_pages.reject{|p| p.parent_id != 1 }
+											 } -%>
+
       <li id="search_bar">
 		<% form_tag search_url do -%>
 		  <%= text_field_tag :query, {}, {:type => "search",
@@ -15,22 +17,12 @@
 		<% end %>
       </li>
     </ul>
-    <ul id="nav">
-      <li><a class="shadowed" href="#">History</a></li>
-      <li><a class="shadowed" href="#">Town Departments</a>
-        <ul>
-          <li><a href="#">Administrative</a></li>
-          <li><a href="#">Parks</a></li>
-          <li><a href="#">Town Police Dept.</a></li>
-          <li><a href="#">Public Works</a></li>
-          <li><a href="#">Treasurer</a></li>
-          <li><a href="#">Zoning Admin.</a></li>
-          <li><a href="#">Newsletter</a></li>
-        </ul>
-      </li>
-      <li><a class="shadowed" href="#">Town Government</a></li>
-      <li><a class="shadowed" href="#">Community</a></li>
-    </ul>
+	<%= render :partial => '/shared/menu_main', locals: { 
+											roots: @menu_pages.reject{|p| p.parent_id != 45 }
+											 } -%>
+
+
+
   </div>
 </div>
 

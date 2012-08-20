@@ -14,30 +14,12 @@
 
 
 <div class="column_third green">
-  <h3>Upcoming Events</h3>
-  <ul>
-	<% NewsItem.find(:all, :conditions => ["publish_date < ? AND news_type = ?", Time.now, "News Release"], :order => "publish_date DESC", :limit => 3).each do |news| %>
-		<li> <%= link_to (image_fu news.image, "125x125>"), (news_item_url(news)) unless news.image.nil? %>
-			<h4><%= link_to news.title, (news_item_url(news)) %></h4>
-			<p><strong><%= news.long_time %></strong></p>
-			<p><%= shorten(strip_tags(news.body), 180) %></p>
-		</li>
-			
-	<% end %>
-  </ul>
+	
+	<%= render partial: "shared/upcoming_events" %>
+
 </div>
 <div class="column_third red">
-  <h3>Recent News</h3>
-  <ul>
-	<% NewsItem.find(:all, :conditions => ["publish_date < ? AND news_type = ?", Time.now, "News Release"], :order => "publish_date DESC", :limit => 3).each do |news| %>
-		<li> <%= link_to (image_fu news.image, "125x125>"), (news_item_url(news)) unless news.image.nil? %>
-			<h4><%= link_to news.title, (news_item_url(news)) %></h4>
-			<p><strong><%= news.long_time %></strong></p>
-			<p><%= shorten(strip_tags(news.body), 180) %> <%= button_to "read more", (news_item_url(news)) %></p>
-		</li>
-
-	<% end %>
-  </ul>
+	<%= render partial: "shared/recent_news" %>
 </div>
 <div class="column_third blue right">
   <h3>Quick Links</h3>
