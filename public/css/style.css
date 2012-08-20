@@ -374,7 +374,7 @@ p em, a p em {
 	float:right;
 	margin:0 0 10px 10px;
 }
-.green h3, .green h3 a:link, .green h4, .green h4 a:link, .green h5, .red h5 a:link, .green li, .green li a:link {
+.green h3, .green h3 a:link, .green h4, .green h4 a:link, .green h5, .green h5 a:link, .green li, .green li a:link {
 	color:#8fa35d;
 	border-bottom-color:#8fa35d;
 }
@@ -482,4 +482,11 @@ p em, a p em {
 #maincolumn a:link, #maincolumn a:visited {
 	color: #369;
 	text-decoration: underline;
+}
+
+.red h2 {
+	color: #c95151;
+}
+.red aside #events li {
+	list-style-type: none;
 }

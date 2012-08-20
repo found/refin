@@ -1,0 +1,43 @@
+<div id="container_main_content">
+  <div id="content">
+		
+
+
+<% content_for :body_content_left do %>
+	<div id="featured_events" class="events">
+		<h2>Featured Events</h2>
+		<%= render :partial => 'event', :collection => @featured_events, :locals => { :featured => true } %>
+	</div>
+	
+  <div id="all_events" class="events">
+		<h2>All Events</h2>
+		<%= render :partial => 'event', :collection => @events %>
+	</div>
+<% end %>
+
+<%= render 'events/sidebar' %>
+
+<%= render :partial => "/shared/content_page" %>
+
+  <div class="column_third right">
+	<div class="blue" style="margin-bottom: 40px;">
+	  <h3>Quick Links</h3>
+		<%= ContentHolder.find(3).body.html_safe %>
+
+    </div>
+	<div class="green" style="margin-bottom: 40px;">
+		<%= render partial: "shared/upcoming_events" %>
+
+    </div>
+    <div class=" red " style="margin-bottom: 40px;">
+		<%= render partial: "shared/recent_news" %>
+    </div>
+  </div>
+  <div class="clear_left"></div>
+
+
+  </div>
+</div>
+
+
+<% content_for :stylesheets, stylesheet_link_tag('refinerycms-events') %>

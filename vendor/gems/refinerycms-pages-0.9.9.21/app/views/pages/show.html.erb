@@ -3,22 +3,8 @@
 		
 	<%= render :partial => "/shared/content_page" %>
    
-
-  <div class="column_third right">
-	<div class="blue" style="margin-bottom: 40px;">
-	  <h3>Quick Links</h3>
-		<%= ContentHolder.find(3).body.html_safe %>
-
-    </div>
-	<div class="green" style="margin-bottom: 40px;">
-		<%= render partial: "shared/upcoming_events" %>
-
-    </div>
-    <div class=" red " style="margin-bottom: 40px;">
-		<%= render partial: "shared/recent_news" %>
-    </div>
-  </div>
-  <div class="clear_left"></div>
+	<%= render :partial => "/shared/right_sidebar" %>
+ 
 
 
   </div>
