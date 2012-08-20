@@ -28,6 +28,7 @@ gem 'refinerycms-content_holders', '1.0', :path => 'vendor/gems'
 gem 'refinerycms-subscriptions', '1.0', :path => 'vendor/gems'
 gem 'refinerycms-subscription_types', '1.0', :path => 'vendor/gems'
 gem 'refinerycms-orders', '1.0', :path => 'vendor/gems'
+gem 'refinerycms-calendar', '~>1.1'
 
 gem 'refinerycms-contacts', '1.0', :path => 'vendor/gems'
 gem 'refinerycms-search', '~> 0.9.8', :path => "vendor/gems"
