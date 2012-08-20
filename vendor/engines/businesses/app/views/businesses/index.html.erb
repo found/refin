@@ -1,0 +1,31 @@
+<div id="container_main_content">
+  <div id="content">
+		
+
+
+<% content_for :body_content_left do %>
+	
+<%=raw @page[:body] %>
+
+  <ul id="businesses">
+    <% @businesses.each do |business| %>
+      <li>
+        <%= link_to business.name, business_url(business) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+<%= render :partial => "/shared/content_page" %>
+
+
+   
+	<%= render :partial => "/shared/right_sidebar" %>
+ 
+
+
+  </div>
+</div>
+	
+

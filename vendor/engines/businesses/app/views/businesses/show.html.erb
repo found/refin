@@ -1,0 +1,47 @@
+<div id="container_main_content">
+  <div id="content">
+		
+
+<% content_for :body_content_left do %>
+    <h1><%=raw @business.name %></h1>
+    <h3>Call: <%=raw @business.phone %></h3>
+    <h3>Write: <%=raw auto_link @business.email %></h3>
+	<%= @business.image_id %>
+    <p>
+      <%= @business.address_1 %><br />
+      <%= @business.address_2 %><% unless @business.address_2.nil? || @business.address_2.blank? %><br /><% end %>
+      <%= @business.city %>, <%=raw @business.province %> <%=raw @business.zipcode %><br />
+
+    </p>
+
+      <%=raw @business.lat %>
+
+      <%=raw @business.lng %>
+	<hr />
+    <h3>Description</h3>
+      <%=raw @business.description %>
+<% end %>
+
+<% content_for :side_body do %>
+  <aside>
+    <h2><%= t('.other') %></h2>
+    <ul id="businesses">
+      <% @businesses.each do |business| %>
+        <li>
+          <%= link_to business.name, business_url(business) %>
+        </li>
+      <% end %>
+    </ul>
+  </aside>
+<% end %>
+
+<%= render :partial => "/shared/content_page" %>
+
+   
+	<%= render :partial => "/shared/right_sidebar" %>
+
+
+  </div>
+</div>
+	
+

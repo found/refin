@@ -1,6 +1,7 @@
 PATH
   remote: vendor/engines
   specs:
+    refinerycms-businesses (1.0)
     refinerycms-emails (1.0)
 
 PATH
@@ -324,6 +325,7 @@ DEPENDENCIES
   refinerycms (= 0.9.9.21)
   refinerycms-authentication (= 0.9.9.21)!
   refinerycms-base (= 0.9.9.21)!
+  refinerycms-businesses (= 1.0)!
   refinerycms-calendar (~> 1.1)!
   refinerycms-categories (= 1.0)!
   refinerycms-contacts (= 1.0)!

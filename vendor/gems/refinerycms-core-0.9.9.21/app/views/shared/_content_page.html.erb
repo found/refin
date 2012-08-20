@@ -64,7 +64,7 @@
 				elsif dom_id.to_s == "side_body"
 					section[:html] = "<div class='column_third red narrow'>#{section[:html]}</div>".html_safe
 				else
-					section[:html] = "<section id='#{dom_id}'><div class='inner'>#{section[:html]}</div></section>".html_safe
+					section[:html] = "<div class='column_third red narrow'>#{section[:html]}</div>".html_safe
 				end
         
       end
@@ -73,9 +73,8 @@
     end
   end
 -%>
-<!-- <section id='body_content'<%= " class='#{css.join(' ')}'" if css.present? %>> -->
+
   <%= raw sections.reverse.map{|section| section[:html]}.join("\n") -%>
-<!-- </section> -->
 
 
 

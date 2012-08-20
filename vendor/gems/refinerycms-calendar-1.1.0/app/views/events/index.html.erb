@@ -4,6 +4,11 @@
 
 
 <% content_for :body_content_left do %>
+
+	<%=raw @page[:body] %>
+
+<h3>Subscribe to our Calendar: <%= link_to "Subscribe via RSS", events_path(:format => :rss) %></h3>
+<hr />
 	<div id="featured_events" class="events">
 		<h2>Featured Events</h2>
 		<%= render :partial => 'event', :collection => @featured_events, :locals => { :featured => true } %>
@@ -15,25 +20,12 @@
 	</div>
 <% end %>
 
-<%= render 'events/sidebar' %>
+
 
 <%= render :partial => "/shared/content_page" %>
 
-  <div class="column_third right">
-	<div class="blue" style="margin-bottom: 40px;">
-	  <h3>Quick Links</h3>
-		<%= ContentHolder.find(3).body.html_safe %>
+<%= render :partial => "/shared/right_sidebar" %>
 
-    </div>
-	<div class="green" style="margin-bottom: 40px;">
-		<%= render partial: "shared/upcoming_events" %>
-
-    </div>
-    <div class=" red " style="margin-bottom: 40px;">
-		<%= render partial: "shared/recent_news" %>
-    </div>
-  </div>
-  <div class="clear_left"></div>
 
 
   </div>

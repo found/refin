@@ -1,0 +1,25 @@
+lolcat:
+  shared:
+    admin:
+      image_picker:
+        image: IMAGE
+  plugins:
+    businesses:
+      title: Businesses
+  admin:
+    businesses:
+      actions:
+        create_new: CREATE NEW Business
+        reorder: REORDR Businesses
+        reorder_done: DUN REORDERIN Businesses
+      records:
+        title: Businesses
+        sorry_no_results: SRY! THAR R NO RESULTS FINDZ.
+        no_items_yet: THAR R NO Businesses YET. CLICK "CREATE NEW Business" 2 ADD UR FURST business.
+      business:
+        view_live_html: VIEW DIS business LIV <BR/><EM>(OPENS IN NEW WINDOW)</EM>
+        edit: EDIT DIS business
+        delete: REMOOV DIS business FOREVR
+  businesses:
+    show:
+      other: OTHR Businesses

@@ -5,9 +5,8 @@
 
 <% content_for :body_content_left do %>
 	<div>
-		<br />
 		<h1><%= @news_item.title %></h1>
-		<p style="margin-top:-8px;">
+		<p>
 			<% if !@news_item.subtitle.blank? %>
 				<strong><%= @news_item.subtitle %></strong><br />
 			<% end %>
@@ -17,7 +16,7 @@
 			<%= image_fu @news_item.image, "300x", :class => 'add-caption', :alt => "#{@news_item.image_caption}" %>
 		</div>
     
-    <p style="margin-top:-15px;"><%= @news_item.body.html_safe %></p>
+    <p style="margin-top:5px;"><%= @news_item.body.html_safe %></p>
 		<div style="clear:left;"></div>
 		<% if @news_item.has_program? %>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -119,8 +118,11 @@
 <% end %>
 
 <% content_for :side_body do %>
+	<%= ContentHolder.find(116).body.html_safe rescue "" %>
+
 	<%= render(:partial => 'recent_posts') %>
 <% end %>
+
 
 	<%= render :partial => "/shared/content_page" %>
 
