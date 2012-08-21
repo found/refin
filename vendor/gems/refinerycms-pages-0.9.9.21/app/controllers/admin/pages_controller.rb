@@ -20,6 +20,8 @@ module Admin
     
     def clear_cache
       File.delete("#{RAILS_ROOT}/public/index.html") if File.file?("#{RAILS_ROOT}/public/index.html")
+      File.delete("#{RAILS_ROOT}/public/front.html") if File.file?("#{RAILS_ROOT}/public/front.html")
+      File.delete("#{RAILS_ROOT}/public/inside.html") if File.file?("#{RAILS_ROOT}/public/inside.html")
       FileUtils.rm_rf("#{RAILS_ROOT}/public/about-cam/")
       FileUtils.rm_rf("#{Rails.root}/public/about")
       FileUtils.rm_rf("#{Rails.root}/public/about-us")
