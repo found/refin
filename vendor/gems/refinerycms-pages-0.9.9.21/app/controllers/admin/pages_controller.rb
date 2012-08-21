@@ -21,6 +21,28 @@ module Admin
     def clear_cache
       File.delete("#{RAILS_ROOT}/public/index.html") if File.file?("#{RAILS_ROOT}/public/index.html")
       FileUtils.rm_rf("#{RAILS_ROOT}/public/about-cam/")
+      FileUtils.rm_rf("#{Rails.root}/public/about")
+      FileUtils.rm_rf("#{Rails.root}/public/about-us")
+      FileUtils.rm_rf("#{Rails.root}/public/announcements")
+      FileUtils.rm_rf("#{Rails.root}/public/areas")
+      FileUtils.rm_rf("#{Rails.root}/public/case_studies")
+      FileUtils.rm_rf("#{Rails.root}/public/equipments")
+      FileUtils.rm_rf("#{Rails.root}/public/faqs")
+      FileUtils.rm_rf("#{Rails.root}/public/gallery")
+      FileUtils.rm_rf("#{Rails.root}/public/home")
+      FileUtils.rm_rf("#{Rails.root}/public/institutions")
+      FileUtils.rm_rf("#{Rails.root}/public/instructors")
+      FileUtils.rm_rf("#{Rails.root}/public/locations")
+      FileUtils.rm_rf("#{Rails.root}/public/media-center")
+      FileUtils.rm_rf("#{Rails.root}/public/members")
+      FileUtils.rm_rf("#{Rails.root}/public/our-staff")
+      FileUtils.rm_rf("#{Rails.root}/public/pages")
+      FileUtils.rm_rf("#{Rails.root}/public/programs")
+      FileUtils.rm_rf("#{Rails.root}/public/showcases")
+      FileUtils.rm_rf("#{Rails.root}/public/solutions")
+      FileUtils.rm_rf("#{Rails.root}/public/updates")
+      FileUtils.rm_rf("#{Rails.root}/public/web")
+      FileUtils.rm_rf("#{Rails.root}/public/workshops")
       redirect_to :back, :notice => "Cache cleared successfully" and return
     end
 
