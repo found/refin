@@ -32,8 +32,16 @@ blockquote:before, blockquote:after, q:before, q:after {
 	content: none;
 }
 table {
+	border: solid 1px #94AFCE;
 	border-collapse: collapse;
 	border-spacing: 0;
+	font-family:Helvetica, Arial, sans-serif;
+    font-size:13px;
+    font-size:14px;
+    color:#190900;
+    line-height:1.5em;
+    margin-bottom:18px;
+    color:#5c5c5c;
 }
 h1, h2, h3, h4, h5 {
 	font-family: 'Rokkitt', serif;

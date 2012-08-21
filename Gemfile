@@ -2,7 +2,7 @@
 
 gem 'rails', '3.0.7'
 gem 'rake', '>= 0.9.2'
-
+gem 'dragonfly', '0.8.5'
 gem 'ancestry'
 gem 'activemerchant', '1.15.0', :path => "vendor/gems/activemerchant-1.15.0"
 gem 'authorize-net', '1.5.2', :path => "vendor/gems/authorize-net-1.5.2"
@@ -62,6 +62,5 @@ group :test do
   gem 'capybara'
   gem 'shoulda'
 end
-
 gem 'refinerycms-emails', '1.0', :path => 'vendor/engines'
 gem 'refinerycms-businesses', '1.0', :path => 'vendor/engines'
