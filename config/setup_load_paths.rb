@@ -12,19 +12,4 @@ end
 # If you're not using Bundler at all, remove lines bellow
 ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
 require 'bundler/setup'
-#
-# Select the correct item for which you use below.
-# If you're not using bundler, remove it completely.
-#
-# # If we're using a Bundler 1.0 beta
-# ENV['BUNDLE_GEMFILE'] = File.expand_path('../Gemfile', File.dirname(__FILE__))
-# require 'bundler/setup'
-#
-# # O:r Bundler 0.9...
-# if File.exist?(".bundle/environment.rb")
-#   require '.bundle/environment'
-# else
-#   require 'rubygems'
-#   require 'bundler'
-#   Bundler.setup
-# end
+
