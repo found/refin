@@ -2,9 +2,9 @@ CamDon::Application.configure do
   # Force SSL
   config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
   config.middleware.use ExceptionNotifier,
-    :email_prefix => "[CAM No] ",
-    :sender_address => %{"notifier" <notifier@christianaidministires.org>},
-    :exception_recipients => %w{kevin@wearefound.com}
+    :email_prefix => "[Dayton] ",
+    :sender_address => %{"notifier" <notifier@daytonva.us>},
+    :exception_recipients => %w{support@wearefound.com}
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.
