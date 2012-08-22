@@ -4,16 +4,16 @@
 
 
 <% content_for :body_content_left do %>
-	
-<%=raw @page[:body] %>
-
-  <ul id="businesses">
+	<h2>Local Businesses</h2>
+	<ul id="businesses">
     <% @businesses.each do |business| %>
       <li>
         <%= link_to business.name, business_url(business) %>
       </li>
     <% end %>
   </ul>
+<%=raw @page[:body] %>
+
 <% end %>
 
 
