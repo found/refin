@@ -31,6 +31,13 @@ blockquote:before, blockquote:after, q:before, q:after {
 	content: '';
 	content: none;
 }
+
+hr {
+	margin-bottom: 20px;
+	margin-top: 20px;
+	border: 1px dotted #ddd;
+}
+
 table {
 	width: 100%;
 	border-collapse: collapse;
@@ -45,17 +52,19 @@ table {
 
 td {
 	vertical-align: bottom;
-	padding-top: 15px;
-	padding-left: 5px;
+	padding: 10px 10px 0px 10px;
 }
 
 table, td, th {
-	border: solid 1px #94AFCE;
+	border: solid 1px #777;
 }
 
-th {
-	background-color: green;
-	color: white;
+tr.alt {
+	background-color: #f0efe8;
+}
+
+table caption {
+	font-size: 16px;
 }
 
 h1, h2, h3, h4, h5 {
@@ -116,10 +125,10 @@ p strong, a p strong {
 	color:#333;
 }
 p em, a p em {
-	font-weight:italic;
+	font-style:italic;
 	font-family:Helvetica, Arial, sans-serif;
 	font-size:13px;
-	color:#190900;
+	color:#5C5C5C;
 	line-height:1.5em;
 	margin-bottom:22px;
 }
@@ -343,7 +352,7 @@ p em, a p em {
 }
 #container_main_content #content {
 	width:928px;
-	padding:0 36px 36px 36px;
+	padding:0 16px 36px 16px;
 	margin:0 auto;
 }
 .column_third {
@@ -393,15 +402,16 @@ p em, a p em {
 	padding-bottom:6px;
 	margin-bottom:12px;
 }
-.column_third img {
-	float:right;
-	margin:0 0 10px 10px;
+
+.column_third {
+	margin-top: 10px;
 }
+
 .green h3, .green h3 a:link, .green h4, .green h4 a:link, .green h5, .green h5 a:link, .green li, .green li a:link {
 	color:#8fa35d;
 	border-bottom-color:#8fa35d;
 }
-.red h3, .red h3 a:link, .red h4, .red h4 a:link, .red h5, .red h5 a:link, .red li, .red li a:link  {
+.red h3, .red h3 a:link,.red h3 a:visited, .red h4, .red h4 a:link,.red h4 a:visited, .red h5, .red h5 a:link,.red h5 a:visited, .red li, .red li a:link, .red li a:visited  {
 	color:#c95151;
 	border-bottom-color:#c95151;
 }
@@ -488,6 +498,8 @@ p em, a p em {
 #maincolumn h2 {
 	font-size: 24px;
 	color: #222;
+	padding-bottom: 5px;
+	padding-top: 5px;
 }
 
 #maincolumn h3 {
@@ -496,10 +508,11 @@ p em, a p em {
 }
 
 #maincolumn li {
-	color: #222;
+	font-family:Helvetica, Arial, sans-serif;
+	color:#5C5C5C;
+	margin-left: 30px;
 	border-bottom: 1px solid #ddd;
 	list-style-type: disc;
-	margin-left: 15px;
 }
 
 #maincolumn a:link, #maincolumn a:visited {
@@ -512,4 +525,31 @@ p em, a p em {
 }
 .red aside #events li {
 	list-style-type: none;
+}
+
+.pdf img {
+	float:left;
+	padding-right: 10px;
+}
+
+
+.pdf p, a p {
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 1.5em;
+	padding-top: 10px;
+	font-family:Helvetica, Arial, sans-serif;
+    color:#333;
+}
+
+.pdf {
+	padding-bottom: 10px;
+}
+
+.pdf a {
+	font-size: 13px;
+	font-weight: bold;
+	font-family:Helvetica, Arial, sans-serif;
+    color:#333;
+	line-height: 1.5em;
 }
