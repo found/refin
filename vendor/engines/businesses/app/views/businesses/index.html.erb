@@ -4,6 +4,7 @@
 
 
 <% content_for :body_content_left do %>
+	<h1>Local Dayton Directory</h1>
 	<h2>Local Businesses</h2>
 	<ul id="businesses">
     <% @businesses.each do |business| %>
@@ -12,7 +13,8 @@
       </li>
     <% end %>
   </ul>
-<%=raw @page[:body] %>
+
+	<%=raw @page[:body] %>
 
 <% end %>
 
