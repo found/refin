@@ -3,6 +3,7 @@ PATH
   specs:
     refinerycms-businesses (1.0)
     refinerycms-emails (1.0)
+    refinerycms-meetings (1.0)
 
 PATH
   remote: vendor/gems
@@ -337,6 +338,7 @@ DEPENDENCIES
   refinerycms-generators (= 1.0.1)!
   refinerycms-i18n (= 1.0.0)
   refinerycms-images (= 0.9.9.21)!
+  refinerycms-meetings (= 1.0)!
   refinerycms-memberships (= 1.0)!
   refinerycms-news (= 1.1.0)!
   refinerycms-orders (= 1.0)!

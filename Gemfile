@@ -64,3 +64,4 @@ group :test do
 end
 gem 'refinerycms-emails', '1.0', :path => 'vendor/engines'
 gem 'refinerycms-businesses', '1.0', :path => 'vendor/engines'
+gem 'refinerycms-meetings', '1.0', :path => 'vendor/engines'

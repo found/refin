@@ -1,0 +1,21 @@
+nl:
+  plugins:
+    meetings:
+      title: Meetings
+  admin:
+    meetings:
+      actions:
+        create_new: Maak een nieuwe Meeting
+        reorder: Wijzig de volgorde van de Meetings
+        reorder_done: Klaar met het wijzingen van de volgorde van de Meetings
+      records:
+        title: Meetings
+        sorry_no_results: Helaas! Er zijn geen resultaten gevonden.
+        no_items_yet: Er zijn nog geen Meetings. Druk op 'Maak een nieuwe Meeting' om de eerste aan te maken.
+      meeting:
+        view_live_html: Bekijk deze meeting op de website <br/><em>(opent een nieuw venster)</em>
+        edit: Bewerk deze meeting
+        delete: Verwijder deze meeting voor eeuwig
+  meetings:
+    show:
+      other: Andere Meetings
