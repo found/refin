@@ -4,7 +4,7 @@
 		<li>
 			<h4><%= link_to meeting.title, "" %></h4>
 
-			<p><%= shorten(strip_tags(meeting.blurb), 180) %> <%= button_to "read more", "", :method => 'get' %></p>
+			<p><%= shorten(strip_tags(meeting.blurb), 180) %> <br /><br /><%= link_to "read more", "" %></p>
 		</li>
 
 	<% end %>
