@@ -1,11 +1,22 @@
-<% content_for :body_content_left do %>
-  <ul id="meetings">
-    <% @meetings.each do |meeting| %>
-      <li>
-        <%= link_to meeting.title, meeting_url(meeting) %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+<div id="container_main_content">
+  <div id="content">
+		
 
-<%= render :partial => "/shared/content_page" %>
+
+
+	<% content_for :body_content_left do %>
+	 <ul id="meetings">
+	   <% @meetings.each do |meeting| %>
+	     <li>
+	       <%= link_to meeting.title, meeting_url(meeting) %>
+	     </li>
+	   <% end %>
+	 </ul>
+	<% end %>
+
+	<%= render :partial => "/shared/content_page" %>
+
+	<%= render :partial => "/shared/right_sidebar" %>
+
+  </div>
+</div>
