@@ -4,7 +4,7 @@
 		<li> <%= link_to (image_fu evt.image, "125x125>"), "" unless evt.image.nil? %>
 			<h4><%= link_to evt.title, "" %></h4>
 			<p><strong><%= start = evt.start_at.strftime("%b %d") %> <%= endat = evt.end_at.strftime("%b %d"); " – #{endat}" if start != endat %> </strong></p>
-			<p><%= shorten(strip_tags(evt.description), 180) %> <%= button_to "read more", "" %></p>
+			<p><%= shorten(strip_tags(evt.description), 180) %> <%= button_to "read more", "", :method => 'get' %></p>
 		</li>
 
 	<% end %>
