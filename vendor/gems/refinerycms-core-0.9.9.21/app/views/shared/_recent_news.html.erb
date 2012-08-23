@@ -4,7 +4,7 @@
 		<li> <%= link_to (image_fu news.image, "125x125>"), (news_item_url(news)) unless news.image.nil? %>
 			<h4><%= link_to news.title, (news_item_url(news)) %></h4>
 			<p><strong><%= news.long_time %></strong></p>
-			<p><%= shorten(strip_tags(news.body), 180) %> <br /><br /><%= button_to "read more", (news_item_url(news)) %></p>
+			<p><%= shorten(strip_tags(news.body), 180) %> <br /><br /><%= link_to "read more", (news_item_url(news)) %></p>
 		</li>
 
 	<% end %>
