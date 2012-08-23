@@ -221,7 +221,7 @@ p em, a p em {
 }
 #container_header #header_content #sub_nav li input.search_button {
 	border:none;
-	background:none;
+	background-color:transparent;
 	width:32px;
 }
 #container_header #header_content #nav {
