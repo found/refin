@@ -5,6 +5,10 @@
 
 
 	<% content_for :body_content_left do %>
+	
+		<%=raw @page[:body] %>
+		
+		
 	 <ul id="meetings">
 	   <% @meetings.each do |meeting| %>
 	     <li>
