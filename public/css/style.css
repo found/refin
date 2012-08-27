@@ -42,7 +42,7 @@ table {
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", "Lato", Helvetica, Arial, sans-serif;
     font-size:12px;
     color:#190900;
     line-height:1.5em;
@@ -97,7 +97,7 @@ a:hover {
 	background:#f9f7e4;
 }
 li {
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 	color:#190900;
 	line-height:1.5em;
@@ -111,11 +111,11 @@ li span.green {
 }
 
 p a {
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 }
 p, a p {
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 	font-size:14px;
 	color:#190900;
@@ -125,7 +125,7 @@ p, a p {
 }
 p strong, a p strong {
 	font-weight:bold;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 	color:#190900;
 	line-height:1.5em;
@@ -134,7 +134,7 @@ p strong, a p strong {
 }
 p em, a p em {
 	font-style:italic;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 	color:#5C5C5C;
 	line-height:1.5em;
@@ -175,6 +175,7 @@ p em, a p em {
 	height:115px;
 	background:url(../images/logo_header.png);
 	text-indent:-9999px;
+	margin-left: -13px;
 	float:left;
 	display:block;
 	z-index:700;
@@ -327,7 +328,7 @@ p em, a p em {
 	margin:0;
 	z-index:10;
 	position:relative;
-	background:url(../images/slider_bg.jpg) center repeat-y #efe8da;
+/*	background:url(../images/slider_bg.jpg) center repeat-y #efe8da;*/
 	height:340px;
 }
 #bg_containers div {
@@ -336,27 +337,38 @@ p em, a p em {
 	margin:0 auto;
 }
 #bg_containers .bg1 {
-	background:url(../images/hay_field.jpg) center no-repeat;
+	background:url(../images/pink.jpg) center no-repeat;
 }
 #bg_containers .bg2 {
-	background:url(../images/fort_harrison.jpg) center no-repeat;
+	background:url(../images/land.jpg) center no-repeat;
 }
 #bg_containers .bg3 {
-	background:url(../images/blooms.jpg) center no-repeat;
+	background:url(../images/land3.jpg) center no-repeat;
 }
+#bg_containers .bg4 {
+	background:url(../images/fields.jpg) center no-repeat;
+}
+#bg_containers .bg5 {
+	background:url(../images/land2.jpg) center no-repeat;
+}
+
 #container_main_content {
 	background:#FFF;
 	position:relative;
 	z-index:200;
-	-moz-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
-	-webkit-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
-	box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+/*	-moz-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);*/
+/*	-webkit-box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);*/
+/*	box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);*/
 	/* For IE 8 */
-	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+/*	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";*/
 	/* For IE 5.5 - 7 */
-	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+/*	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');*/
 	padding-top:40px;
 	background:url(../images/main_content_vert_bg.jpg) center repeat-y;
+}
+#container_main_content.home {
+	background-image: none;
+	background: #fff;
 }
 #container_main_content #content {
 	width:928px;
@@ -366,13 +378,17 @@ p em, a p em {
 .column_third {
 	width:294px;
 	float:left;
+	font-size: 11px;
 	padding-right:22px;
 	margin-bottom:20px;
+}
+.column_third.narrower {
+	width:244px;
 }
 
 
 .column_third p, .column_third a, .column_third li, .column_third em, .column_third strong, .column_third span {
-	font-size:13px;
+	font-size:11px;
 }
 
 .column_third h4 a:link {
@@ -459,7 +475,7 @@ p em, a p em {
 	font-size:12px;
 }
 .wide {
-	width:396px;
+	width:446px;
 }
 .wide h3 {
 	border-bottom:none;
@@ -518,7 +534,7 @@ p em, a p em {
 }
 
 #maincolumn li {
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	color:#5C5C5C;
 	margin-left: 30px;
 	border-bottom: 1px solid #ddd;
@@ -548,7 +564,7 @@ p em, a p em {
 	font-weight: bold;
 	line-height: 1.5em;
 	padding-top: 10px;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
     color:#333;
 }
 
@@ -559,7 +575,32 @@ p em, a p em {
 .pdf a {
 	font-size: 13px;
 	font-weight: bold;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
     color:#333;
 	line-height: 1.5em;
+}
+
+
+.column_third ul li, .column_third p {
+	font-size: 13px;
+	padding-bottom: 0.4em;
+	margin-bottom: 0.4em;
+}
+.column_third h3 {
+	margin-bottom: 0.4em;
+}
+
+.column_third.red.narrow li a:link, .column_third.red.narrow li a:visited {
+	color:#5C5C5C;
+	font-size: 11px !important;
+	border-bottom: 0px;
+}
+.column_third.red.narrow li {
+	color:#5C5C5C;
+	border-bottom: 0px;
+}
+
+.column_third.right.narrower ul li a {
+	font-weight: 700;
+	padding-left: 3px;
 }
