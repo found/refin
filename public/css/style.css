@@ -42,7 +42,7 @@ table {
 	width: 100%;
 	border-collapse: collapse;
 	border-spacing: 0;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", "Lato", Helvetica, Arial, sans-serif;
     font-size:12px;
     color:#190900;
     line-height:1.5em;
@@ -97,7 +97,7 @@ a:hover {
 	background:#f9f7e4;
 }
 li {
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 	color:#190900;
 	line-height:1.5em;
@@ -111,11 +111,11 @@ li span.green {
 }
 
 p a {
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 }
 p, a p {
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 	font-size:14px;
 	color:#190900;
@@ -125,7 +125,7 @@ p, a p {
 }
 p strong, a p strong {
 	font-weight:bold;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 	color:#190900;
 	line-height:1.5em;
@@ -134,7 +134,7 @@ p strong, a p strong {
 }
 p em, a p em {
 	font-style:italic;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	font-size:13px;
 	color:#5C5C5C;
 	line-height:1.5em;
@@ -366,13 +366,17 @@ p em, a p em {
 .column_third {
 	width:294px;
 	float:left;
+	font-size: 11px;
 	padding-right:22px;
 	margin-bottom:20px;
+}
+.column_third.narrower {
+	width:244px;
 }
 
 
 .column_third p, .column_third a, .column_third li, .column_third em, .column_third strong, .column_third span {
-	font-size:13px;
+	font-size:11px;
 }
 
 .column_third h4 a:link {
@@ -459,7 +463,7 @@ p em, a p em {
 	font-size:12px;
 }
 .wide {
-	width:396px;
+	width:446px;
 }
 .wide h3 {
 	border-bottom:none;
@@ -518,7 +522,7 @@ p em, a p em {
 }
 
 #maincolumn li {
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
 	color:#5C5C5C;
 	margin-left: 30px;
 	border-bottom: 1px solid #ddd;
@@ -548,7 +552,7 @@ p em, a p em {
 	font-weight: bold;
 	line-height: 1.5em;
 	padding-top: 10px;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
     color:#333;
 }
 
@@ -559,7 +563,32 @@ p em, a p em {
 .pdf a {
 	font-size: 13px;
 	font-weight: bold;
-	font-family:Helvetica, Arial, sans-serif;
+	font-family:"Lato", Helvetica, Arial, sans-serif;
     color:#333;
 	line-height: 1.5em;
+}
+
+
+.column_third ul li, .column_third p {
+	font-size: 13px;
+	padding-bottom: 0.4em;
+	margin-bottom: 0.4em;
+}
+.column_third h3 {
+	margin-bottom: 0.4em;
+}
+
+.column_third.red.narrow li a:link, .column_third.red.narrow li a:visited {
+	color: #000;
+	font-size: 11px !important;
+	border-bottom: 0px;
+}
+.column_third.red.narrow li {
+	color: #000;
+	border-bottom: 0px;
+}
+
+.column_third.right.narrower ul li a {
+	font-weight: 900;
+	padding-left: 3px;
 }
