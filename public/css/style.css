@@ -605,3 +605,7 @@ p em, a p em {
 	font-size: 12px;
 	display: block;
 }
+
+.narrower h3 {
+	font-size: 22px;
+}
