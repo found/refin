@@ -1,6 +1,6 @@
 CamDon::Application.configure do
   # Force SSL
-  config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
+  # config.middleware.insert_before ActionDispatch::Static, "Rack::SSL"
   config.middleware.use ExceptionNotifier,
     :email_prefix => "[Dayton] ",
     :sender_address => %{"notifier" <notifier@daytonva.us>},

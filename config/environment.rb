@@ -9,14 +9,14 @@ module ActiveMerchant
     
     if Rails.env == "development" || Rails.env == "test"
       puts "USING DEV KEYS"
-      PAYMENTGATEWAYLOGIN = "8hCVQG37nfv"
-      PAYMENTGATEWAYPASSWORD = "967rmn35H7H9M5ZL"
+      PAYMENTGATEWAYLOGIN = ""
+      PAYMENTGATEWAYPASSWORD = ""
       PAYMENTGATEWAYMODE = true
       ANETMODE = :test
     else
       puts "USING LIVE KEYS"
-      PAYMENTGATEWAYLOGIN = "4rm6gL9TQE"
-      PAYMENTGATEWAYPASSWORD = "46aVuA5B49P8h5M3"
+      PAYMENTGATEWAYLOGIN = ""
+      PAYMENTGATEWAYPASSWORD = ""
       PAYMENTGATEWAYMODE = false
       ANETMODE = :live
     end
