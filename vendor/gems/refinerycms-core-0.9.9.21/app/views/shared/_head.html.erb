@@ -30,4 +30,12 @@ $(document).ready(function(){
 <%= yield :stylesheets %>
 
 <%= render :partial => '/shared/google_analytics' unless local_request? %>
+
+<style type="text/css">
+
+ img, div, input { behavior: url("/iepngfix.htc") }
+
+
+</style>
+
 </head>
