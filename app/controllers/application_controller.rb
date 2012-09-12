@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
-  before_filter :redirect_to_non_ssl
+  # before_filter :redirect_to_non_ssl
   
   def redirect_to_non_ssl
-     redirect_to :protocol => "http://" #unless (!request.ssl? or local_request?)
+     # redirect_to :protocol => "http://" #unless (!request.ssl? or local_request?)
   end
   
   def current_cart
