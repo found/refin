@@ -1,6 +1,11 @@
 <a name="top"></a>
+
+
+<a href="/" id="container_logo"> </a>
+
+
 <div id="container_header">
-  <div id="header_content" class="container_1000px"> <a href="/" id="container_logo"> </a>
+  <div id="header_content" class="container_1000px">
     <ul id="sub_nav">
       <li><a href="/">Home</a></li>
 	<%= render :partial => '/shared/menu', locals: { 
@@ -17,35 +22,35 @@
 		<% end %>
       </li>
     </ul>
-	<ul id="nav">
-		
-		<% 
-		# caching = (cache_menu ||= RefinerySetting.find_or_set(:cache_menu, false))
-		# 	  cache_key = [Refinery.base_cache_key, 'pages_menus', dom_id, Globalize.locale].join('_')
-		# 	  # cache the pages first
-		# 	  collection = if caching
-		# 	    Rails.cache.fetch(cache_key) { (collection ||= @menu_pages).to_a }
-		# 	  else
-		# 	    (collection ||= @menu_pages).to_a
-		# 	  end
-		collection ||= @menu_pages
-		roots = @menu_pages.reject{|p| p.parent_id != 45 } 
-		-%>
-          <%= render :partial => '/shared/menu_branch',
-                     :collection => roots,
-                     :locals => {
-                       :hide_children => false,
-                       :sibling_count => (roots.length - 1),
-                       :collection => collection,
-                       :apply_css => true 
-                     }
-          -%>
-        </ul>
+
 
 
   </div>
 </div>
-
+<ul id="nav">
+	
+	<% 
+	# caching = (cache_menu ||= RefinerySetting.find_or_set(:cache_menu, false))
+	# 	  cache_key = [Refinery.base_cache_key, 'pages_menus', dom_id, Globalize.locale].join('_')
+	# 	  # cache the pages first
+	# 	  collection = if caching
+	# 	    Rails.cache.fetch(cache_key) { (collection ||= @menu_pages).to_a }
+	# 	  else
+	# 	    (collection ||= @menu_pages).to_a
+	# 	  end
+	collection ||= @menu_pages
+	roots = @menu_pages.reject{|p| p.parent_id != 45 } 
+	-%>
+      <%= render :partial => '/shared/menu_branch',
+                 :collection => roots,
+                 :locals => {
+                   :hide_children => false,
+                   :sibling_count => (roots.length - 1),
+                   :collection => collection,
+                   :apply_css => true 
+                 }
+      -%>
+</ul>
 
 
 		<!-- 
