@@ -609,3 +609,7 @@ p em, a p em {
 .narrower h3 {
 	font-size: 22px;
 }
+
+ul#nav li li ul {
+	display:none;
+}
