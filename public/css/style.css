@@ -379,7 +379,7 @@ p em, a p em {
 
 
 .column_third p, .column_third a, .column_third li, .column_third em, .column_third strong, .column_third span {
-	font-size:11px;
+	font-size:13px;
 }
 
 .column_third h4 a:link {
@@ -477,7 +477,7 @@ p em, a p em {
 	margin-bottom:16px;
 }
 #footer_sign_bg {
-	height:160px;
+	height:100px;
 	background:url(../images/dayton_sign_footer_bg.png) top no-repeat;
 	position:relative;
 	z-index:1000;
@@ -487,7 +487,7 @@ p em, a p em {
 #footer_content {
 	width:1000px;
 	margin:0px auto;
-	padding:36px 0 20px 0;
+	padding:26px 0 10px 0;
 	text-align:center;
 	color:#FFF;
 	position:relative;
