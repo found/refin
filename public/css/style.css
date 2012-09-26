@@ -219,15 +219,17 @@ p em, a p em {
 	padding:3px 5px;
 	font-size:12px;
 	color:#999;
-	width:134px;
-	border:none;
-	background:none;
+	width:122px;
+/*	border:none;*/
+/*	background:none;*/
 	float:left;
+	z-index: 99;
 }
 #container_header #header_content #sub_nav li input.search_button {
 	border:none;
 	background:none;
 	width:32px;
+	z-index: 999;
 }
 #nav {
 
