@@ -1,0 +1,27 @@
+<!--
+<section>
+  <h1>Title</h1>
+  <p>
+    <%=raw @meeting.title %>
+  </p>
+</section>
+<section>
+  <h1>Date</h1>
+  <p>
+    <%=raw @meeting.date.strftime("%b %d, %Y at %l:%m %p")%>
+  </p>
+</section>
+<section>
+  <h1>Photo</h1>
+  <p>
+    <%= image_fu @meeting.photo, nil %>
+  </p>
+</section>
+-->
+<br/>
+<section>
+  <h2>When and Where:</h2>
+  <p>
+    <%=raw @meeting.blurb %>
+  </p>
+</section>

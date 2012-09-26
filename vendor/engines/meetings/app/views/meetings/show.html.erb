@@ -1,45 +1,22 @@
-<% content_for :body_content_title do %>
-  <%= @meeting.title %>
-<% end %>
+<div id="container_main_content">
+  <div id="content">
+
 
 <% content_for :body_content_left do %>
-  <section>
-    <h1>Title</h1>
-    <p>
-      <%=raw @meeting.title %>
-    </p>
-  </section>
-  <section>
-    <h1>Date</h1>
-    <p>
-      <%=raw @meeting.date %>
-    </p>
-  </section>
-  <section>
-    <h1>Photo</h1>
-    <p>
-      <%= image_fu @meeting.photo, nil %>
-    </p>
-  </section>
-  <section>
-    <h1>Blurb</h1>
-    <p>
-      <%=raw @meeting.blurb %>
-    </p>
-  </section>
+  <div id="event">
+		<h1><%= @meeting.title %></h1>
+		<%= render :partial => 'meeting', :locals => { :meeting => @meeting, :individual => true } %>
+	</div>	
 <% end %>
 
-<% content_for :body_content_right do %>
-  <aside>
-    <h2><%= t('.other') %></h2>
-    <ul id="meetings">
-      <% @meetings.each do |meeting| %>
-        <li>
-          <%= link_to meeting.title, meeting_url(meeting) %>
-        </li>
-      <% end %>
-    </ul>
-  </aside>
-<% end %>
 
 <%= render :partial => "/shared/content_page" %>
+
+<%= render :partial => "/shared/right_sidebar" %>
+
+
+
+  </div>
+</div>
+
+<% content_for :stylesheets, stylesheet_link_tag('refinerycms-events') %>
