@@ -1,5 +1,6 @@
-<div id="maincontent">
-	<br />
+<div id="container_main_content">
+  <div id="content">
+		<div class='column_third wide green' id='maincolumn'>
 	<h1>Please login to your account</h1>
 	<% if flash[:warning] or flash[:notice] %>
 	  <div id="notice" <% if flash[:warning] %>class="warning"<% end %>>
@@ -11,7 +12,7 @@
 	<% end %>
 
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-	<table style="width:250px;">
+	<table style="width:250px;" id="loginbox">
 		<tr>
 			<td><%= f.label :login %></td>
 			<td><%= f.text_field :login, :class => 'larger widest' %></td>
@@ -34,4 +35,22 @@
 		</tr>
 	</table>
 <% end -%>
+ 
+
+	</div>
+	<div class='column_third red narrow'> &nbsp;</div>
+	<div class="column_third right narrower">
+		<div class="blue" style="margin-bottom: 40px;">
+		  <h3>Quick Links to FAQs</h3>
+			<%= ContentHolder.find(3).body.html_safe %>
+
+	   </div>
+	 </div>
+	 <div class="clear_left"></div>
+  </div>
 </div>
+<style type="text/css" media="screen">
+	table#loginbox tr td {
+		border: none;
+	}
+</style>
