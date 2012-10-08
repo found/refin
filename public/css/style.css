@@ -330,7 +330,6 @@ p em, a p em {
 	margin:0 auto;
 }
 
-
 #container_main_content {
 	background:#FFF;
 	position:relative;
@@ -589,9 +588,14 @@ p em, a p em {
 
 .column_third.right.narrower ul li a {
 	font-weight: 700;
-	margin-left: 4px;
 	font-size: 12px;
 	display: block;
+}
+
+.column_third.right.narrower ul li h4 a {
+	font-size: 13px;
+	line-height: 12px;
+	padding-top: 5px;
 }
 
 .narrower h3 {

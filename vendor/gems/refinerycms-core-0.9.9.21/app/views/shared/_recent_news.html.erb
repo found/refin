@@ -6,7 +6,7 @@
 			<% if news.show_effective_date && news.effective_date %>
 				<p><strong><%= news.effective_date.strftime("%A, %B %d, %Y at %I:%M %p") %></strong></p>
 			<% end %>
-			<p><%= shorten(strip_tags(news.body), 180).html_safe %> <br /><br /><%= link_to "read more", (news_item_url(news)) %></p>
+			<p><%= shorten(strip_tags(news.body), 180).html_safe %> <br /><%= link_to "read more &#187;".html_safe, (news_item_url(news)) %></p>
 		</li>
 
 	<% end %>
