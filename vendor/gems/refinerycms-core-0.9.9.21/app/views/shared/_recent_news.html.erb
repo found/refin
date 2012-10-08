@@ -1,4 +1,4 @@
-<h3>Meeting Updates<br /> &amp; Announcements</h3>
+<a href="/news"><h3>Meeting Updates<br /> &amp; Announcements</h3></a>
  <ul>
 	<% NewsItem.find(:all, :conditions => ["publish_date < ? AND news_type = ?", Time.now, "News Release"], :order => "publish_date DESC", :limit => 3).each do |news| %>
 		<li> <%= link_to (image_fu news.image, "125x125>"), (news_item_url(news)) unless news.image.nil? %>
