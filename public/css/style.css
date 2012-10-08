@@ -329,21 +329,7 @@ p em, a p em {
 	height:340px;
 	margin:0 auto;
 }
-#bg_containers .bg1 {
-	background:url(../images/pink.jpg) center no-repeat;
-}
-#bg_containers .bg2 {
-	background:url(../images/land.jpg) center no-repeat;
-}
-#bg_containers .bg3 {
-	background:url(../images/land3.jpg) center no-repeat;
-}
-#bg_containers .bg4 {
-	background:url(../images/fields.jpg) center no-repeat;
-}
-#bg_containers .bg5 {
-	background:url(../images/land2.jpg) center no-repeat;
-}
+
 
 #container_main_content {
 	background:#FFF;
