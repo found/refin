@@ -19,21 +19,30 @@
     <%= f.label :subtitle %>
     <%= f.text_field :subtitle, :class => "larger widest" %>
   </div>
+	<br />
+	<div class="field">
+		<%= f.check_box :top_priority %> <span style="font-weight: bold;">Top Priority?</span> (check for yes)
+	</div>
 
   <div class='field'>
     <%= f.label :publish_date %>
     <%= f.datetime_select :publish_date %>
   </div>
+	<div class='field'>
+    <%= f.label :effective_date %>
+		<%= f.check_box :show_effective_date %> <span style="font-weight: bold;">Show Effective Date?</span> (check for yes)<br />
+    <%= f.datetime_select :effective_date %>
+  </div>
 
 	<div class='field'>
 		<%= f.label :news_type %>
-		<%= f.select :news_type, ["CAM Newsletter", "News Release"]%>
+		<%= f.select :news_type, ["News Release"] %>
 	</div>
 	
-	<div class="field">
-		<%= f.label :program_id, "Program Affiliation (leave blank for none)" %>
-		<%= f.select :program_id, Program.program_name_asc.collect{ |p| ["#{p.abbreviation} - #{p.program_name}", p.id] }.sort, { :include_blank => true } %>
-	</div>
+	<!-- <div class="field"> -->
+		<%#= f.label :program_id, "Program Affiliation (leave blank for none)" %>
+		<%#= f.select :program_id, Program.program_name_asc.collect{ |p| ["#{p.abbreviation} - #{p.program_name}", p.id] }.sort, { :include_blank => true } %>
+	<!-- </div> -->
 
   <div class='field'>
     <%= f.label :content %>

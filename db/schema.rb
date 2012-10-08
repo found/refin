@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120823181629) do
+ActiveRecord::Schema.define(:version => 20121008173727) do
 
   create_table "addresses", :force => true do |t|
     t.integer  "member_id"
@@ -292,10 +292,13 @@ ActiveRecord::Schema.define(:version => 20120823181629) do
     t.datetime "updated_at"
     t.string   "external_url"
     t.integer  "image_id"
-    t.string   "news_type",     :default => "CAM Newsletter"
+    t.string   "news_type",           :default => "CAM Newsletter"
     t.text     "image_caption"
     t.integer  "program_id"
     t.string   "subtitle"
+    t.datetime "effective_date"
+    t.boolean  "top_priority",        :default => false
+    t.boolean  "show_effective_date", :default => false
   end
 
   add_index "news_items", ["id"], :name => "index_news_items_on_id"

@@ -14,6 +14,9 @@
     <% @news_items.each do |item| %>
       <article class="news_item_truncated">
 				<h3 style="line-height:10px;"><%= link_to item.title, news_item_url(item) %></h3>
+				<% if item.show_effective_date && item.effective_date %>
+					<h4><%= item.effective_date.strftime("%A, %B %d, %Y at %I:%M %p") %></h4>
+				<% end %>
        	<p> 
     		<%= truncate  item.body, :length => 300, :omission => " ... #{link_to t('.read_more'), news_item_url(item)}", :preserve_html_tags => true %>
 				</p>

@@ -22,6 +22,8 @@ module Admin
       File.delete("#{RAILS_ROOT}/public/index.html") if File.file?("#{RAILS_ROOT}/public/index.html")
       File.delete("#{RAILS_ROOT}/public/front.html") if File.file?("#{RAILS_ROOT}/public/front.html")
       File.delete("#{RAILS_ROOT}/public/inside.html") if File.file?("#{RAILS_ROOT}/public/inside.html")
+      File.delete("#{RAILS_ROOT}/public/town-police-dept.html") if File.file?("#{RAILS_ROOT}/public/town-police-dept.html")
+      File.delete("#{RAILS_ROOT}/public/downloads.html") if File.file?("#{RAILS_ROOT}/public/downloads.html")
       FileUtils.rm_rf("#{RAILS_ROOT}/public/about-cam/")
       FileUtils.rm_rf("#{Rails.root}/public/about")
       FileUtils.rm_rf("#{Rails.root}/public/about-us")
@@ -45,6 +47,8 @@ module Admin
       FileUtils.rm_rf("#{Rails.root}/public/updates")
       FileUtils.rm_rf("#{Rails.root}/public/web")
       FileUtils.rm_rf("#{Rails.root}/public/workshops")
+      FileUtils.rm_rf("#{Rails.root}/public/town-departments")
+      FileUtils.rm_rf("#{Rails.root}/public/town-government")
       redirect_to :back, :notice => "Cache cleared successfully" and return
     end
 
