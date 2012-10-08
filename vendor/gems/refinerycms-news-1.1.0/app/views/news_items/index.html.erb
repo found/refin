@@ -13,10 +13,11 @@
   <% if @news_items.any? %>
     <% @news_items.each do |item| %>
       <article class="news_item_truncated">
-				<h3 style="line-height:20px;"><%= link_to item.title, news_item_url(item) %> <small><%= item.long_time %></small></h3>
+				<h3 style="line-height:10px;"><%= link_to item.title, news_item_url(item) %></h3>
        	<p> 
     		<%= truncate  item.body, :length => 300, :omission => " ... #{link_to t('.read_more'), news_item_url(item)}", :preserve_html_tags => true %>
 				</p>
+				<p style="color: #999; font-size: 11px;">Published: <%= item.long_time %></p>
 				<hr />
       </article>
 			

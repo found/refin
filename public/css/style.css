@@ -615,3 +615,7 @@ p em, a p em {
 ul#nav li li ul {
 	display:none;
 }
+
+.news_item_truncated a {
+	font-size: 18px;
+}
