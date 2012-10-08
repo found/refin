@@ -45,7 +45,8 @@ protected
   def find_all_events
     upcoming = Event.upcoming.not_featured
     current = Event.current.not_featured
-    @events = (upcoming | current).sort { |a,b| a.start_at <=> b.start_at }
+    @events = (current).sort { |a,b| a.start_at <=> b.start_at }
+    @upcoming = upcoming.sort{|a,b| a.start_at <=> b.start_at }
     
     featured_upcoming = Event.upcoming.featured
     featured_current = Event.current.featured

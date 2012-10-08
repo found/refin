@@ -7,16 +7,27 @@
 
 	<%=raw @page[:body] %>
 
-<h3>Subscribe to our Calendar: <%= link_to "Subscribe via RSS", events_path(:format => :rss) %></h3>
-<hr />
-	<div id="featured_events" class="events">
-		<h2>Featured Events</h2>
-		<%= render :partial => 'event', :collection => @featured_events, :locals => { :featured => true } %>
+<!-- <h3>Subscribe to our Calendar: <%#= link_to "Subscribe via RSS", events_path(:format => :rss) %></h3> -->
+<!-- <hr /> -->
+	 <div id="featured_events" class="events">
+		<% if !@featured_events.empty? %>
+			<h2>Featured Events</h2>
+			<%= render :partial => 'event', :collection => @featured_events, :locals => { :featured => true } %>
+		<% end %>
 	</div>
 	
   <div id="all_events" class="events">
-		<h2>All Events</h2>
-		<%= render :partial => 'event', :collection => @events %>
+		<% if !@events.empty? %>
+			<h2>Current Events</h2>
+			<%= render :partial => 'event', :collection => @events %>
+		<% end %>
+	</div>
+	
+	<div id="all_events" class="events">
+		<% if !@upcoming.empty? %>
+			<h2>Upcoming Events</h2>
+			<%= render :partial => "event", :collection => @upcoming %>
+		<% end %>
 	</div>
 <% end %>
 
