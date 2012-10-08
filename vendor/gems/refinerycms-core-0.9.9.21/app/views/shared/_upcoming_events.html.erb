@@ -1,4 +1,4 @@
-<h3>Town Calendar <br /> &amp; Special Events</h3>
+<a href="/events"><h3>Town Calendar <br /> &amp; Special Events</h3></a>
  <ul>
 	<% Event.find(:all, :conditions => ["featured = ?", true], :limit => 3).each do |evt| %>
 		<li> <%= link_to (image_fu evt.image, "125x125>"), "" unless evt.image.nil? %>
