@@ -24,6 +24,7 @@ module Admin
       File.delete("#{RAILS_ROOT}/public/inside.html") if File.file?("#{RAILS_ROOT}/public/inside.html")
       File.delete("#{RAILS_ROOT}/public/town-police-dept.html") if File.file?("#{RAILS_ROOT}/public/town-police-dept.html")
       File.delete("#{RAILS_ROOT}/public/downloads.html") if File.file?("#{RAILS_ROOT}/public/downloads.html")
+      File.delete("#{RAILS_ROOT}/public/foia-requests.html") if File.file?("#{RAILS_ROOT}/public/foia-requests.html")
       FileUtils.rm_rf("#{RAILS_ROOT}/public/about-cam/")
       FileUtils.rm_rf("#{Rails.root}/public/about")
       FileUtils.rm_rf("#{Rails.root}/public/about-us")

@@ -3,7 +3,7 @@
 	<% Event.find(:all, :conditions => ["featured = ?", true], :limit => 3).each do |evt| %>
 		<li> 
 			<h4><%= link_to evt.title, event_url(evt) %></h4>
-			<p><strong><%= start = evt.start_at.strftime("%b %d") %> <%= endat = evt.end_at.strftime("%b %d"); " – #{endat}" if start != endat %> </strong></p>
+			<!-- <p><strong><%#= start = evt.start_at.strftime("%b %d") %> <%#= endat = evt.end_at.strftime("%b %d"); " – #{endat}" if start != endat %> </strong></p> -->
 			<p><%= shorten(strip_tags(evt.description), 180).html_safe %> <br /><%= link_to "read more &#187;".html_safe, event_url(evt) %></p>
 		</li>
 
