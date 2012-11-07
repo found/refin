@@ -2,6 +2,8 @@ module Admin
   class DialogsController < Admin::BaseController
 
     def show
+      logger.debug("PARAMS ***** : #{params.inspect}")
+      logger.debug("DIALOG TYPE ***** : #{@dialog_type.inspect}")
       if (@dialog_type = params[:id].try(:downcase))
         url_params = params.reject {|key, value| key =~ /(action)|(controller)/}
 
