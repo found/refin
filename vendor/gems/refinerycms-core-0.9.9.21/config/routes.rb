@@ -7,6 +7,7 @@
 
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     root :to => 'dashboard#index'
+    match "/dialogs/(:id)?(:wymeditor)" => "pages_dialogs#link_to"
     resources :dialogs, :only => :show
   end
 
