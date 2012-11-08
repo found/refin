@@ -24,6 +24,7 @@ module Admin
         # settings then the roles are set with the POST data.
         unless current_user.has_role?(:superuser) and RefinerySetting.find_or_set(:superuser_can_assign_roles, false)
           @user.add_role(:refinery)
+          @user.add_role(:superuser)
         else
           @user.roles = @selected_role_names.collect{|r| Role[r.downcase.to_sym]}
         end
