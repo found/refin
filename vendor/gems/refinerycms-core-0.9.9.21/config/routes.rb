@@ -9,7 +9,7 @@
 
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     root :to => 'dashboard#index'
-    resources :dialogs, :only => :show
+    resources :dialogs, :only => [:index, :show]
   end
 
   match '/refinery/update_menu_positions', :to => 'admin/refinery_core#update_plugin_positions'
