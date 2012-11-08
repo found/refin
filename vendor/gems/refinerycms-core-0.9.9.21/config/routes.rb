@@ -1,7 +1,10 @@
 ::Refinery::Application.routes.draw do
   filter(:refinery_locales) if defined?(RoutingFilter::RefineryLocales) # optionally use i18n.
 
+
   root :to => 'pages#home'
+
+  match "/refinery/dialogs/Link?wymeditor=true" => redirect("/refinery/pages_dialogs/link_to?wymeditor=true")
 
   match 'wymiframe(/:id)', :to => 'refinery/fast#wymiframe', :as => :wymiframe
 
@@ -9,7 +12,6 @@
     root :to => 'dashboard#index'
     resources :dialogs, :only => :show
   end
-  match "/refinery/dialogs/Link?wymeditor=true" => redirect("/refinery/pages_dialogs/link_to?wymeditor=true")
 
   match '/refinery/update_menu_positions', :to => 'admin/refinery_core#update_plugin_positions'
 
