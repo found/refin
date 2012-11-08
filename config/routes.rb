@@ -20,5 +20,6 @@ CamDon::Application.routes.draw do
   match "/subscriptions/change_payment/(:id)" => "subscriptions#change_payment"
   match "/subscriptions/update_payment/(:id)" => "subscriptions#update_payment"
   
+  match "/refinery/dialogs/Link?wymeditor=true" => redirect("/refinery/pages_dialogs/link_to?wymeditor=true")
   
 end

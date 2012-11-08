@@ -4,7 +4,6 @@
 
   root :to => 'pages#home'
 
-  match "/refinery/dialogs/Link?wymeditor=true" => redirect("/refinery/pages_dialogs/link_to?wymeditor=true")
 
   match 'wymiframe(/:id)', :to => 'refinery/fast#wymiframe', :as => :wymiframe
 
