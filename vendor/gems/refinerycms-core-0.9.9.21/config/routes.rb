@@ -9,7 +9,7 @@
     root :to => 'dashboard#index'
     resources :dialogs, :only => :show
   end
-  match "/refinery/dialogs/Link?wymeditor=true" => "admin/pages_dialogs#link_to"
+  match "/refinery/dialogs/Link?wymeditor=true" => redirect("/refinery/pages_dialogs/link_to?wymeditor=true")
 
   match '/refinery/update_menu_positions', :to => 'admin/refinery_core#update_plugin_positions'
 
