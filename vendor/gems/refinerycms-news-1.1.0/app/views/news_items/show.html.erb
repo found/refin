@@ -10,7 +10,7 @@
 			<% if !@news_item.subtitle.blank? %>
 				<strong><%= @news_item.subtitle %></strong><br />
 			<% end %>
-      <small><%= t('.published') %> <%= l(@news_item.publish_date, :format => :long) %></small>
+      <small><%#= t('.published') %> <%#= l(@news_item.publish_date, :format => :long) %></small>
     </p>
 		<div style="float:right; margin:0px 20px -10px 15px;">
 			<%= image_fu @news_item.image, "300x", :class => 'add-caption', :alt => "#{@news_item.image_caption}" %>

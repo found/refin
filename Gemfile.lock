@@ -22,6 +22,7 @@ PATH
       refinerycms-core (>= 0.9.9.1)
     refinerycms-search (0.9.8)
       refinerycms (>= 0.9.8)
+    truncate_html (0.5.1)
 
 PATH
   remote: vendor/gems
@@ -289,7 +290,6 @@ GEM
     thor (0.14.6)
     treetop (1.4.9)
       polyglot (>= 0.3.1)
-    truncate_html (0.5.1)
     tzinfo (0.3.27)
     warden (1.0.5)
       rack (>= 1.0)
@@ -353,3 +353,4 @@ DEPENDENCIES
   shoulda
   sqlite3
   taps (= 0.3.23)
+  truncate_html!

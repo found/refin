@@ -8,6 +8,7 @@ gem 'activemerchant', '1.15.0', :path => "vendor/gems/activemerchant-1.15.0"
 gem 'authorize-net', '1.5.2', :path => "vendor/gems/authorize-net-1.5.2"
 gem 'exception_notification', '>= 2.5.2', :path => "vendor/gems/exception_notification-2.5.2"
 gem 'nokogiri', '1.4.4'
+gem 'truncate_html', :path => "vendor/gems"
 
 gem 'refinerycms', '= 0.9.9.21'
 gem 'refinerycms-authentication', '0.9.9.21', :path => "vendor/gems"

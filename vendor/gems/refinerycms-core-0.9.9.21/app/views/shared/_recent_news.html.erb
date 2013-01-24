@@ -1,13 +1,13 @@
 <a href="/news"><h3>Meeting Updates<br /> &amp; Announcements</h3></a>
  <ul>
-	<% NewsItem.find(:all, :conditions => ["publish_date < ? AND news_type = ?", Time.now, "News Release"], :order => "top_priority DESC, publish_date DESC", :limit => 3).each do |news| %>
+	<% NewsItem.find(:all, :conditions => ["publish_date < ? AND news_type = ?", Time.now, "News Release"], :order => "top_priority DESC, publish_date DESC", :limit => refinery_setting("Number of Announcements on Home Page", 3).to_i).each do |news| %>
 		<li> <%= link_to (image_fu news.image, "125x125>"), (news_item_url(news)) unless news.image.nil? %>
 			<h4><%= link_to news.title, (news_item_url(news)) %></h4>
 			<p><strong><%= news.subtitle %></strong></p>
 			<% if news.show_effective_date && news.effective_date %>
 				<p><strong><%= news.effective_date.strftime("%A, %B %d, %Y at %I:%M %p") %></strong></p>
 			<% end %>
-			<p><%= shorten(strip_tags(news.body), 180).html_safe %> <br /><%= link_to "read more &#187;".html_safe, (news_item_url(news)) %></p>
+			<p><%= truncate_html(news.body, :length => 180) %> <br /><%= link_to "read more &#187;".html_safe, (news_item_url(news)) %></p>
 		</li>
 
 	<% end %>

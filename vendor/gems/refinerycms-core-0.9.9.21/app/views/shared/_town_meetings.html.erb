@@ -1,6 +1,6 @@
 <h3>Meeting Updates</h3>
  <ul>
-	<% Meeting.find(:all, :order => "created_at DESC", :limit => 3).each do |meeting| %>
+	<% Meeting.find(:all, :order => "created_at DESC", :limit => 5).each do |meeting| %>
 		<li>
 			<h4><%= link_to meeting.title, meeting_url(meeting) %></h4>
 

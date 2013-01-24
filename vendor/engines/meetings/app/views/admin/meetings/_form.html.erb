@@ -9,11 +9,11 @@
     <%= f.text_field :title, :class => 'larger widest' -%>
   </div>
   
-  <div class='field'>
-    <%= f.label :date -%>
-    <%= f.datetime_select :date -%>
-  </div>
-  
+  <!-- <div class='field'> -->
+    <%#= f.label :date -%>
+    <%#= f.datetime_select :date -%>
+  <!-- </div> -->
+
   <div class='field'>
     <%= f.label :photo -%>
     <%= render :partial => "/shared/admin/image_picker", :locals => {

@@ -17,6 +17,10 @@ module ApplicationHelper
     return str
   end
   
+  def refinery_setting(key, alt)
+    RefinerySetting.find_by_name(key).value rescue alt
+  end
+  
   def shorten (string, count = 30)
   	if string.length >= count 
   		shortened = string[0, count]
