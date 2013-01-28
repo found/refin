@@ -7,7 +7,7 @@
 			<% if news.show_effective_date && news.effective_date %>
 				<p><strong><%= news.effective_date.strftime("%A, %B %d, %Y at %I:%M %p") %></strong></p>
 			<% end %>
-			<p><%= truncate_html(news.body, :length => 180) %> <br /><%= link_to "read more &#187;".html_safe, (news_item_url(news)) %></p>
+			<p><%= truncate_html(news.body, :length => 180) %><%= link_to "read more &#187;".html_safe, (news_item_url(news)) %></p>
 		</li>
 
 	<% end %>

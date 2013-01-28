@@ -6,6 +6,12 @@ Refinery::Application.routes.draw do
 
   scope(:path => 'refinery', :as => 'admin', :module => 'admin') do
     resources :news, :except => :show, :as => :news_items, :controller => :news_items
+    
+    resources :news_items, :except => :show do
+      collection do
+        post :update_positions
+      end
+    end
   end
 end
 

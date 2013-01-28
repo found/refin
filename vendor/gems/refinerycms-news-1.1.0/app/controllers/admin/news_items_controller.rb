@@ -1,5 +1,7 @@
-class Admin::NewsItemsController < Admin::BaseController
+module Admin
+  class NewsItemsController < Admin::BaseController
 
-  crudify :news_item, :order => "publish_date DESC"
+    crudify :news_item, :xhr_paging => true, :order => "publish_date DESC"
 
+  end
 end

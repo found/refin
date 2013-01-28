@@ -4,7 +4,7 @@
 		<li>
 			<h4><%= link_to meeting.title, meeting_url(meeting) %></h4>
 
-			<p><%= shorten(strip_tags(meeting.blurb), 180) %> <br /><br /><%= link_to "read more", meeting_url(meeting) %></p>
+			<p><%= shorten(strip_tags(meeting.blurb), 180) %> <br /><%= link_to "read more", meeting_url(meeting) %></p>
 		</li>
 
 	<% end %>
