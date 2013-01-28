@@ -6,6 +6,23 @@
     <li>
       <%= link_to t('.create'), new_admin_news_item_url, :class => "add_icon" %>
     </li>
+		<li>
+		    <%= link_to "Reorder",
+		                 admin_meetings_url,
+		                 :id => "reorder_action",
+		                 :class => "reorder_icon" %>
+
+		    <%= link_to "Done ReOrdering",
+		                 admin_meetings_url,
+		                 :id => "reorder_action_done",
+		                 :style => "display: none;",
+		                 :class => "reorder_icon" %>
+			<%= render :partial => '/shared/admin/make_sortable',
+			            :locals => {
+			              :tree => false
+			            } if !searching? and Admin::NewsItemsController.sortable? and NewsItem.count > 1 %>
+			
+		</li>
   </ul>
 </div>
 <div id='records'>
@@ -14,9 +31,14 @@
   <% end %>
   <% if @news_items.any? %>
     <%= will_paginate @news_items %>
-    <ul>
+    <ul id="sortable_list">
       <%= render :partial => "news_item", :collection => @news_items %>
     </ul>
+		<%= render :partial => "/shared/admin/sortable_list",
+		            :locals => {
+		              :continue_reordering => (local_assigns.keys.include?(:continue_reordering)) ? continue_reordering : true
+		            } %>
+
     <%= will_paginate @news_items %>
   <% else %>
     <p>
@@ -27,4 +49,6 @@
       <% end %>
     </p>
   <% end %>
+	
+
 </div>

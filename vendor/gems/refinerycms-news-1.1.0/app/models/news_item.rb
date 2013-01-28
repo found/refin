@@ -11,7 +11,8 @@ class NewsItem < ActiveRecord::Base
 
   acts_as_indexed :fields => [:title, :subtitle, :body]
 
-  default_scope :order => "top_priority DESC, publish_date DESC"
+  # default_scope :order => "top_priority DESC, publish_date DESC"
+  default_scope :order => "position ASC"
 
   # If you're using a named scope that includes a changing variable you need to wrap it in a lambda
   # This avoids the query being cached thus becoming unaffected by changes (i.e. Time.now is constant)
