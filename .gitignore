@@ -1,3 +1,7 @@
+public/about/
+public/faq.html
+public/home/
+public/index.html
 *.rbc
 *.sassc
 .sass-cache
