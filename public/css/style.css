@@ -361,6 +361,8 @@ p em, a p em {
 	padding-right:22px;
 	margin-bottom:20px;
 }
+
+
 .column_third.narrower {
 	width:254px;
 }
@@ -564,6 +566,7 @@ p em, a p em {
 	font-size: 14px;
 	padding-bottom: 0.4em;
 	margin-bottom: 0.4em;
+	color: #5c5c5c;
 }
 #maincolumn ul li, #maincolumn ol li, #maincolumn p, #maincolumn p a {
 	font-size: 14px;
