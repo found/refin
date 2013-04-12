@@ -15,14 +15,12 @@
 .individual_event .event_image {
 	float: left;
 	margin: 0 0px 10px 0;
+	width: 405px;
 }
 
 .individual_event .event_image img {
-	max-width: 405px;
-	width:expression(document.body.clientWidth > 405? "405px": "auto" );
 	position: relative;
 	width: 100%;
-	max-height: 400px;
 	
 }
 
