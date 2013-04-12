@@ -19,6 +19,7 @@
 
 .individual_event .event_image img {
 	max-width: 405px;
+	width: expression(Math.min(parseInt(this.offsetWidth), 405 ) + "px"); 
 }
 
 #featured_events h2 {
