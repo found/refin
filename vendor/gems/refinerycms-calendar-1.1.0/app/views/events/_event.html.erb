@@ -8,8 +8,9 @@
 <%= div_for event, :class => 'individual_event' do -%>
 
 	<section class="event_image">
-  	<%= image_fu event.image, "406x206#c" %>
+  	<%= image_fu event.image %>
 	</section>
+	<div style="clear:both;"></div>
 
 	<% unless individual -%>
 		<h1><%= link_to event.title, event %></h1>
@@ -23,8 +24,7 @@
   <!-- </section> -->
 
   <section class="venue">
-		<p>Location:<br/>
-		<%= event.venue_name %></p>
+		<p><%= event.venue_name %></p>
   </section>
 
   
