@@ -15,12 +15,13 @@
 .individual_event .event_image {
 	float: left;
 	margin: 0 0px 10px 0;
-	width: 405px;
+	width: 405px !important;
 }
 
 .individual_event .event_image img {
-	position: relative;
-	width: 100%;
+  width: auto !important; /*override the width below*/
+  width: 100%;
+  max-width: 405px;
 	
 }
 
