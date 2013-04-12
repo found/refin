@@ -18,12 +18,11 @@
 	width: 405px !important;
 }
 
-.individual_event .event_image img {
-  width: auto !important; /*override the width below*/
+/*.individual_event .event_image img {
   width: 100%;
   max-width: 405px;
 	
-}
+}*/
 
 #featured_events h2 {
 	margin: 15px 0 10px;
