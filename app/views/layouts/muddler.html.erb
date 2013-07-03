@@ -1,0 +1,26 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<%= render :partial => "/muddler/html_tag" %>
+  <% site_bar = render(:partial => "/muddler/site_bar", :locals => {:head => true}) -%>
+  <%= render :partial => "/muddler/head" %>
+  <body>
+    <%= site_bar -%>
+    <%= render :partial => "/muddler/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
+
+	<%= render :partial => "/muddler/header" -%>
+
+	<div id="container_main_content">
+	  <div id="content">
+
+	<%= yield %>
+
+
+	  </div>
+
+		<%= render :partial => "/muddler/footer" -%>
+
+	</div>
+	
+	
+	
+	<%= render :partial => "/muddler/javascripts" %>    
+</html>

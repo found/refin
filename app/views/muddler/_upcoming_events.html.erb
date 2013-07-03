@@ -1,0 +1,21 @@
+<a href="/events"><h3>Town Calendar <br /> &amp; Special Events</h3></a>
+<ul>
+	<% Meeting.find(:all, :order => "position ASC", :limit => refinery_setting("Number of Events on Home Page", 3).to_i).each do |meeting| %>
+		<li>
+			<h4><%= link_to meeting.title, meeting_url(meeting) %></h4>
+
+			<p><%= truncate_html(meeting.blurb, :length => 180) %> <%= link_to "read more &#187;".html_safe, meeting_url(meeting) %></p>
+		</li>
+
+	<% end %>
+ </ul>
+ <ul>
+	<% Event.find(:all, :conditions => ["featured = ?", true], :limit => refinery_setting("Number of Events on Home Page", 3).to_i).each do |evt| %>
+		<li> 
+			<h4><%= link_to evt.title, event_url(evt) %></h4>
+			<!-- <p><strong><%#= start = evt.start_at.strftime("%b %d") %> <%#= endat = evt.end_at.strftime("%b %d"); " – #{endat}" if start != endat %> </strong></p> -->
+			<p><%= truncate_html(evt.description, :length => 180).html_safe %> <%= link_to "read more &#187;".html_safe, event_url(evt) %></p>
+		</li>
+
+	<% end %>
+ </ul>

@@ -1,0 +1,30 @@
+<%= yield :before_javascript_libraries -%>
+<%= yield :javascript_libraries %>
+<%= yield :after_javascript_libraries %>
+<% if request.env['HTTP_USER_AGENT'] =~ /MSIE/ %>
+  <!--[if lt IE 7 ]>
+    <%= javascript_include_tag 'dd_belatedpng' %>
+    <script> DD_belatedPNG.fix('img, .png_bg'); //fix any <img> or .png_bg background-images </script>
+  <![endif]-->
+<% end %>
+<%= yield :javascripts -%>
+
+<script type="text/javascript">
+	$(function() {
+		$(".prompt").click(function() {
+			var ele = $(this);
+			var resp = confirm("You are being redirected away from http://christianaidministries.org");
+			if (resp == true) {
+				$(ele).append("<br /><span style='color:#727980'; font-size:'12px';>You are now leaving http://christianaidministries.org.  You will be redirected shortly.</span>");
+				var interval = setTimeout(function() {
+					window.location.href = $(ele).attr("href");
+					return false;
+				}, 5500);
+				interval = null;
+				return false;
+			} else {
+				return false;
+			}
+		})
+	})
+</script>

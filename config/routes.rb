@@ -9,6 +9,8 @@ CamDon::Application.routes.draw do
   resources :subscriptions
   resources :subscription_types
 
+  match 'muddler(/:action(/:id(.:format)))', :controller =>"muddler"
+
   match 'invoices(/:action(/:id(.:format)))', :controller =>"invoices"
   match 'donors(/:action(/:id(.:format)))', :controller =>"donor_dashboard"
   match 'payment_profile(/:action(/:id(.:format)))', :controller => "payment_profiles"

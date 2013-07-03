@@ -1,0 +1,11 @@
+<h3>Meeting Updates</h3>
+ <ul>
+	<% Meeting.find(:all, :order => "created_at DESC", :limit => 5).each do |meeting| %>
+		<li>
+			<h4><%= link_to meeting.title, meeting_url(meeting) %></h4>
+
+			<p><%= shorten(strip_tags(meeting.blurb), 180) %> <br /><%= link_to "read more", meeting_url(meeting) %></p>
+		</li>
+
+	<% end %>
+ </ul>

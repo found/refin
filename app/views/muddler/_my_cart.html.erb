@@ -1,0 +1,35 @@
+	<%- if current_member && current_cart %>
+		My Cart
+		<hr />
+		<table>
+			<thead>
+				<tr>
+					<td>Item:</td>
+					<td>Qty:</td>
+					<td>Price:</td>
+				</tr>
+			</thead>
+			<tbody>
+				<%- current_cart.line_items.each do |li| %>
+					<tr>
+						<td><%= link_to li.item_name, product_url(li) %></td>
+						<td><%= li.quantity %></td>
+						<td><%= money_from_decimal(li.price) %></td>
+					</tr>
+				<%- end %>
+				<tr>
+					<td><hr /></td>
+					<td><hr /></td>
+					<td><hr /></td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>TOTAL:</td>
+					<td><%= money_from_decimal(current_cart.total) rescue "$0.00"%></td>
+				</tr>
+			</tbody>
+		</table>
+		<%= link_to "View my cart", "/orders/view_cart" %> | <%= link_to "Checkout", "/orders/checkout" %>
+	<%- else %>
+		<%= link_to "Register", '/members/register' %> | <%= link_to "Login", new_member_session_path %>
+	<%- end %>
