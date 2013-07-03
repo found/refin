@@ -245,6 +245,8 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.9.2.2)
+    rdoc (4.0.1)
+      json (~> 1.4)
     refinerycms-i18n (1.0.0)
       refinerycms-core (>= 0.9.9.12)
       routing-filter (>= 0.2.3)
@@ -324,6 +326,7 @@ DEPENDENCIES
   rack-ssl
   rails (= 3.0.7)
   rake (>= 0.9.2)
+  rdoc
   refinerycms (= 0.9.9.21)
   refinerycms-authentication (= 0.9.9.21)!
   refinerycms-base (= 0.9.9.21)!

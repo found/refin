@@ -1,26 +1,30 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+
 <%= render :partial => "/muddler/html_tag" %>
   <% site_bar = render(:partial => "/muddler/site_bar", :locals => {:head => true}) -%>
   <%= render :partial => "/muddler/head" %>
   <body>
+	
+<div class="wrapper">
     <%= site_bar -%>
     <%= render :partial => "/muddler/ie6check" if request.env['HTTP_USER_AGENT'] =~ /MSIE/ -%>
 
 	<%= render :partial => "/muddler/header" -%>
 
+
 	<div id="container_main_content">
 	  <div id="content">
-
+		<a href="/muddler"><img src="../images/dayton_sub_head.png" style="margin-bottom:20px;"/></a>
+				<a href="/muddler/register"><img style="display: inline; position: absolute; margin-top: -40px; margin-right: -15px; float:right;" src="../images/register_call.png" style="margin-bottom:20px;"/></a>
+		<div style="clear:both;"></div>
 	<%= yield %>
 
-
 	  </div>
-
+	</div>
+	<div class="push"></div>
+</div>
 		<%= render :partial => "/muddler/footer" -%>
 
-	</div>
-	
-	
-	
+		
 	<%= render :partial => "/muddler/javascripts" %>    
 </html>

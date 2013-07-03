@@ -14,6 +14,7 @@ capybara-*.html
 /db/*.sqlite3
 /public/system/*
 /coverage/
+/rdoc
 /spec/tmp/*
 **.orig
 rerun.txt
