@@ -148,9 +148,19 @@ transition: all 0.1s ease-out;
 
 .home_content {
 	clear:both;
-	width: 240px;
+	width: 300px;
 	float:left;
+	font-size: 18px;
 	margin-right: 25px;
+}
+
+.home_content h2 {
+
+font-size: 24px !important;
+letter-spacing: 1px;
+color: #fff;
+text-transform: uppercase;
+
 }
 
 .four_column_home {
