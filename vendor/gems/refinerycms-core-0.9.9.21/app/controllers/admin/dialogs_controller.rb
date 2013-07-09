@@ -1,5 +1,5 @@
 module Admin
-  class DialogsController < Admin::Superuser
+  class DialogsController < Admin::BaseController
     
     def index
       redirect_to refinery.admin_root_path
