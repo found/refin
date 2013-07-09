@@ -62,7 +62,6 @@ group :test do
   gem 'cucumber-rails'
   gem 'capybara'
   gem 'shoulda'
-	gem 'rdoc'
 end
 gem 'refinerycms-emails', '1.0', :path => 'vendor/engines'
 gem 'refinerycms-businesses', '1.0', :path => 'vendor/engines'
