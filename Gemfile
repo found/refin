@@ -38,7 +38,7 @@ gem 'mongrel', '>= 1.2.0.pre2', :require => false
 gem 'heroku', '2.4.0', :require => false
 gem 'taps', '0.3.23', :require => false
 gem 'sqlite3', :require => false
-gem 'mysql2', '~> 0.2.7', :require => false
+gem 'mysql2', :require => false
 gem 'rack-ssl', :require => "rack/ssl"
 group :test, :development do
   gem 'rspec-rails', :require => false

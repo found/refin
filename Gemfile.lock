@@ -216,7 +216,7 @@ GEM
     moretea-awesome_nested_set (1.4.3.1)
       activerecord (~> 3.0.0)
     mysql (2.8.1)
-    mysql2 (0.2.7)
+    mysql2 (0.3.13)
     nokogiri (1.4.4)
     orm_adapter (0.0.5)
     paper_trail (2.2.9)
@@ -319,7 +319,7 @@ DEPENDENCIES
   mocha
   mongrel (>= 1.2.0.pre2)
   mysql
-  mysql2 (~> 0.2.7)
+  mysql2
   nokogiri (= 1.4.4)
   rack-ssl
   rails (= 3.0.7)
