@@ -1,7 +1,7 @@
  source 'http://rubygems.org'
 
 gem 'rails', '3.0.7'
-gem 'rake', '>= 0.9.2'
+gem 'rake', '>= 0.9.2', :require => false
 gem 'dragonfly', '0.8.5'
 gem 'ancestry'
 gem 'activemerchant', '1.15.0', :path => "vendor/gems/activemerchant-1.15.0"
