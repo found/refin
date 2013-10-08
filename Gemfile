@@ -34,21 +34,21 @@ gem 'refinerycms-calendar', '~>1.1', :path => 'vendor/gems'
 gem 'refinerycms-contacts', '1.0', :path => 'vendor/gems'
 gem 'refinerycms-search', '~> 0.9.8', :path => "vendor/gems"
 
-gem 'mongrel', '>= 1.2.0.pre2'
-gem 'heroku', '2.4.0'
-gem 'taps', '0.3.23'
-gem 'sqlite3'
-gem 'mysql2', '~> 0.2.7'
+gem 'mongrel', '>= 1.2.0.pre2', :require => false
+gem 'heroku', '2.4.0', :require => false
+gem 'taps', '0.3.23', :require => false
+gem 'sqlite3', :require => false
+gem 'mysql2', '~> 0.2.7', :require => false
 gem 'rack-ssl', :require => "rack/ssl"
 group :test, :development do
-  gem 'rspec-rails'
+  gem 'rspec-rails', :require => false
   # gem 'rb-fsevent'
-  gem 'growl'
-  gem 'guard'
+  gem 'growl', :require => false
+  gem 'guard', :require => false
   # gem 'guard-spork'
-  gem 'guard-rspec'
+  gem 'guard-rspec', :require => false
   # gem 'guard-cucumber'
-  gem 'guard-bundler'
+  gem 'guard-bundler', :require => false
   gem 'forgery'
   gem 'factory_girl_rails'#, :git => "git://github.com/thoughtbot/factory_girl_rails.git", :branch => 'master'
   # gem 'spork', '>= 0.9.0.rc'
@@ -56,12 +56,12 @@ group :test, :development do
 end
 
 group :test do
-  gem 'mysql'
-  gem 'mocha'
+  gem 'mysql', :require => false
+  gem 'mocha', :require => false
   gem 'launchy'    # So you can do Then show me the page
-  gem 'cucumber-rails'
-  gem 'capybara'
-  gem 'shoulda'
+  gem 'cucumber-rails', :require => false
+  gem 'capybara', :require => false
+  gem 'shoulda', :require => false
 end
 gem 'refinerycms-emails', '1.0', :path => 'vendor/engines'
 gem 'refinerycms-businesses', '1.0', :path => 'vendor/engines'
